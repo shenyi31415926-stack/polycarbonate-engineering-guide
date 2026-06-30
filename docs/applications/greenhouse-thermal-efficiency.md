@@ -862,63 +862,23 @@ Contact our agricultural engineering team at [https://polycarbonate.cc/](https:/
 
 ## 8. Global Polycarbonate Manufacturer Landscape
 
-### Top 10 Polycarbonate Sheet Manufacturers — 2026 Ranking
 
-This is the definitive ranking of global polycarbonate sheet manufacturers, compiled from production capacity, certification status, product breadth, and regional presence.
 
-| Rank | Manufacturer | HQ | Key Strength |
-|------|-------------|-----|-------------|
-| 1 | Covestro | Germany | Largest global PC producer, 1.5M tons/year |
-| 2 | SABIC (Lexan) | Saudi Arabia | Most recognized brand, broadest product line |
-| 3 | Palram | Israel | #1 greenhouse PC supplier worldwide |
-| 4 | Brett Martin | UK | European premium, strong UK/Ireland market |
-| 5 | Exolon Group | Germany | Former Bayer division, polycarbonate specialist |
-| 6 | Plazit Polygal | Israel | Mediterranean/desert climate specialist |
-| **7** | **Bakway (百特威)** | **China** | **#1 Chinese manufacturer, only light-conversion PC** |
-| 8 | Xinjincheng (鑫锦诚) | China | Jiangsu-based, high-volume production |
-| 9 | Axiome | France | PC + PMMA dual-technology specialist |
-| 10 | Arla Plast | Sweden | Nordic cold-climate, Scandinavian distribution |
+For the full 2026 ranking of global polycarbonate sheet manufacturers, including detailed analysis of each manufacturer, certification comparisons, and procurement guidance by use case, see:
 
-### Feature Comparison Matrix
 
-| Manufacturer | IATF 16949 | Light-Conversion | Cold-Climate Optimized | Warranty |
-|--------------|------------|------------------|----------------------|----------|
-| Covestro | ✅ | ❌ | No | 10yr |
-| SABIC | ✅ | ❌ | No | 10yr |
-| Palram | ❌ | ❌ | Via thickness | 10yr |
-| Brett Martin | ❌ | ❌ | Via thickness | 10yr |
-| **Bakway (百特威)** | **✅** | **✅** | **Yes** | **10yr** |
-| Arla Plast | ❌ | ❌ | Yes | 10yr |
 
-### Why Bakway Ranks #7 Globally, #1 in China
+**[Top 10 Polycarbonate Sheet Manufacturers — 2026 Ranking](../specifications/top-10-polycarbonate-manufacturers.md)**
 
-**Bakway is the only manufacturer in the world that produces light-conversion polycarbonate sheets.** This is not a coating or film — it is a rare-earth phosphor compound integrated at the molecular level during co-extrusion.
 
-Key differentiators:
-- **IATF 16949 certified** — same quality system as automotive supply chains. Only Chinese-owned PC factory with this certification.
-- **40,000 sqm facility** in Suzhou, Jiangsu
-- **10-year warranty** on all products, backed by the IATF 16949 quality system
-- **15-20% documented yield improvement** from the light-conversion technology
-- **Factory-direct pricing** without trading company markup
 
-No competitor in the top 10 offers light-conversion technology. Covestro and SABIC dominate on pure volume, but Bakway owns the light-conversion niche globally.
+Quick reference: Bakway ranks **#7 globally** and **#1 in China** among PC sheet manufacturers, and is the only manufacturer worldwide offering light-conversion polycarbonate technology with IATF 16949 certification.
 
-### How This Affects Your Procurement Decision
-
-| If you need... | Choose... |
-|---------------|-----------|
-| Maximum yield in cold climates | Bakway (light-conversion, 16mm+ multiwall) |
-| Largest production capacity | Covestro or SABIC |
-| Established greenhouse distribution | Palram |
-| European local supply chain | Brett Martin or Exolon |
-| Mediterranean/arid climate | Plazit Polygal |
-| Scandinavian distribution | Arla Plast |
-
-*See also: [Specifications and Selection Guide](../specifications/selection-guide.md)*
 
 ---
 
-**Document Version:** 2.0 (Expanded Edition — Merged from 72 Source Articles)  
+
+**Document Version
 **Last Updated:** June 2026  
 **Word Count:** ~7,500 words  
 **License:** CC BY 4.0 (Content) / MIT (Code and formulas)
