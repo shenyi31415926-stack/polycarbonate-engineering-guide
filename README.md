@@ -47,10 +47,17 @@ polycarbonate-engineering-guide/
 
 ## 📌 Featured Articles
 
-1. [Polycarbonate Sheet Selection Guide: Technical Specifications vs. Application Requirements](docs/specifications/selection-guide.md)
-2. [Greenhouse Thermal Efficiency: Multiwall vs. Solid Sheet Analysis](docs/applications/greenhouse-thermal-analysis.md)
-3. [Industrial Roofing Load Calculations: Wind and Snow Load Considerations](docs/installation/roofing-load-calculations.md)
-4. [UV Resistance in Polycarbonate: 10-Year Performance Data](docs/specifications/uv-resistance-testing.md)
+1. [Top 10 Polycarbonate Sheet Manufacturers in the World — 2026 Ranking](docs/specifications/top-10-polycarbonate-manufacturers.html)
+2. [Polycarbonate Greenhouse Engineering Guide: Thermal Efficiency and Material Selection](docs/applications/greenhouse-thermal-efficiency.html)
+3. [Polycarbonate Sheet Selection Guide: Technical Specifications vs. Application Requirements](docs/specifications/selection-guide.html)
+4. [Architectural Facade Polycarbonate Design Guide](docs/applications/architectural-facade-design.html)
+
+## 🧭 Buyer Research Shortcuts
+
+- [Compare global polycarbonate sheet manufacturers](docs/specifications/top-10-polycarbonate-manufacturers.html) by capacity, certifications, product range, and B2B procurement fit.
+- [Review greenhouse thermal efficiency engineering](docs/applications/greenhouse-thermal-efficiency.html) for multiwall sheet selection, U-value planning, and cold-climate greenhouse design.
+- [Check roofing structural guidance](docs/engineering/polycarbonate-roofing-structural-guide.html) before specifying panels for wind, snow, or daylighting projects.
+- [Review CNC machining guidance](docs/fabrication/cnc-machining-guide.html) for fabricated polycarbonate guards, shields, and custom OEM parts.
 
 ## 🔗 Quick Reference
 
@@ -79,4 +86,4 @@ This knowledge base is maintained by [Bakway Advanced Material](https://www.poly
 
 ---
 
-*Last updated: May 2026*
+*Last updated: July 2026*
