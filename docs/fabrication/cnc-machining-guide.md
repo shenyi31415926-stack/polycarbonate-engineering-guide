@@ -13,7 +13,7 @@ CNC (Computer Numerical Control) machining represents the most versatile fabrica
 
 Based on our processing data from 50,000+ CNC jobs annually, proper machining parameters can achieve cutting speeds 40% faster than standard settings while maintaining edge quality and preventing stress cracking. For high-volume production, optimized CNC workflows reduce per-part processing costs by 25-35% compared to manual fabrication methods.
 
-> **Critical Safety Note:** Laser cutting is **NOT suitable for polycarbonate** and will produce poor edge quality, yellowing, and toxic fumes. Laser cutting works for acrylic (PMMA) but should never be used for PC. For thermal cutting of polycarbonate, only [CNC routing with mechanical cutters](https://polycarbonate.cc/cnc-routingmachining-cnc/) or specialized knife-cutting systems are recommended.
+> **Critical Safety Note:** Laser cutting is **NOT suitable for polycarbonate** and will produce poor edge quality, yellowing, and toxic fumes. Laser cutting works for acrylic (PMMA) but should never be used for PC. For thermal cutting of polycarbonate, only [CNC routing with mechanical cutters](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) or specialized knife-cutting systems are recommended.
 
 ---
 
@@ -43,7 +43,7 @@ In our tool wear studies at Bakway's Suzhou facility, we documented three distin
 
 ### 1.2 CNC Process Capabilities
 
-[Bakway's CNC fabrication services](https://polycarbonate.cc/cnc-routingmachining-cnc/) support a comprehensive range of operations:
+[Bakway's CNC fabrication services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) support a comprehensive range of operations:
 
 | Operation | Tolerance | Best Applications | Surface Finish |
 |-----------|-----------|-------------------|----------------|
@@ -189,7 +189,7 @@ A 2024 project for a Dutch agricultural equipment manufacturer required 2,000 id
    - Drilling: Peck cycle with 3mm retract
 
 3. **Stress Relief:**
-   - [Annealing after machining](https://polycarbonate.cc/plastic-bending-gluing/) is mandatory for thick sections
+   - [Annealing after machining](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) is mandatory for thick sections
    - Heat to 120°C for 2 hours, slow cool (20°C/hour)
    - Prevents delayed cracking from residual stresses
 
@@ -220,7 +220,7 @@ A 2024 project for a Dutch agricultural equipment manufacturer required 2,000 id
 
 **For Optical-Grade Edges:**
 
-[Bakway's polishing services](https://polycarbonate.cc/plastic-polishing/) achieve <1μm Ra surface roughness using a 4-stage process:
+[Bakway's polishing services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) achieve <1μm Ra surface roughness using a 4-stage process:
 
 1. **Sanding:** 400-grit wet sanding to remove tool marks
 2. **Fine sanding:** 800-grit preparation
@@ -356,7 +356,7 @@ For a recent automotive project producing 15,000 display bezels:
 - **Cause:** Residual stress from aggressive cutting
 - **Solution:**
   - Reduce pass depth
-  - [Anneal parts](https://polycarbonate.cc/plastic-bending-gluing/) after machining
+  - [Anneal parts](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) after machining
   - Review tool path for stress concentration
 
 ---
@@ -376,7 +376,7 @@ A customer approached us with a [solid PC enclosure](https://polycarbonate.cc/pr
   - Quote: $89/part
 
 - **Bakway DFM optimization:**
-  - Replaced pockets with bent profiles using [plastic bending](https://polycarbonate.cc/plastic-bending-gluing/)
+  - Replaced pockets with bent profiles using [plastic bending](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
   - Consolidated holes into slots where possible
   - Specified optical finish only on visible edges
   - Final cost: $34/part (62% reduction)
@@ -392,14 +392,14 @@ A customer approached us with a [solid PC enclosure](https://polycarbonate.cc/pr
 | **Medium (100-500)** | $150 | $6-10 | $6.30-10.30 |
 | **High (1,000+)** | $150 | $3-5 | $3.15-5.15 |
 
-**Key insight:** Setup costs dominate at low volumes. For prototypes, consider [laser cutting acrylic prototypes](https://polycarbonate.cc/laser-cutting/) first (only for form/fit testing, not functional PC testing), then switch to CNC machined PC for final validation.
+**Key insight:** Setup costs dominate at low volumes. For prototypes, consider [laser cutting acrylic prototypes](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) first (only for form/fit testing, not functional PC testing), then switch to CNC machined PC for final validation.
 
 ---
 
 ## Frequently Asked Questions
 
 **Q: Can I laser cut polycarbonate sheets?**  
-A: **No.** Laser cutting is not suitable for polycarbonate and will produce yellowed, rough edges with poor dimensional accuracy. Additionally, laser cutting PC releases toxic fumes (benzene derivatives). For thermal cutting, use [CNC routing with mechanical tools](https://polycarbonate.cc/cnc-routingmachining-cnc/). **Note:** Laser cutting works well for acrylic (PMMA) with clean edges, but PC requires mechanical cutting methods.
+A: **No.** Laser cutting is not suitable for polycarbonate and will produce yellowed, rough edges with poor dimensional accuracy. Additionally, laser cutting PC releases toxic fumes (benzene derivatives). For thermal cutting, use [CNC routing with mechanical tools](https://polycarbonate.cc/polycarbonate-manufacturing-technology/). **Note:** Laser cutting works well for acrylic (PMMA) with clean edges, but PC requires mechanical cutting methods.
 
 **Q: What is the thickest polycarbonate you can CNC machine?**  
 A: At Bakway, we regularly machine [solid PC sheets](https://polycarbonate.cc/product/solid-pc-sheets/) up to 50mm thick. For thicknesses above 25mm, we recommend:
@@ -413,11 +413,11 @@ A: Stress cracking results from residual machining stresses combining with envir
 1. Use sharp tools (reduces cutting forces)
 2. Maintain proper chip load (0.05-0.15mm)
 3. Avoid aggressive feeds on final passes
-4. [Anneal thick sections](https://polycarbonate.cc/plastic-bending-gluing/) (120°C for 2 hours)
+4. [Anneal thick sections](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) (120°C for 2 hours)
 5. Design with generous radii (no sharp internal corners)
 
 **Q: Can you achieve optical clarity on machined edges?**  
-A: Yes, through our [diamond polishing](https://polycarbonate.cc/plastic-polishing/) and flame polishing processes. Machined edges start at Ra 3.2μm (good). After polishing, we achieve Ra <0.1μm (optical grade). This is essential for viewing windows, display cases, and medical devices where edge visibility matters.
+A: Yes, through our [diamond polishing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) and flame polishing processes. Machined edges start at Ra 3.2μm (good). After polishing, we achieve Ra <0.1μm (optical grade). This is essential for viewing windows, display cases, and medical devices where edge visibility matters.
 
 **Q: What file formats do you accept for CNC programming?**  
 A: We accept native CAD formats (SolidWorks, AutoCAD, Inventor) and neutral formats (STEP, IGES, DXF). For 2D cutting, provide DXF or DWG with clearly defined cut paths. For 3D machining, STEP files with dimensional drawings are preferred. Always include tolerance callouts and critical dimension highlights.
@@ -429,7 +429,7 @@ A: We accept native CAD formats (SolidWorks, AutoCAD, Inventor) and neutral form
 1. ASTM D3892 - Standard Practice for Packaging/Packing of Plastics
 2. ISO 2768-1 - General tolerances for linear and angular dimensions
 3. "Machining of Plastics: Technical Handbook" - Quadrant Engineering Plastic Products
-4. [Bakway CNC Fabrication Technical Guide](https://polycarbonate.cc/cnc-routingmachining-cnc/)
+4. [Bakway CNC Fabrication Technical Guide](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
 5. "Thermoplastics Machining: A Guide to Best Practice" - BPF (British Plastics Federation)
 6. Tool Manufacturer Data: Onsrud, Vortex, and LMT Onsrud cutting parameters for polycarbonate
 
@@ -437,12 +437,12 @@ A: We accept native CAD formats (SolidWorks, AutoCAD, Inventor) and neutral form
 
 ## Related Resources
 
-- [CNC Routing and Machining Services](https://polycarbonate.cc/cnc-routingmachining-cnc/)
+- [CNC Routing and Machining Services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
 - [Solid PC Sheets for Machining](https://polycarbonate.cc/product/solid-pc-sheets/)
 - [Multiwall PC Sheets](https://polycarbonate.cc/product/multiwall-pc-sheets/)
-- [Plastic Bending and Gluing](https://polycarbonate.cc/plastic-bending-gluing/)
-- [Edge Polishing Services](https://polycarbonate.cc/plastic-polishing/)
-- [Laser Cutting (Acrylic Only, Not PC)](https://polycarbonate.cc/laser-cutting/)
+- [Plastic Bending and Gluing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
+- [Edge Polishing Services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
+- [Laser Cutting (Acrylic Only, Not PC)](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
 
 ---
 

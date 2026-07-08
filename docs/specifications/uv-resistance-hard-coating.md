@@ -85,7 +85,7 @@ Common installation errors:
 
 ### 4.2 Edge Sealing
 
-Hard-coated sheets require [edge sealing](https://polycarbonate.cc/plastic-bending-gluing/) to prevent:
+Hard-coated sheets require [edge sealing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) to prevent:
 - Capillary moisture ingress
 - Coating delamination at cut edges
 - UV attack on exposed internal structure
@@ -96,21 +96,21 @@ Hard-coated sheets require [edge sealing](https://polycarbonate.cc/plastic-bendi
 
 ### 5.1 Fabrication Compatibility
 
-Hard-coated PC sheets support most [fabrication processes](https://polycarbonate.cc/cnc-routingmachining-cnc/):
+Hard-coated PC sheets support most [fabrication processes](https://polycarbonate.cc/polycarbonate-manufacturing-technology/):
 
 | Process | Compatibility | Notes |
 |---------|---------------|-------|
 | CNC Cutting | ✅ Full | Coating repairs needed at edges |
 | Laser Cutting | ⚠️ Limited | May damage coating near cut |
 | Cold Bending | ✅ Full | Radius ≥150x thickness |
-| Thermoforming | ⚠️ Special | [Vacuum forming](https://polycarbonate.cc/polycarbonate-thermoforming-vacuum-forming/) requires pre-heating |
-| [Polishing](https://polycarbonate.cc/plastic-polishing/) | ✅ Full | Edge finishing recommended |
+| Thermoforming | ⚠️ Special | [Vacuum forming](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) requires pre-heating |
+| [Polishing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) | ✅ Full | Edge finishing recommended |
 
 ### 5.2 Post-Fabrication Coating Repair
 
 Cut edges and drilled holes lose hard coating protection. Options:
 1. Edge seal with compatible UV-cured coating
-2. [Silicone bonding](https://polycarbonate.cc/plastic-bending-gluing/) with UV-resistant sealant
+2. [Silicone bonding](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) with UV-resistant sealant
 3. Design to keep cut edges in protected shadow zones
 
 ---
@@ -134,7 +134,7 @@ Cut edges and drilled holes lose hard coating protection. Options:
 ## 7. Frequently Asked Questions
 
 **Q: Can hard coating be applied to existing installed polycarbonate?**  
-A: No, hard coating requires factory application under controlled conditions. For existing installations, consider [protective films](https://polycarbonate.cc/product/pc-films-polycarbonate-films/) or replacement with pre-coated sheets.
+A: No, hard coating requires factory application under controlled conditions. For existing installations, consider [protective films](https://polycarbonate.cc/product/solid-pc-sheets/) or replacement with pre-coated sheets.
 
 **Q: What is the difference between hard coating and standard UV coating?**  
 A: Standard UV coating (30-50μm, one-sided) provides UV absorption only. Hard coating (3-5μm silicone, both-sided) adds scratch resistance and chemical protection while maintaining UV performance. [View specifications](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/).
@@ -143,7 +143,7 @@ A: Standard UV coating (30-50μm, one-sided) provides UV absorption only. Hard c
 A: Generally no. Indoor applications without direct UV exposure can use [standard solid PC](https://polycarbonate.cc/product/solid-pc-sheets/). Hard coating becomes critical for high-traffic areas requiring scratch resistance (machine guards, public displays).
 
 **Q: How does hard coating affect optical clarity?**  
-A: Premium hard coatings add <1% haze. [Optical grade PC](https://polycarbonate.cc/product/optical-grade-pc/) with hard coating maintains >89% light transmission, suitable for display applications.
+A: Premium hard coatings add <1% haze. [Optical grade PC](https://polycarbonate.cc/product/solid-pc-sheets/) with hard coating maintains >89% light transmission, suitable for display applications.
 
 ---
 
@@ -161,7 +161,7 @@ A: Premium hard coatings add <1% haze. [Optical grade PC](https://polycarbonate.
 - [Anti-Scratch Hard Coated PC Specifications](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/)
 - [Solid PC Sheets for Indoor Applications](https://polycarbonate.cc/product/solid-pc-sheets/)
 - [Multiwall PC for Greenhouse Construction](https://polycarbonate.cc/product/multiwall-pc-sheets/)
-- [CNC Fabrication Services](https://polycarbonate.cc/cnc-routingmachining-cnc/)
+- [CNC Fabrication Services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
 - [Contact Engineering Team](https://polycarbonate.cc/)
 
 ---
@@ -173,7 +173,7 @@ This technical guide is maintained by **[Bakway Advanced Material](https://polyc
 **Our Coating Capabilities:**
 - In-house UV and hard coating lines
 - Custom coating thickness (3-10μm)
-- [Digital printing](https://polycarbonate.cc/digital-screen-printing/) on coated surfaces
+- [Digital printing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) on coated surfaces
 - Quality testing per ASTM standards
 
 **Need project-specific recommendations?**  

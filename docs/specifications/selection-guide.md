@@ -31,6 +31,8 @@ Selecting the appropriate polycarbonate sheet configuration requires systematic 
 - Safety glazing for architectural features
 - Optical applications requiring maximum clarity
 
+For solid polycarbonate sheet specifications, see [Bakway Solid PC Sheets](https://polycarbonate.cc/product/solid-pc-sheets/).
+
 ### 1.2 Multiwall (Cellular) Polycarbonate Sheets
 
 #### Twin-Wall Configuration
@@ -57,6 +59,8 @@ Selecting the appropriate polycarbonate sheet configuration requires systematic 
 - Industrial skylights with snow load considerations
 - Covered walkways with condensation control needs
 - Swimming pool enclosures with humidity management
+
+For multiwall product specifications, see [Bakway Multiwall PC Sheets](https://polycarbonate.cc/product/multiwall-pc-sheets/).
 
 ### 1.3 Corrugated Polycarbonate Sheets
 
@@ -207,6 +211,8 @@ Z_req = 600 N·m/m / 12,000,000 Pa = 0.00005 m³/m = 50,000 mm³/m
 *Based on heating cost $0.12/kWh, 2000 degree-days/year
 
 **Result:** Triple-wall costs 42% more initially but provides superior long-term value in heating-dominated climates.
+
+For a detailed cost-performance comparison across materials, see [Polycarbonate Material Comparison Guide](https://polycarbonate.cc/compare/).
 
 ---
 

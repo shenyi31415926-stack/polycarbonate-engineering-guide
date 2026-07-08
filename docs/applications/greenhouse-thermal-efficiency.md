@@ -572,7 +572,7 @@ Polycarbonate is chemically sensitive to a range of common construction sealants
 
 > "All sealants in contact with polycarbonate glazing shall be neutral-cure alkoxy silicone, 100% solids, with documented compatibility testing from the polycarbonate manufacturer. Acetoxy-cure, acid-cure, and PVC-containing products are prohibited. Submit manufacturer's compatibility letter with shop drawings."
 
-For detailed sealant and gluing procedures, refer to Bakway's fabrication guide at [https://polycarbonate.cc/plastic-bending-gluing/](https://polycarbonate.cc/plastic-bending-gluing/).
+For detailed sealant and gluing procedures, refer to Bakway's fabrication guide at [https://polycarbonate.cc/polycarbonate-manufacturing-technology/](https://polycarbonate.cc/polycarbonate-manufacturing-technology/).
 
 ### 6.3 Frame Spacing vs. Wind Load
 
@@ -660,8 +660,8 @@ This document is part of a comprehensive polycarbonate engineering knowledge bas
 - **Bakway Multiwall PC Product Page:** [https://polycarbonate.cc/product/multiwall-pc-sheets/](https://polycarbonate.cc/product/multiwall-pc-sheets/)
 - **Bakway Solid PC Product Page:** [https://polycarbonate.cc/product/solid-pc-sheets/](https://polycarbonate.cc/product/solid-pc-sheets/)
 - **Hard Coated PC for Anti-Fog/Anti-Scratch:** [https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/)
-- **Plastic Bending and Gluing Services:** [https://polycarbonate.cc/plastic-bending-gluing/](https://polycarbonate.cc/plastic-bending-gluing/)
-- **CNC Routing/Machining Services:** [https://polycarbonate.cc/cnc-routingmachining-cnc/](https://polycarbonate.cc/cnc-routingmachining-cnc/)
+- **Plastic Bending and Gluing Services:** [https://polycarbonate.cc/polycarbonate-manufacturing-technology/](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
+- **CNC Routing/Machining Services:** [https://polycarbonate.cc/polycarbonate-manufacturing-technology/](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
 
 ---
 
@@ -793,7 +793,7 @@ For most commercial greenhouses, yes. However, consider solid PC sheets for: (1)
 
 **Q: How do I repair damaged multiwall sheets?**
 
-Small cracks can be repaired with PC-compatible neutral-cure silicone adhesive, but replacement is recommended for any damage affecting the structural integrity of internal ribs. Keep 5% spare sheet inventory on-site. The U-lock connection system permits individual panel replacement without dismantling adjacent panels. For structural damage assessment and replacement procedures, consult [Bakway's fabrication and gluing guide](https://polycarbonate.cc/plastic-bending-gluing/).
+Small cracks can be repaired with PC-compatible neutral-cure silicone adhesive, but replacement is recommended for any damage affecting the structural integrity of internal ribs. Keep 5% spare sheet inventory on-site. The U-lock connection system permits individual panel replacement without dismantling adjacent panels. For structural damage assessment and replacement procedures, consult [Bakway's fabrication and gluing guide](https://polycarbonate.cc/polycarbonate-manufacturing-technology/).
 
 **Q: What makes Bakway's light-conversion technology different from UV blocking?**
 

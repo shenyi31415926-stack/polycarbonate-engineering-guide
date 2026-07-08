@@ -147,8 +147,8 @@ print(f"10mm twin-wall Z: ~120 mm³/mm → {'PASS' if 120 > required_Z else 'FAI
 | Commercial skylights | [Solid PC 6mm](https://polycarbonate.cc/product/solid-pc-sheets/) | 90% LT, high impact | Product Page |
 | Industrial daylighting | [Multiwall 10mm](https://polycarbonate.cc/product/multiwall-pc-sheets/) | U-2.6, lightweight | Product Page |
 | Cold climate greenhouses | [Multiwall 16mm](https://polycarbonate.cc/product/multiwall-pc-sheets/) | U-2.1, snow-rated | Product Page |
-| Agricultural roofing | [Corrugated PC](https://polycarbonate.cc/corrugated-polycarbonate-sheets/) | Matches metal profiles | Product Page |
-| Architectural facade | [U-Lock System](https://polycarbonate.cc/u-lock-polycarbonate-system-standing-seam/) | Seamless appearance | Product Page |
+| Agricultural roofing | [Corrugated PC](https://polycarbonate.cc/product/corrugated-pc-sheets/) | Matches metal profiles | Product Page |
+| Architectural facade | [U-Lock System](https://polycarbonate.cc/product/multiwall-pc-sheets/) | Seamless appearance | Product Page |
 
 ---
 
@@ -162,7 +162,7 @@ print(f"10mm twin-wall Z: ~120 mm³/mm → {'PASS' if 120 > required_Z else 'FAI
    - Check squareness (±5mm over 10m)
 
 2. **Sheet Preparation**
-   - [CNC cutting](https://polycarbonate.cc/cnc-routingmachining-cnc/) to exact dimensions
+   - [CNC cutting](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) to exact dimensions
    - Pre-drill fastening holes (oversized by 3mm for expansion)
    - Remove protective film from edges only (leave surface protection until final cleaning)
 
@@ -170,7 +170,7 @@ print(f"10mm twin-wall Z: ~120 mm³/mm → {'PASS' if 120 > required_Z else 'FAI
    - Use stainless steel or coated screws
    - Install thermal washers (EPDM + aluminum)
    - Torque: 2-3 N·m (hand-tight plus ¼ turn)
-   - **Critical:** Do not use laser cutting for polycarbonate - produces toxic fumes and material degradation. Always use [CNC routing](https://polycarbonate.cc/cnc-routingmachining-cnc/).
+   - **Critical:** Do not use laser cutting for polycarbonate - produces toxic fumes and material degradation. Always use [CNC routing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/).
 
 4. **Sealing and Finishing**
    - Apply compatible silicone at laps and penetrations
@@ -208,7 +208,7 @@ A: Polycarbonate offers 250× greater impact resistance, 1/6 the weight, and sim
 **Project:** 12,000m² warehouse daylighting retrofit  
 **Challenge:** Replace failed fiberglass panels with code-compliant solution; maintain operations during installation  
 **Solution:** [Multiwall polycarbonate 16mm](https://polycarbonate.cc/product/multiwall-pc-sheets/), triple-wall configuration  
-**Installation:** [U-Lock standing seam system](https://polycarbonate.cc/u-lock-polycarbonate-system-standing-seam/) for weather-tight performance
+**Installation:** [U-Lock standing seam system](https://polycarbonate.cc/product/multiwall-pc-sheets/) for weather-tight performance
 
 **Results:**
 - Natural illumination increased from 2% to 8% daylight factor
@@ -237,7 +237,7 @@ This technical guide is maintained by **[Bakway Advanced Material](https://polyc
 
 **Our Capabilities:**
 - 40,000㎡ production + 15,000㎡ processing facilities
-- 23+ precision fabrication services: [CNC Machining](https://polycarbonate.cc/cnc-routingmachining-cnc/), [Thermoforming](https://polycarbonate.cc/polycarbonate-thermoforming-vacuum-forming/), [Bending](https://polycarbonate.cc/plastic-bending-gluing/)
+- 23+ precision fabrication services: [CNC Machining](https://polycarbonate.cc/polycarbonate-manufacturing-technology/), [Thermoforming](https://polycarbonate.cc/polycarbonate-manufacturing-technology/), [Bending](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
 - Singapore & Indonesia branches for Asia-Pacific logistics
 - Custom engineering support for complex projects
 

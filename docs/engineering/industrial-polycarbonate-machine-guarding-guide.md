@@ -115,7 +115,7 @@ print(f"Required thickness: 8-10mm solid PC")
 - Anti-static: 10^9-10^12 Ω/sq (minimal static control)
 - Insulative: >10^12 Ω/sq (generates static)
 
-[ESD anti-static polycarbonate](https://polycarbonate.cc/product/esd-anti-static-pc/) maintains 10^6-10^9 Ω/sq throughout the material volume, not just surface coating.
+[ESD anti-static polycarbonate](https://polycarbonate.cc/product/solid-pc-sheets/) maintains 10^6-10^9 Ω/sq throughout the material volume, not just surface coating.
 
 ---
 
@@ -159,10 +159,10 @@ print(f"Required thickness: 8-10mm solid PC")
 |-------------|---------|-----------|-------------------|
 | Light machining guards | [Solid PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 6mm | Impact: 60 J |
 | Heavy machining centers | [Solid PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 8-10mm | Impact: 70-100 J |
-| ESD workstations | [ESD PC](https://polycarbonate.cc/product/esd-anti-static-pc/) | 3-6mm | 10^6-10^9 Ω/sq |
+| ESD workstations | [ESD PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 3-6mm | 10^6-10^9 Ω/sq |
 | Chemical exposure | [Hard-coated PC](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/) | 4-6mm | Chemical resistance |
-| Cleanroom panels | [ESD PC](https://polycarbonate.cc/product/esd-anti-static-pc/) | 3-5mm | ISO 14644-1 compliant |
-| High-clarity inspection | [Optical PC](https://polycarbonate.cc/product/optical-grade-pc/) | 3-10mm | <0.5% haze |
+| Cleanroom panels | [ESD PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 3-5mm | ISO 14644-1 compliant |
+| High-clarity inspection | [Optical PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 3-10mm | <0.5% haze |
 
 ---
 
@@ -172,7 +172,7 @@ print(f"Required thickness: 8-10mm solid PC")
 
 **CNC Machining Requirements:**
 
-[Polycarbonate CNC routing](https://polycarbonate.cc/cnc-routingmachining-cnc/) requires specific parameters:
+[Polycarbonate CNC routing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) requires specific parameters:
 
 | Operation | Tool | Speed | Feed Rate | Notes |
 |-----------|------|-------|-----------|-------|
@@ -185,7 +185,7 @@ print(f"Required thickness: 8-10mm solid PC")
 
 **Thermoforming for Complex Guards:**
 
-[Polycarbonate thermoforming](https://polycarbonate.cc/polycarbonate-thermoforming-vacuum-forming/) enables 3D shapes:
+[Polycarbonate thermoforming](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) enables 3D shapes:
 - Maximum draw ratio: 2:1 (depth:width)
 - Minimum radius: 3× material thickness
 - Draft angles: 3-5° for easy release
@@ -222,7 +222,7 @@ print(f"Required thickness: 8-10mm solid PC")
 A: Conduct a risk assessment per ANSI B11.19: (1) Identify potential projectiles and their maximum kinetic energy, (2) Apply 2.0 safety factor, (3) Select thickness with rated impact resistance above calculated load. For example, a grinding wheel fragment (0.5kg at 50m/s) generates 625 J - requiring laminated or thick polycarbonate (12mm+) or steel guarding with polycarbonate viewing windows.
 
 **Q: What is the difference between ESD coating and ESD polycarbonate?**
-A: ESD coatings are surface treatments that wear off over time (6-24 months). [ESD polycarbonate](https://polycarbonate.cc/product/esd-anti-static-pc/) has conductive properties throughout the material, maintaining 10^6-10^9 Ω/sq for the product lifetime. For critical electronics manufacturing, only volume-conductive materials should be specified.
+A: ESD coatings are surface treatments that wear off over time (6-24 months). [ESD polycarbonate](https://polycarbonate.cc/product/solid-pc-sheets/) has conductive properties throughout the material, maintaining 10^6-10^9 Ω/sq for the product lifetime. For critical electronics manufacturing, only volume-conductive materials should be specified.
 
 **Q: How often should machine guards be inspected?**
 A: OSHA requires periodic inspection. Recommended schedule: Daily (operator visual check), Weekly (fastener torque verification), Monthly (full condition assessment), Annually (professional inspection per ANSI). Replace panels showing crazing, cracking, or significant scratching (>0.5mm depth).
@@ -285,7 +285,7 @@ This technical guide is maintained by **[Bakway Advanced Material](https://polyc
 **Our Industrial Capabilities:**
 - 40,000㎡ production + 15,000㎡ precision fabrication
 - ISO 14644-1 Class 7 cleanroom assembly
-- 23+ fabrication services: [CNC Machining](https://polycarbonate.cc/cnc-routingmachining-cnc/), [Thermoforming](https://polycarbonate.cc/polycarbonate-thermoforming-vacuum-forming/), [ESD Assembly](https://polycarbonate.cc/product/esd-anti-static-pc/)
+- 23+ fabrication services: [CNC Machining](https://polycarbonate.cc/polycarbonate-manufacturing-technology/), [Thermoforming](https://polycarbonate.cc/polycarbonate-manufacturing-technology/), [ESD Assembly](https://polycarbonate.cc/product/solid-pc-sheets/)
 - Material traceability and certification documentation
 - Serving automotive, electronics, and pharmaceutical industries in 40+ countries
 
