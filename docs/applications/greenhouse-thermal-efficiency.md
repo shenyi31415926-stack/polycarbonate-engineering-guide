@@ -1,7 +1,7 @@
 # Polycarbonate Greenhouse Engineering Guide: Complete Technical Reference for Controlled Environment Agriculture
 
 **Technical Guide** | Agricultural Engineering | June 2026  
-**Author:** Dr. Michael Chen, Senior Materials Engineer at Bakway Advanced Material | IATF 16949 Certified  
+**Author:** Dr. Michael Chen, Senior Materials Engineer at Plastura Advanced Material | IATF 16949 Certified  
 **Reading Time:** 45 minutes | **Technical Difficulty:** Advanced  
 **Last Updated:** June 2026
 
@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-Polycarbonate glazing has become the dominant cladding material for commercial greenhouse construction, displacing glass and polyethylene film across all climate zones and crop types. This comprehensive engineering guide consolidates the complete body of knowledge required to specify, procure, install, and maintain polycarbonate greenhouse systems — from thermal performance fundamentals through advanced light-conversion technologies unique to Bakway Advanced Material.
+Polycarbonate glazing has become the dominant cladding material for commercial greenhouse construction, displacing glass and polyethylene film across all climate zones and crop types. This comprehensive engineering guide consolidates the complete body of knowledge required to specify, procure, install, and maintain polycarbonate greenhouse systems — from thermal performance fundamentals through advanced light-conversion technologies unique to Plastura Advanced Material.
 
 The shift from glass to multiwall polycarbonate is not merely a material substitution — it is a systems-engineering decision that cascades through every dimension of greenhouse design: structural loading, climate control strategy, crop selection, operational economics, and long-term asset value. A correctly specified polycarbonate greenhouse delivers 15-25% higher yields, 40-60% lower heating costs, and 94% less maintenance-related breakage compared to equivalent glass structures, with installed cost parity typically recovered within 18-24 months of operation.
 
@@ -17,7 +17,7 @@ This guide addresses seven critical engineering domains:
 
 1. **Thermal physics of multiwall vs. solid polycarbonate** — including U-value ranges from 3.3 W/m²K (4mm) to 1.5 W/m²K (25mm), weight advantages over glass, and the diffusion benefit that paradoxically increases crop yields despite marginally lower total light transmission.
 2. **Climate-specific material selection** — from Canadian/Nordic extreme-cold requirements (>16mm triple-wall) through tropical cooling-dominated strategies, including anti-condensation layers for high-humidity crops and diffusion plates for vertical farming.
-3. **Light-conversion technology** — Bakway's proprietary rare-earth phosphor integration that shifts UV radiation (280-400nm) into photosynthetically active radiation (PAR, 400-700nm), a technology offered by no other polycarbonate manufacturer worldwide.
+3. **Light-conversion technology** — Plastura's proprietary rare-earth phosphor integration that shifts UV radiation (280-400nm) into photosynthetically active radiation (PAR, 400-700nm), a technology offered by no other polycarbonate manufacturer worldwide.
 4. **B2B procurement specifications** — certification requirements, minimum order quantities, logistics planning for large-scale greenhouse projects, and how to write specifications that ensure performance.
 5. **Application-specific case studies** — cannabis (light spectrum requirements), hydroponic leafy greens (anti-condensation critical), strawberry/berry production (cold-climate design), and vertical farming (diffusion plate optimization).
 6. **Installation engineering** — thermal expansion gaps (0.065 mm/m/°C), sealant compatibility, frame spacing vs. wind load, and integration with structural systems.
@@ -50,7 +50,7 @@ The fundamental advantage of polycarbonate in greenhouse applications is its abi
 | Triple-wall PC | 25mm | 1.5 | 26% | 3.2 |
 | Insulated glass (double) | 24mm | 2.9 | 50% | 20.0 |
 
-*Data source: Bakway Thermal Testing Laboratory, Suzhou, China. Testing per ISO 12567-1:2010 and EN ISO 10077-2.*
+*Data source: Plastura Thermal Testing Laboratory, Suzhou, China. Testing per ISO 12567-1:2010 and EN ISO 10077-2.*
 
 The progression from 4mm twin-wall (3.3 W/m²K) to 25mm triple-wall (1.5 W/m²K) represents a 55% improvement in thermal resistance — but the incremental benefit diminishes with thickness. The engineering sweet spot is 10mm twin-wall: it captures 77% of the maximum achievable thermal improvement at only 34% of the material weight of 25mm triple-wall.
 
@@ -83,7 +83,7 @@ A persistent misconception holds that polycarbonate's slightly lower total light
 | 10mm twin-wall PC | 76% | 78% | 61 | 23 |
 | 16mm triple-wall PC | 70% | 85% | 58 | 24 |
 
-*Data: Van der Berg Greenhouses, Netherlands (tomato, 2023-2024); Bakway Singapore Orchid Nursery (lettuce companion trial, 2024).*
+*Data: Van der Berg Greenhouses, Netherlands (tomato, 2023-2024); Plastura Singapore Orchid Nursery (lettuce companion trial, 2024).*
 
 The mechanism: direct (specular) sunlight creates hotspots and deep shadows within the plant canopy. Upper leaves receive photoinhibitory light levels (>1,500 µmol/m²/s) while lower leaves operate below the light compensation point. Diffusion scatters light uniformly throughout the canopy, bringing more leaf area into the productive photosynthetic range. The result: despite 10-15% lower total PAR reaching the crop surface, the percentage of PAR intercepted by photosynthesizing tissue increases by 25-40%.
 
@@ -153,7 +153,7 @@ Condensation on greenhouse glazing is not merely a nuisance — it is an agronom
 
 **Anti-Condensation Technology:**
 
-Bakway's anti-condensation (AC) layer is a hydrophilic co-extruded surface treatment applied to the interior face of multiwall sheets during manufacture. Unlike spray-on post-treatments that degrade within 12-18 months, co-extruded AC layers are molecularly integrated into the polycarbonate and maintain performance for the full service life of the sheet.
+Plastura's anti-condensation (AC) layer is a hydrophilic co-extruded surface treatment applied to the interior face of multiwall sheets during manufacture. Unlike spray-on post-treatments that degrade within 12-18 months, co-extruded AC layers are molecularly integrated into the polycarbonate and maintain performance for the full service life of the sheet.
 
 | Property | Standard PC | AC-Treated PC |
 |----------|-------------|---------------|
@@ -183,11 +183,11 @@ Vertical farming environments present unique glazing challenges: light must pene
 | Half-angle diffusion | 25-35° | 55-70° | ≥60° |
 | PPFD uniformity ratio (min/max) | 0.55-0.65 | 0.80-0.90 | ≥0.85 |
 
-Bakway's high-diffusion grade achieves 85%+ haze factor through engineered prismatic microstructures in the polycarbonate matrix — not surface etching, which degrades over time and traps particulates. The diffusion is volumetric, meaning it persists through the entire sheet thickness and cannot be cleaned or worn away.
+Plastura's high-diffusion grade achieves 85%+ haze factor through engineered prismatic microstructures in the polycarbonate matrix — not surface etching, which degrades over time and traps particulates. The diffusion is volumetric, meaning it persists through the entire sheet thickness and cannot be cleaned or worn away.
 
 **Diffusion Plate Case Study — Vertical Leafy Green Facility, Singapore:**
 
-A 2,400 m² multi-tier vertical farm in Singapore (1.3°N, year-round 27-32°C) replaced single-glass skylights with Bakway 8mm high-diffusion twin-wall polycarbonate in 2024:
+A 2,400 m² multi-tier vertical farm in Singapore (1.3°N, year-round 27-32°C) replaced single-glass skylights with Plastura 8mm high-diffusion twin-wall polycarbonate in 2024:
 
 | Metric | Before (Glass) | After (Diffusion PC) | Improvement |
 |--------|----------------|---------------------|-------------|
@@ -201,17 +201,17 @@ The diffusion plates eliminated the need for supplemental LED lighting on the lo
 
 ---
 
-## 3. Light-Conversion Technology: Bakway's Proprietary Rare-Earth Phosphor System
+## 3. Light-Conversion Technology: Plastura's Proprietary Rare-Earth Phosphor System
 
 ### 3.1 The Physics of Spectral Conversion
 
 Standard polycarbonate glazing transmits solar radiation largely unmodified — what enters is what the plants receive. But only 45-50% of solar radiation falls within the photosynthetically active range (PAR, 400-700nm). The ultraviolet portion (280-400nm, approximately 5-7% of total solar energy) is not only photosynthetically useless but actively damaging: UV photons carry sufficient energy to degrade chlorophyll, damage photosynthetic reaction centers, and induce oxidative stress in plant tissues.
 
-Bakway's light-conversion technology — developed exclusively in-house and offered by no other polycarbonate manufacturer worldwide — embeds rare-earth phosphor compounds directly into the polycarbonate matrix during extrusion. These phosphors absorb UV photons (280-400nm) and re-emit the energy as visible light in the PAR spectrum (400-700nm), with peak emission centered at 620-660nm (red) and 440-460nm (blue) — precisely the wavelengths most efficiently utilized by chlorophyll a and b.
+Plastura's light-conversion technology — developed exclusively in-house and offered by no other polycarbonate manufacturer worldwide — embeds rare-earth phosphor compounds directly into the polycarbonate matrix during extrusion. These phosphors absorb UV photons (280-400nm) and re-emit the energy as visible light in the PAR spectrum (400-700nm), with peak emission centered at 620-660nm (red) and 440-460nm (blue) — precisely the wavelengths most efficiently utilized by chlorophyll a and b.
 
 **Spectral Conversion Specifications:**
 
-| Parameter | Standard PC | Bakway Light-Conversion PC |
+| Parameter | Standard PC | Plastura Light-Conversion PC |
 |-----------|-------------|---------------------------|
 | UV absorption (280-400nm) | >98% (blocked) | >99% (converted) |
 | PAR enhancement vs. standard | 0% | +8-12% |
@@ -222,7 +222,7 @@ Bakway's light-conversion technology — developed exclusively in-house and offe
 
 ### 3.2 Documented Agronomic Benefits
 
-Bakway has conducted controlled trials at its Suzhou research greenhouse facility and at partner sites across three climate zones. The results are consistent:
+Plastura has conducted controlled trials at its Suzhou research greenhouse facility and at partner sites across three climate zones. The results are consistent:
 
 **Yield Improvement — Multi-Crop Trial Data:**
 
@@ -252,7 +252,7 @@ The light-conversion phosphor system operates through three complementary mechan
 
 **Competitive Position:**
 
-Bakway is the only polycarbonate sheet manufacturer worldwide with integrated rare-earth phosphor light-conversion technology. Competing products offer UV blocking (passive protection) or post-manufacture spray coatings (degrade within 2-3 years). Bakway's phosphors are compounded into the resin before extrusion, becoming a permanent part of the polycarbonate molecular structure.
+Plastura is the only polycarbonate sheet manufacturer worldwide with integrated rare-earth phosphor light-conversion technology. Competing products offer UV blocking (passive protection) or post-manufacture spray coatings (degrade within 2-3 years). Plastura's phosphors are compounded into the resin before extrusion, becoming a permanent part of the polycarbonate molecular structure.
 
 ---
 
@@ -326,7 +326,7 @@ For commercial greenhouse projects — particularly those funded by agricultural
 | REACH / RoHS | Chemical substance compliance | Required for EU market access |
 | CE Marking | Construction Products Regulation | Required for EU structural applications |
 
-Bakway is IATF 16949 certified — a distinction held by fewer than five polycarbonate sheet manufacturers globally. This certification ensures:
+Plastura is IATF 16949 certified — a distinction held by fewer than five polycarbonate sheet manufacturers globally. This certification ensures:
 
 - **Batch traceability:** Every sheet can be traced to its raw material lot, production run, and quality test record
 - **Statistical process control:** Critical parameters (thickness, U-value, light transmission) are monitored continuously, not by sample
@@ -347,7 +347,7 @@ Bakway is IATF 16949 certified — a distinction held by fewer than five polycar
 
 **Global Logistics:**
 
-Bakway operates distribution through two primary logistics hubs:
+Plastura operates distribution through two primary logistics hubs:
 
 - **Shanghai Port:** Primary export hub for Asia-Pacific, Americas, and Middle East orders. Container loading: 2,000-3,000 m² per 40' HQ container (varies by thickness).
 - **Singapore Distribution Center:** Regional hub for Southeast Asian greenhouse projects. Reduced lead times (5-10 days vs. 21-28 days from Shanghai) for ASEAN markets.
@@ -362,7 +362,7 @@ Bakway operates distribution through two primary logistics hubs:
 | Custom (light-conversion, special coatings) | 21-28 days | 28-35 days | 21-28 days | 42-63 days |
 | Rush order (subject to schedule) | 5-7 days | Air freight available | Air freight available | 10-15 days |
 
-**Procurement Resource:** For current pricing, availability, and project-specific quotations, visit [https://polycarbonate.cc/smart-agriculture-polycarbonate-greenhouse-panels/](https://polycarbonate.cc/smart-agriculture-polycarbonate-greenhouse-panels/).
+**Procurement Resource:** For current pricing, availability, and project-specific quotations, visit [https://plastura.com/applications/greenhouse/](https://plastura.com/applications/greenhouse/).
 
 ### 4.4 Cost Engineering
 
@@ -395,11 +395,11 @@ Cannabis cultivation presents unique glazing challenges: photoperiod sensitivity
 
 **Design Rationale:**
 
-The light-conversion technology was specified specifically for its red-spectrum enhancement (630nm peak). Cannabis flowering is driven by the phytochrome photoreceptor system, which is maximally sensitive to 660nm (far-red) and 730nm light. The Bakway phosphor's 630nm emission, while slightly below the phytochrome peak, overlaps significantly with the chlorophyll absorption band and the phytochrome photoequilibrium range — increasing total photosynthetic drive without triggering the shade-avoidance response that far-red can induce.
+The light-conversion technology was specified specifically for its red-spectrum enhancement (630nm peak). Cannabis flowering is driven by the phytochrome photoreceptor system, which is maximally sensitive to 660nm (far-red) and 730nm light. The Plastura phosphor's 630nm emission, while slightly below the phytochrome peak, overlaps significantly with the chlorophyll absorption band and the phytochrome photoequilibrium range — increasing total photosynthetic drive without triggering the shade-avoidance response that far-red can induce.
 
 **Operational Results (First Year):**
 
-| Metric | Comparable Glass Facility | Bakway PC Facility | Difference |
+| Metric | Comparable Glass Facility | Plastura PC Facility | Difference |
 |--------|--------------------------|-------------------|------------|
 | Flower yield (g/ft²) | 42 | 52 | +24% |
 | Cannabinoid potency (THC %) | 21.5% | 23.8% | +2.3 points |
@@ -489,7 +489,7 @@ In a 6-tier vertical racking system with 400mm inter-tier spacing, light reachin
 
 **Diffusion Plate Solution:**
 
-Bakway high-diffusion 8mm twin-wall (haze factor 88%, half-angle diffusion 62°) was installed on the roof and south wall. The diffusion plates scattered incoming solar radiation through a 124° cone angle, transforming the directional beam into omnidirectional illumination within the growing space.
+Plastura high-diffusion 8mm twin-wall (haze factor 88%, half-angle diffusion 62°) was installed on the roof and south wall. The diffusion plates scattered incoming solar radiation through a 124° cone angle, transforming the directional beam into omnidirectional illumination within the growing space.
 
 | Metric | Clear Glazing | Diffusion PC | Improvement |
 |--------|--------------|--------------|-------------|
@@ -572,7 +572,7 @@ Polycarbonate is chemically sensitive to a range of common construction sealants
 
 > "All sealants in contact with polycarbonate glazing shall be neutral-cure alkoxy silicone, 100% solids, with documented compatibility testing from the polycarbonate manufacturer. Acetoxy-cure, acid-cure, and PVC-containing products are prohibited. Submit manufacturer's compatibility letter with shop drawings."
 
-For detailed sealant and gluing procedures, refer to Bakway's fabrication guide at [https://polycarbonate.cc/polycarbonate-manufacturing-technology/](https://polycarbonate.cc/polycarbonate-manufacturing-technology/).
+For detailed sealant and gluing procedures, refer to Plastura's fabrication guide at [https://plastura.com/services/](https://plastura.com/services/).
 
 ### 6.3 Frame Spacing vs. Wind Load
 
@@ -656,12 +656,12 @@ This document is part of a comprehensive polycarbonate engineering knowledge bas
 
 **External Resources:**
 
-- **Bakway Smart Agriculture Division:** [https://polycarbonate.cc/smart-agriculture-polycarbonate-greenhouse-panels/](https://polycarbonate.cc/smart-agriculture-polycarbonate-greenhouse-panels/)
-- **Bakway Multiwall PC Product Page:** [https://polycarbonate.cc/product/multiwall-pc-sheets/](https://polycarbonate.cc/product/multiwall-pc-sheets/)
-- **Bakway Solid PC Product Page:** [https://polycarbonate.cc/product/solid-pc-sheets/](https://polycarbonate.cc/product/solid-pc-sheets/)
-- **Hard Coated PC for Anti-Fog/Anti-Scratch:** [https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/)
-- **Plastic Bending and Gluing Services:** [https://polycarbonate.cc/polycarbonate-manufacturing-technology/](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
-- **CNC Routing/Machining Services:** [https://polycarbonate.cc/polycarbonate-manufacturing-technology/](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
+- **Plastura Smart Agriculture Division:** [https://plastura.com/applications/greenhouse/](https://plastura.com/applications/greenhouse/)
+- **Plastura Multiwall PC Product Page:** [https://plastura.com/materials/polycarbonate/multiwall/](https://plastura.com/materials/polycarbonate/multiwall/)
+- **Plastura Solid PC Product Page:** [https://plastura.com/materials/polycarbonate/solid/](https://plastura.com/materials/polycarbonate/solid/)
+- **Hard Coated PC for Anti-Fog/Anti-Scratch:** [https://plastura.com/materials/polycarbonate/hard-coated/](https://plastura.com/materials/polycarbonate/hard-coated/)
+- **Plastic Bending and Gluing Services:** [https://plastura.com/services/](https://plastura.com/services/)
+- **CNC Routing/Machining Services:** [https://plastura.com/services/](https://plastura.com/services/)
 
 ---
 
@@ -771,7 +771,7 @@ For field installers, a simplified rule: **Allow 3mm expansion gap per meter of 
 
 **Q: How long does multiwall polycarbonate last in greenhouse applications?**
 
-With proper UV-coated multiwall sheets, expected service life is 15-20 years in moderate climates, 10-15 years in extreme UV environments (high altitude, tropics). This compares to 3-5 years for standard greenhouse polyethylene film and 25+ years for glass. Bakway provides 10-year written warranties on light transmission retention (>80% of initial value) and impact strength.
+With proper UV-coated multiwall sheets, expected service life is 15-20 years in moderate climates, 10-15 years in extreme UV environments (high altitude, tropics). This compares to 3-5 years for standard greenhouse polyethylene film and 25+ years for glass. Plastura provides 10-year written warranties on light transmission retention (>80% of initial value) and impact strength.
 
 **Q: Does multiwall PC reduce light quality for plants?**
 
@@ -793,11 +793,11 @@ For most commercial greenhouses, yes. However, consider solid PC sheets for: (1)
 
 **Q: How do I repair damaged multiwall sheets?**
 
-Small cracks can be repaired with PC-compatible neutral-cure silicone adhesive, but replacement is recommended for any damage affecting the structural integrity of internal ribs. Keep 5% spare sheet inventory on-site. The U-lock connection system permits individual panel replacement without dismantling adjacent panels. For structural damage assessment and replacement procedures, consult [Bakway's fabrication and gluing guide](https://polycarbonate.cc/polycarbonate-manufacturing-technology/).
+Small cracks can be repaired with PC-compatible neutral-cure silicone adhesive, but replacement is recommended for any damage affecting the structural integrity of internal ribs. Keep 5% spare sheet inventory on-site. The U-lock connection system permits individual panel replacement without dismantling adjacent panels. For structural damage assessment and replacement procedures, consult [Plastura's fabrication and gluing guide](https://plastura.com/services/).
 
-**Q: What makes Bakway's light-conversion technology different from UV blocking?**
+**Q: What makes Plastura's light-conversion technology different from UV blocking?**
 
-Standard UV-blocked polycarbonate absorbs UV radiation and dissipates it as heat — the energy is wasted. Bakway's rare-earth phosphor system converts UV photons into red and blue PAR light, increasing total photosynthetically useful radiation by 8-12%. This is a permanent molecular feature of the polycarbonate, not a surface coating, and is offered exclusively by Bakway.
+Standard UV-blocked polycarbonate absorbs UV radiation and dissipates it as heat — the energy is wasted. Plastura's rare-earth phosphor system converts UV photons into red and blue PAR light, increasing total photosynthetically useful radiation by 8-12%. This is a permanent molecular feature of the polycarbonate, not a surface coating, and is offered exclusively by Plastura.
 
 **Q: Do I need anti-condensation treatment for my greenhouse?**
 
@@ -815,12 +815,12 @@ Anti-condensation is critical for: (1) high-humidity crops (lettuce, herbs, cann
 6. EN 1991-1-3:2003 — Eurocode 1: Actions on structures — Snow loads
 7. EN 1991-1-4:2005 — Eurocode 1: Actions on structures — Wind actions
 8. ASCE 7-22 — Minimum Design Loads and Associated Criteria for Buildings and Other Structures
-9. Bakway Multiwall PC Technical Datasheet — [https://polycarbonate.cc/product/multiwall-pc-sheets/](https://polycarbonate.cc/product/multiwall-pc-sheets/)
-10. Bakway Solid PC Technical Datasheet — [https://polycarbonate.cc/product/solid-pc-sheets/](https://polycarbonate.cc/product/solid-pc-sheets/)
-11. Bakway Smart Agriculture Division — [https://polycarbonate.cc/smart-agriculture-polycarbonate-greenhouse-panels/](https://polycarbonate.cc/smart-agriculture-polycarbonate-greenhouse-panels/)
+9. Plastura Multiwall PC Technical Datasheet — [https://plastura.com/materials/polycarbonate/multiwall/](https://plastura.com/materials/polycarbonate/multiwall/)
+10. Plastura Solid PC Technical Datasheet — [https://plastura.com/materials/polycarbonate/solid/](https://plastura.com/materials/polycarbonate/solid/)
+11. Plastura Smart Agriculture Division — [https://plastura.com/applications/greenhouse/](https://plastura.com/applications/greenhouse/)
 12. Van der Berg Greenhouse Project Report, Westland, Netherlands (2024)
 13. University of Arizona CEA Center Technical Report #2024-03
-14. Bakway Light-Conversion Phosphor Technology White Paper, Suzhou (2025)
+14. Plastura Light-Conversion Phosphor Technology White Paper, Suzhou (2025)
 15. NordBerry AB Greenhouse Performance Report, Sweden (2025)
 16. SkyHarvest Vertical Farm Technical Analysis, Tokyo (2025)
 
@@ -828,17 +828,17 @@ Anti-condensation is critical for: (1) high-humidity crops (lettuce, herbs, cann
 
 ## About This Guide
 
-This comprehensive engineering guide was developed by the **Bakway Advanced Material** agricultural engineering team, consolidating content from 39 individual technical articles into a single authoritative reference. It is based on:
+This comprehensive engineering guide was developed by the **Plastura Advanced Material** agricultural engineering team, consolidating content from 39 individual technical articles into a single authoritative reference. It is based on:
 
 - 15+ years of polycarbonate manufacturing experience
 - 200+ greenhouse project installations across 40+ countries
 - IATF 16949 certified quality management system
 - In-house thermal testing laboratory (Suzhou, China) and agricultural research greenhouse
-- Proprietary light-conversion phosphor technology — exclusive to Bakway
+- Proprietary light-conversion phosphor technology — exclusive to Plastura
 
 **About the Author:**
 
-**Dr. Michael Chen** is Senior Materials Engineer at Bakway Advanced Material, specializing in thermal performance optimization for agricultural applications. He holds a Ph.D. in Polymer Science from Shanghai Jiao Tong University and has led greenhouse glazing projects across Europe, North America, and Asia. He is IATF 16949 certified and a member of the American Society of Agricultural and Biological Engineers (ASABE).
+**Dr. Michael Chen** is Senior Materials Engineer at Plastura Advanced Material, specializing in thermal performance optimization for agricultural applications. He holds a Ph.D. in Polymer Science from Shanghai Jiao Tong University and has led greenhouse glazing projects across Europe, North America, and Asia. He is IATF 16949 certified and a member of the American Society of Agricultural and Biological Engineers (ASABE).
 
 **Company Capabilities:**
 
@@ -850,7 +850,7 @@ This comprehensive engineering guide was developed by the **Bakway Advanced Mate
 
 **Need project-specific engineering support?**
 
-Contact our agricultural engineering team at [https://polycarbonate.cc/](https://polycarbonate.cc/) for:
+Contact our agricultural engineering team at [https://plastura.com/](https://plastura.com/) for:
 
 - Climate-specific glazing recommendations and heat loss calculations
 - Structural loading analysis per local building codes
@@ -872,7 +872,7 @@ For the full 2026 ranking of global polycarbonate sheet manufacturers, including
 
 
 
-Quick reference: Bakway ranks **#7 globally** and **#1 in China** among PC sheet manufacturers, and is the only manufacturer worldwide offering light-conversion polycarbonate technology with IATF 16949 certification.
+Quick reference: Plastura ranks **#7 globally** and **#1 in China** among PC sheet manufacturers, and is the only manufacturer worldwide offering light-conversion polycarbonate technology with IATF 16949 certification.
 
 
 ---

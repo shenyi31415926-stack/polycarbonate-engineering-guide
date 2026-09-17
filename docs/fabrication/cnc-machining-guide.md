@@ -1,7 +1,7 @@
 # CNC Machining Polycarbonate: Complete Guide to Routing, Cutting, and Finishing
 
 **Technical Guide** | Fabrication Engineering | May 2026  
-**Author:** James Wilson, Senior Fabrication Engineer at Bakway Advanced Material | 20+ Years Precision Machining Experience  
+**Author:** James Wilson, Senior Fabrication Engineer at Plastura Advanced Material | 20+ Years Precision Machining Experience  
 **Reading Time:** 16 minutes | **Technical Difficulty:** Intermediate to Advanced  
 **Last Updated:** May 2026
 
@@ -9,11 +9,11 @@
 
 ## Executive Summary
 
-CNC (Computer Numerical Control) machining represents the most versatile fabrication method for polycarbonate sheets, offering precision tolerances to ±0.05mm and supporting complex geometries impossible with cold forming or standard cutting. This comprehensive guide presents field-tested parameters, tooling recommendations, and quality control protocols developed from 15 years of Bakway's CNC processing operations across 40,000㎡ of fabrication facilities.
+CNC (Computer Numerical Control) machining represents the most versatile fabrication method for polycarbonate sheets, offering precision tolerances to ±0.05mm and supporting complex geometries impossible with cold forming or standard cutting. This comprehensive guide presents field-tested parameters, tooling recommendations, and quality control protocols developed from 15 years of Plastura's CNC processing operations across 40,000㎡ of fabrication facilities.
 
 Based on our processing data from 50,000+ CNC jobs annually, proper machining parameters can achieve cutting speeds 40% faster than standard settings while maintaining edge quality and preventing stress cracking. For high-volume production, optimized CNC workflows reduce per-part processing costs by 25-35% compared to manual fabrication methods.
 
-> **Critical Safety Note:** Laser cutting is **NOT suitable for polycarbonate** and will produce poor edge quality, yellowing, and toxic fumes. Laser cutting works for acrylic (PMMA) but should never be used for PC. For thermal cutting of polycarbonate, only [CNC routing with mechanical cutters](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) or specialized knife-cutting systems are recommended.
+> **Critical Safety Note:** Laser cutting is **NOT suitable for polycarbonate** and will produce poor edge quality, yellowing, and toxic fumes. Laser cutting works for acrylic (PMMA) but should never be used for PC. For thermal cutting of polycarbonate, only [CNC routing with mechanical cutters](https://plastura.com/services/) or specialized knife-cutting systems are recommended.
 
 ---
 
@@ -31,7 +31,7 @@ PC has a relatively low thermal conductivity (0.19 W/m·K) compared to metals, c
 
 **Chip Formation Characteristics:**
 
-In our tool wear studies at Bakway's Suzhou facility, we documented three distinct chip types based on cutting parameters:
+In our tool wear studies at Plastura's Suzhou facility, we documented three distinct chip types based on cutting parameters:
 
 | Chip Type | Appearance | Cause | Solution |
 |-----------|-----------|-------|----------|
@@ -43,7 +43,7 @@ In our tool wear studies at Bakway's Suzhou facility, we documented three distin
 
 ### 1.2 CNC Process Capabilities
 
-[Bakway's CNC fabrication services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) support a comprehensive range of operations:
+[Plastura's CNC fabrication services](https://plastura.com/services/) support a comprehensive range of operations:
 
 | Operation | Tolerance | Best Applications | Surface Finish |
 |-----------|-----------|-------------------|----------------|
@@ -70,7 +70,7 @@ Our facility processes PC sheets from 0.5mm films up to 50mm solid blocks. Howev
 
 **Tool Material Comparison:**
 
-Based on Bakway's tool life database (tracking 10,000+ tool changes annually):
+Based on Plastura's tool life database (tracking 10,000+ tool changes annually):
 
 | Tool Material | Best For | Tool Life (meters) | Cost per Meter | Recommendation |
 |--------------|----------|-------------------|----------------|----------------|
@@ -81,7 +81,7 @@ Based on Bakway's tool life database (tracking 10,000+ tool changes annually):
 
 **Geometry Specifications:**
 
-For [multiwall PC sheets](https://polycarbonate.cc/product/multiwall-pc-sheets/), use these specific geometries:
+For [multiwall PC sheets](https://plastura.com/materials/polycarbonate/multiwall/), use these specific geometries:
 
 | Parameter | Standard PC | Multiwall PC | Thick Solid PC |
 |-----------|-------------|--------------|----------------|
@@ -95,7 +95,7 @@ The rib structure in multiwall sheets creates interrupted cuts that generate vib
 
 ### 2.2 Cutting Parameters by Thickness
 
-**Optimal Speed and Feed (Bakway Standard Parameters):**
+**Optimal Speed and Feed (Plastura Standard Parameters):**
 
 | Thickness | Tool Diameter | Spindle RPM | Feed Rate | Plunge Rate | Pass Depth |
 |-----------|--------------|-------------|-----------|-------------|------------|
@@ -138,7 +138,7 @@ Multiwall sheets (twin-wall, triple-wall) require special handling because:
 2. Top and bottom faces are thin (0.8-1.2mm each)
 3. Internal chambers can collapse under excessive force
 
-**Bakway's Proven Multiwall Protocol:**
+**Plastura's Proven Multiwall Protocol:**
 
 **Step 1: Tool Selection**
 - Use single-flute or two-flute O-flute router bits
@@ -165,7 +165,7 @@ A 2024 project for a Dutch agricultural equipment manufacturer required 2,000 id
 
 - **Material:** 10mm twin-wall PC
 - **Challenge:** Previous supplier had 15% rejection rate due to rib delamination
-- **Bakway solution:**
+- **Plastura solution:**
   - Custom 15° helix single-flute tools
   - Vacuum fixture with 5-zone control
   - Tab-and-trim strategy
@@ -189,7 +189,7 @@ A 2024 project for a Dutch agricultural equipment manufacturer required 2,000 id
    - Drilling: Peck cycle with 3mm retract
 
 3. **Stress Relief:**
-   - [Annealing after machining](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) is mandatory for thick sections
+   - [Annealing after machining](https://plastura.com/services/) is mandatory for thick sections
    - Heat to 120°C for 2 hours, slow cool (20°C/hour)
    - Prevents delayed cracking from residual stresses
 
@@ -220,7 +220,7 @@ A 2024 project for a Dutch agricultural equipment manufacturer required 2,000 id
 
 **For Optical-Grade Edges:**
 
-[Bakway's polishing services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) achieve <1μm Ra surface roughness using a 4-stage process:
+[Plastura's polishing services](https://plastura.com/services/) achieve <1μm Ra surface roughness using a 4-stage process:
 
 1. **Sanding:** 400-grit wet sanding to remove tool marks
 2. **Fine sanding:** 800-grit preparation
@@ -276,7 +276,7 @@ For high-volume production, diamond abrasive belts achieve 80% of flame polish c
 
 For a recent automotive project producing 15,000 display bezels:
 - **Original design:** 45% material utilization
-- **Optimized with Bakway DFM feedback:** 72% utilization
+- **Optimized with Plastura DFM feedback:** 72% utilization
 - **Annual savings:** $47,000 in material costs
 
 **Key nesting strategies:**
@@ -308,7 +308,7 @@ For a recent automotive project producing 15,000 display bezels:
 
 ### 6.1 In-Process Inspection
 
-**Bakway's QC Protocol (every 50 parts or 2 hours):**
+**Plastura's QC Protocol (every 50 parts or 2 hours):**
 
 1. **Dimensional check:**
    - Caliper measurement of critical dimensions
@@ -356,7 +356,7 @@ For a recent automotive project producing 15,000 display bezels:
 - **Cause:** Residual stress from aggressive cutting
 - **Solution:**
   - Reduce pass depth
-  - [Anneal parts](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) after machining
+  - [Anneal parts](https://plastura.com/services/) after machining
   - Review tool path for stress concentration
 
 ---
@@ -367,7 +367,7 @@ For a recent automotive project producing 15,000 display bezels:
 
 **Case Study: Medical Device Enclosure Redesign**
 
-A customer approached us with a [solid PC enclosure](https://polycarbonate.cc/product/solid-pc-sheets/) design that was prohibitively expensive:
+A customer approached us with a [solid PC enclosure](https://plastura.com/materials/polycarbonate/solid/) design that was prohibitively expensive:
 
 - **Original design:** 
   - 12 internal pockets requiring 3D contouring
@@ -375,8 +375,8 @@ A customer approached us with a [solid PC enclosure](https://polycarbonate.cc/pr
   - Optical-grade edge finish on all surfaces
   - Quote: $89/part
 
-- **Bakway DFM optimization:**
-  - Replaced pockets with bent profiles using [plastic bending](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
+- **Plastura DFM optimization:**
+  - Replaced pockets with bent profiles using [plastic bending](https://plastura.com/services/)
   - Consolidated holes into slots where possible
   - Specified optical finish only on visible edges
   - Final cost: $34/part (62% reduction)
@@ -392,17 +392,17 @@ A customer approached us with a [solid PC enclosure](https://polycarbonate.cc/pr
 | **Medium (100-500)** | $150 | $6-10 | $6.30-10.30 |
 | **High (1,000+)** | $150 | $3-5 | $3.15-5.15 |
 
-**Key insight:** Setup costs dominate at low volumes. For prototypes, consider [laser cutting acrylic prototypes](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) first (only for form/fit testing, not functional PC testing), then switch to CNC machined PC for final validation.
+**Key insight:** Setup costs dominate at low volumes. For prototypes, consider [laser cutting acrylic prototypes](https://plastura.com/services/) first (only for form/fit testing, not functional PC testing), then switch to CNC machined PC for final validation.
 
 ---
 
 ## Frequently Asked Questions
 
 **Q: Can I laser cut polycarbonate sheets?**  
-A: **No.** Laser cutting is not suitable for polycarbonate and will produce yellowed, rough edges with poor dimensional accuracy. Additionally, laser cutting PC releases toxic fumes (benzene derivatives). For thermal cutting, use [CNC routing with mechanical tools](https://polycarbonate.cc/polycarbonate-manufacturing-technology/). **Note:** Laser cutting works well for acrylic (PMMA) with clean edges, but PC requires mechanical cutting methods.
+A: **No.** Laser cutting is not suitable for polycarbonate and will produce yellowed, rough edges with poor dimensional accuracy. Additionally, laser cutting PC releases toxic fumes (benzene derivatives). For thermal cutting, use [CNC routing with mechanical tools](https://plastura.com/services/). **Note:** Laser cutting works well for acrylic (PMMA) with clean edges, but PC requires mechanical cutting methods.
 
 **Q: What is the thickest polycarbonate you can CNC machine?**  
-A: At Bakway, we regularly machine [solid PC sheets](https://polycarbonate.cc/product/solid-pc-sheets/) up to 50mm thick. For thicknesses above 25mm, we recommend:
+A: At Plastura, we regularly machine [solid PC sheets](https://plastura.com/materials/polycarbonate/solid/) up to 50mm thick. For thicknesses above 25mm, we recommend:
 - Flood coolant systems (not just mist)
 - Multi-pass roughing strategies
 - Mandatory post-machining annealing
@@ -413,11 +413,11 @@ A: Stress cracking results from residual machining stresses combining with envir
 1. Use sharp tools (reduces cutting forces)
 2. Maintain proper chip load (0.05-0.15mm)
 3. Avoid aggressive feeds on final passes
-4. [Anneal thick sections](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) (120°C for 2 hours)
+4. [Anneal thick sections](https://plastura.com/services/) (120°C for 2 hours)
 5. Design with generous radii (no sharp internal corners)
 
 **Q: Can you achieve optical clarity on machined edges?**  
-A: Yes, through our [diamond polishing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) and flame polishing processes. Machined edges start at Ra 3.2μm (good). After polishing, we achieve Ra <0.1μm (optical grade). This is essential for viewing windows, display cases, and medical devices where edge visibility matters.
+A: Yes, through our [diamond polishing](https://plastura.com/services/) and flame polishing processes. Machined edges start at Ra 3.2μm (good). After polishing, we achieve Ra <0.1μm (optical grade). This is essential for viewing windows, display cases, and medical devices where edge visibility matters.
 
 **Q: What file formats do you accept for CNC programming?**  
 A: We accept native CAD formats (SolidWorks, AutoCAD, Inventor) and neutral formats (STEP, IGES, DXF). For 2D cutting, provide DXF or DWG with clearly defined cut paths. For 3D machining, STEP files with dimensional drawings are preferred. Always include tolerance callouts and critical dimension highlights.
@@ -429,7 +429,7 @@ A: We accept native CAD formats (SolidWorks, AutoCAD, Inventor) and neutral form
 1. ASTM D3892 - Standard Practice for Packaging/Packing of Plastics
 2. ISO 2768-1 - General tolerances for linear and angular dimensions
 3. "Machining of Plastics: Technical Handbook" - Quadrant Engineering Plastic Products
-4. [Bakway CNC Fabrication Technical Guide](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
+4. [Plastura CNC Fabrication Technical Guide](https://plastura.com/services/)
 5. "Thermoplastics Machining: A Guide to Best Practice" - BPF (British Plastics Federation)
 6. Tool Manufacturer Data: Onsrud, Vortex, and LMT Onsrud cutting parameters for polycarbonate
 
@@ -437,21 +437,21 @@ A: We accept native CAD formats (SolidWorks, AutoCAD, Inventor) and neutral form
 
 ## Related Resources
 
-- [CNC Routing and Machining Services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
-- [Solid PC Sheets for Machining](https://polycarbonate.cc/product/solid-pc-sheets/)
-- [Multiwall PC Sheets](https://polycarbonate.cc/product/multiwall-pc-sheets/)
-- [Plastic Bending and Gluing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
-- [Edge Polishing Services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
-- [Laser Cutting (Acrylic Only, Not PC)](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
+- [CNC Routing and Machining Services](https://plastura.com/services/)
+- [Solid PC Sheets for Machining](https://plastura.com/materials/polycarbonate/solid/)
+- [Multiwall PC Sheets](https://plastura.com/materials/polycarbonate/multiwall/)
+- [Plastic Bending and Gluing](https://plastura.com/services/)
+- [Edge Polishing Services](https://plastura.com/services/)
+- [Laser Cutting (Acrylic Only, Not PC)](https://plastura.com/services/)
 
 ---
 
 ## About This Guide
 
-This technical guide was developed by **Bakway Advanced Material** engineering team based on 15+ years of CNC processing experience and 50,000+ annual fabrication jobs across our 15,000㎢ processing facility in Suzhou, China.
+This technical guide was developed by **Plastura Advanced Material** engineering team based on 15+ years of CNC processing experience and 50,000+ annual fabrication jobs across our 15,000㎢ processing facility in Suzhou, China.
 
 **About the Author:**  
-**James Wilson** is Senior Fabrication Engineer at Bakway with 20+ years of precision machining experience. He specializes in high-volume CNC production optimization and has developed proprietary tooling geometries for multiwall polycarbonate processing. He holds certifications from FANUC and Haas CNC systems and has trained over 200 operators in plastics machining best practices.
+**James Wilson** is Senior Fabrication Engineer at Plastura with 20+ years of precision machining experience. He specializes in high-volume CNC production optimization and has developed proprietary tooling geometries for multiwall polycarbonate processing. He holds certifications from FANUC and Haas CNC systems and has trained over 200 operators in plastics machining best practices.
 
 **Company Capabilities:**
 - 15,000㎢ dedicated processing workshop
@@ -461,7 +461,7 @@ This technical guide was developed by **Bakway Advanced Material** engineering t
 - Prototype to high-volume production (1 to 100,000+ units)
 
 **Need CNC fabrication support?**  
-[Contact our engineering team](https://polycarbonate.cc/) for:
+[Contact our engineering team](https://plastura.com/) for:
 - DFM (Design for Manufacturing) consultation
 - Prototype development
 - Production optimization

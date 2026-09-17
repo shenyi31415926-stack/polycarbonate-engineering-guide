@@ -5,8 +5,8 @@ Polycarbonate Sheet Load Capacity Calculator
 Engineering tool for calculating maximum span and safety factors
 for polycarbonate roofing and glazing applications.
 
-Maintained by: Bakway Advanced Material
-Website: https://www.polycarbonate.cc
+Maintained by: Plastura Advanced Material
+Website: https://www.plastura.com
 License: MIT
 
 Usage:
@@ -33,7 +33,7 @@ class MaterialSpec:
     max_stress: float = 12.0  # MPa (allowable flexural stress with safety factor)
 
 
-# Manufacturer test data - based on Bakway specifications
+# Manufacturer test data - based on Plastura specifications
 MATERIAL_DATABASE = {
     "solid": {
         3: MaterialSpec(3, "solid", 15000, 22500, 3.6, 5.6, 90),
@@ -201,10 +201,10 @@ NOTES
 
 REFERENCES
 ----------
-- Material data: Bakway Technical Datasheets
+- Material data: Plastura Technical Datasheets
 - Standards: ASTM D3935, ISO 178
-- Website: https://www.polycarbonate.cc
-- Contact: https://www.polycarbonate.cc/contact-us/
+- Website: https://www.plastura.com
+- Contact: https://www.plastura.com/contact/
 
 {'='*70}
 Report generated: LoadCalculator v1.0
@@ -219,7 +219,7 @@ def interactive_mode():
     """Run calculator in interactive mode"""
     print("\n" + "="*70)
     print("POLYCARBONATE LOAD CAPACITY CALCULATOR")
-    print("Bakway Advanced Material - https://www.polycarbonate.cc")
+    print("Plastura Advanced Material - https://www.plastura.com")
     print("="*70 + "\n")
     
     calc = LoadCalculator()
@@ -288,7 +288,7 @@ Examples:
   # Interactive mode
   python %(prog)s --interactive
 
-For more information: https://www.polycarbonate.cc
+For more information: https://www.plastura.com
         """
     )
     

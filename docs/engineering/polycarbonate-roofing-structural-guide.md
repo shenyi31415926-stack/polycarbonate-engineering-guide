@@ -36,7 +36,7 @@ These properties make polycarbonate ideal for daylighting applications where gla
 | U-Value | 5.8 W/m²K | 2.6 W/m²K | 2.1 W/m²K | EN ISO 10077 |
 | Snow Load Capacity | 200 kg/m² | 150 kg/m² | 200 kg/m² | EN 1991-1-3 |
 
-*Data source: [Bakway Polycarbonate Technical Datasheets](https://polycarbonate.cc/)*
+*Data source: [Plastura Polycarbonate Technical Datasheets](https://plastura.com/)*
 
 ---
 
@@ -126,7 +126,7 @@ print(f"10mm twin-wall Z: ~120 mm³/mm → {'PASS' if 120 > required_Z else 'FAI
 - Specify co-extruded UV protection layer (not coating)
 - UV absorption: >99% of 280-380nm radiation
 - Warranty: 10 years against yellowing/hazing
-- [Anti-scratch hard-coated options](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/) available for high-maintenance areas
+- [Anti-scratch hard-coated options](https://plastura.com/materials/polycarbonate/hard-coated/) available for high-maintenance areas
 
 ### 3.2 Common Mistakes
 
@@ -144,11 +144,11 @@ print(f"10mm twin-wall Z: ~120 mm³/mm → {'PASS' if 120 > required_Z else 'FAI
 
 | Application | Recommended Product | Key Properties | URL |
 |-------------|---------------------|----------------|-----|
-| Commercial skylights | [Solid PC 6mm](https://polycarbonate.cc/product/solid-pc-sheets/) | 90% LT, high impact | Product Page |
-| Industrial daylighting | [Multiwall 10mm](https://polycarbonate.cc/product/multiwall-pc-sheets/) | U-2.6, lightweight | Product Page |
-| Cold climate greenhouses | [Multiwall 16mm](https://polycarbonate.cc/product/multiwall-pc-sheets/) | U-2.1, snow-rated | Product Page |
-| Agricultural roofing | [Corrugated PC](https://polycarbonate.cc/product/corrugated-pc-sheets/) | Matches metal profiles | Product Page |
-| Architectural facade | [U-Lock System](https://polycarbonate.cc/product/multiwall-pc-sheets/) | Seamless appearance | Product Page |
+| Commercial skylights | [Solid PC 6mm](https://plastura.com/materials/polycarbonate/solid/) | 90% LT, high impact | Product Page |
+| Industrial daylighting | [Multiwall 10mm](https://plastura.com/materials/polycarbonate/multiwall/) | U-2.6, lightweight | Product Page |
+| Cold climate greenhouses | [Multiwall 16mm](https://plastura.com/materials/polycarbonate/multiwall/) | U-2.1, snow-rated | Product Page |
+| Agricultural roofing | [Corrugated PC](https://plastura.com/materials/polycarbonate/corrugated/) | Matches metal profiles | Product Page |
+| Architectural facade | [U-Lock System](https://plastura.com/materials/polycarbonate/multiwall/) | Seamless appearance | Product Page |
 
 ---
 
@@ -162,7 +162,7 @@ print(f"10mm twin-wall Z: ~120 mm³/mm → {'PASS' if 120 > required_Z else 'FAI
    - Check squareness (±5mm over 10m)
 
 2. **Sheet Preparation**
-   - [CNC cutting](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) to exact dimensions
+   - [CNC cutting](https://plastura.com/services/) to exact dimensions
    - Pre-drill fastening holes (oversized by 3mm for expansion)
    - Remove protective film from edges only (leave surface protection until final cleaning)
 
@@ -170,7 +170,7 @@ print(f"10mm twin-wall Z: ~120 mm³/mm → {'PASS' if 120 > required_Z else 'FAI
    - Use stainless steel or coated screws
    - Install thermal washers (EPDM + aluminum)
    - Torque: 2-3 N·m (hand-tight plus ¼ turn)
-   - **Critical:** Do not use laser cutting for polycarbonate - produces toxic fumes and material degradation. Always use [CNC routing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/).
+   - **Critical:** Do not use laser cutting for polycarbonate - produces toxic fumes and material degradation. Always use [CNC routing](https://plastura.com/services/).
 
 4. **Sealing and Finishing**
    - Apply compatible silicone at laps and penetrations
@@ -190,13 +190,13 @@ print(f"10mm twin-wall Z: ~120 mm³/mm → {'PASS' if 120 > required_Z else 'FAI
 ## 6. Frequently Asked Questions
 
 **Q: How do I calculate the required polycarbonate thickness for my roof span?**  
-A: Use the formula: t = (w × L² × SF) / (8 × σ), where w = load (N/m²), L = span (m), SF = safety factor (2.0), σ = flexural strength (45 MPa for multiwall). For 800mm spans with 0.75 kN/m² snow load, 10mm multiwall is adequate. Our [engineering team](https://polycarbonate.cc/) provides project-specific calculations.
+A: Use the formula: t = (w × L² × SF) / (8 × σ), where w = load (N/m²), L = span (m), SF = safety factor (2.0), σ = flexural strength (45 MPa for multiwall). For 800mm spans with 0.75 kN/m² snow load, 10mm multiwall is adequate. Our [engineering team](https://plastura.com/) provides project-specific calculations.
 
 **Q: Can polycarbonate roofing support foot traffic during maintenance?**  
-A: Standard polycarbonate sheets are not rated for foot traffic. For maintenance access, specify walkable systems with integrated support structures, or use crawl boards that span multiple purlins. [Solid PC sheets](https://polycarbonate.cc/product/solid-pc-sheets/) offer better point-load resistance but still require proper support.
+A: Standard polycarbonate sheets are not rated for foot traffic. For maintenance access, specify walkable systems with integrated support structures, or use crawl boards that span multiple purlins. [Solid PC sheets](https://plastura.com/materials/polycarbonate/solid/) offer better point-load resistance but still require proper support.
 
 **Q: What is the expected service life of polycarbonate roofing?**  
-A: With UV-protected grades, polycarbonate roofing maintains 90% of initial properties after 20-30 years. Bakway's UV co-extruded products carry a 10-year warranty against yellowing and impact strength reduction. Actual lifespan depends on installation quality, cleaning frequency, and local UV intensity.
+A: With UV-protected grades, polycarbonate roofing maintains 90% of initial properties after 20-30 years. Plastura's UV co-extruded products carry a 10-year warranty against yellowing and impact strength reduction. Actual lifespan depends on installation quality, cleaning frequency, and local UV intensity.
 
 **Q: How does polycarbonate compare to glass for skylight applications?**  
 A: Polycarbonate offers 250× greater impact resistance, 1/6 the weight, and similar light transmission. It cannot match glass's scratch resistance or thermal stability at high temperatures (>120°C). For most commercial skylights, polycarbonate's safety and weight advantages outweigh these limitations.
@@ -207,8 +207,8 @@ A: Polycarbonate offers 250× greater impact resistance, 1/6 the weight, and sim
 
 **Project:** 12,000m² warehouse daylighting retrofit  
 **Challenge:** Replace failed fiberglass panels with code-compliant solution; maintain operations during installation  
-**Solution:** [Multiwall polycarbonate 16mm](https://polycarbonate.cc/product/multiwall-pc-sheets/), triple-wall configuration  
-**Installation:** [U-Lock standing seam system](https://polycarbonate.cc/product/multiwall-pc-sheets/) for weather-tight performance
+**Solution:** [Multiwall polycarbonate 16mm](https://plastura.com/materials/polycarbonate/multiwall/), triple-wall configuration  
+**Installation:** [U-Lock standing seam system](https://plastura.com/materials/polycarbonate/multiwall/) for weather-tight performance
 
 **Results:**
 - Natural illumination increased from 2% to 8% daylight factor
@@ -217,7 +217,7 @@ A: Polycarbonate offers 250× greater impact resistance, 1/6 the weight, and sim
 - No operational disruption during installation
 - 15-year performance warranty
 
-*Full case study with structural calculations available upon [request](https://polycarbonate.cc/).*
+*Full case study with structural calculations available upon [request](https://plastura.com/).*
 
 ---
 
@@ -227,17 +227,17 @@ A: Polycarbonate offers 250× greater impact resistance, 1/6 the weight, and sim
 2. EN 1991-1-4:2005 - Eurocode 1: Wind actions
 3. ASTM D1003 - Standard Test Method for Haze and Luminous Transmittance
 4. ASTM D256 - Standard Test Methods for Determining the Izod Pendulum Impact Resistance
-5. [Bakway Polycarbonate Technical Specifications](https://polycarbonate.cc/)
+5. [Plastura Polycarbonate Technical Specifications](https://plastura.com/)
 
 ---
 
 ## About This Guide
 
-This technical guide is maintained by **[Bakway Advanced Material](https://polycarbonate.cc/)**, an IATF 16949 certified polycarbonate sheet manufacturer serving 40+ countries.
+This technical guide is maintained by **[Plastura Advanced Material](https://plastura.com/)**, an IATF 16949 certified polycarbonate sheet manufacturer serving 40+ countries.
 
 **Our Capabilities:**
 - 40,000㎡ production + 15,000㎡ processing facilities
-- 23+ precision fabrication services: [CNC Machining](https://polycarbonate.cc/polycarbonate-manufacturing-technology/), [Thermoforming](https://polycarbonate.cc/polycarbonate-manufacturing-technology/), [Bending](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
+- 23+ precision fabrication services: [CNC Machining](https://plastura.com/services/), [Thermoforming](https://plastura.com/services/), [Bending](https://plastura.com/services/)
 - Singapore & Indonesia branches for Asia-Pacific logistics
 - Custom engineering support for complex projects
 

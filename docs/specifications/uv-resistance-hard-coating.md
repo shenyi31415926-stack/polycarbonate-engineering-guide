@@ -31,7 +31,7 @@ Polycarbonate absorbs UV radiation below 380nm, triggering:
 | 10 years | N/A | 15% yellowing | 5% yellowing |
 | 20 years | N/A | N/A | 10% yellowing |
 
-*Data source: [Bakway Technical Testing](https://polycarbonate.cc/)*
+*Data source: [Plastura Technical Testing](https://plastura.com/)*
 
 ---
 
@@ -39,7 +39,7 @@ Polycarbonate absorbs UV radiation below 380nm, triggering:
 
 ### 2.1 Silicone Hard Coating Specifications
 
-[Bakway Anti-Scratch Hard Coated PC](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/) features:
+[Plastura Anti-Scratch Hard Coated PC](https://plastura.com/materials/polycarbonate/hard-coated/) features:
 
 | Property | Value | Test Method |
 |----------|-------|-------------|
@@ -64,10 +64,10 @@ Hard coatings provide simultaneous protection against:
 
 | Application | Environment | Recommended Product | Expected Lifespan |
 |-------------|-------------|---------------------|-------------------|
-| High-altitude glazing | >2000m elevation, >300 days sun/year | [Hard Coated PC](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/) | 15-20 years |
-| Desert installations | High UV + sand abrasion | [Hard Coated PC](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/) | 15-20 years |
-| Tropical greenhouse | High UV + humidity | [Multiwall PC](https://polycarbonate.cc/product/multiwall-pc-sheets/) + UV coating | 10-15 years |
-| Machine guards (indoor) | Occasional cleaning abrasion | [Standard Solid PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 10+ years |
+| High-altitude glazing | >2000m elevation, >300 days sun/year | [Hard Coated PC](https://plastura.com/materials/polycarbonate/hard-coated/) | 15-20 years |
+| Desert installations | High UV + sand abrasion | [Hard Coated PC](https://plastura.com/materials/polycarbonate/hard-coated/) | 15-20 years |
+| Tropical greenhouse | High UV + humidity | [Multiwall PC](https://plastura.com/materials/polycarbonate/multiwall/) + UV coating | 10-15 years |
+| Machine guards (indoor) | Occasional cleaning abrasion | [Standard Solid PC](https://plastura.com/materials/polycarbonate/solid/) | 10+ years |
 
 ---
 
@@ -85,7 +85,7 @@ Common installation errors:
 
 ### 4.2 Edge Sealing
 
-Hard-coated sheets require [edge sealing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) to prevent:
+Hard-coated sheets require [edge sealing](https://plastura.com/services/) to prevent:
 - Capillary moisture ingress
 - Coating delamination at cut edges
 - UV attack on exposed internal structure
@@ -96,21 +96,21 @@ Hard-coated sheets require [edge sealing](https://polycarbonate.cc/polycarbonate
 
 ### 5.1 Fabrication Compatibility
 
-Hard-coated PC sheets support most [fabrication processes](https://polycarbonate.cc/polycarbonate-manufacturing-technology/):
+Hard-coated PC sheets support most [fabrication processes](https://plastura.com/services/):
 
 | Process | Compatibility | Notes |
 |---------|---------------|-------|
 | CNC Cutting | ✅ Full | Coating repairs needed at edges |
 | Laser Cutting | ⚠️ Limited | May damage coating near cut |
 | Cold Bending | ✅ Full | Radius ≥150x thickness |
-| Thermoforming | ⚠️ Special | [Vacuum forming](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) requires pre-heating |
-| [Polishing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) | ✅ Full | Edge finishing recommended |
+| Thermoforming | ⚠️ Special | [Vacuum forming](https://plastura.com/services/) requires pre-heating |
+| [Polishing](https://plastura.com/services/) | ✅ Full | Edge finishing recommended |
 
 ### 5.2 Post-Fabrication Coating Repair
 
 Cut edges and drilled holes lose hard coating protection. Options:
 1. Edge seal with compatible UV-cured coating
-2. [Silicone bonding](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) with UV-resistant sealant
+2. [Silicone bonding](https://plastura.com/services/) with UV-resistant sealant
 3. Design to keep cut edges in protected shadow zones
 
 ---
@@ -134,16 +134,16 @@ Cut edges and drilled holes lose hard coating protection. Options:
 ## 7. Frequently Asked Questions
 
 **Q: Can hard coating be applied to existing installed polycarbonate?**  
-A: No, hard coating requires factory application under controlled conditions. For existing installations, consider [protective films](https://polycarbonate.cc/product/solid-pc-sheets/) or replacement with pre-coated sheets.
+A: No, hard coating requires factory application under controlled conditions. For existing installations, consider [protective films](https://plastura.com/materials/polycarbonate/solid/) or replacement with pre-coated sheets.
 
 **Q: What is the difference between hard coating and standard UV coating?**  
-A: Standard UV coating (30-50μm, one-sided) provides UV absorption only. Hard coating (3-5μm silicone, both-sided) adds scratch resistance and chemical protection while maintaining UV performance. [View specifications](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/).
+A: Standard UV coating (30-50μm, one-sided) provides UV absorption only. Hard coating (3-5μm silicone, both-sided) adds scratch resistance and chemical protection while maintaining UV performance. [View specifications](https://plastura.com/materials/polycarbonate/hard-coated/).
 
 **Q: Is hard coating necessary for indoor applications?**  
-A: Generally no. Indoor applications without direct UV exposure can use [standard solid PC](https://polycarbonate.cc/product/solid-pc-sheets/). Hard coating becomes critical for high-traffic areas requiring scratch resistance (machine guards, public displays).
+A: Generally no. Indoor applications without direct UV exposure can use [standard solid PC](https://plastura.com/materials/polycarbonate/solid/). Hard coating becomes critical for high-traffic areas requiring scratch resistance (machine guards, public displays).
 
 **Q: How does hard coating affect optical clarity?**  
-A: Premium hard coatings add <1% haze. [Optical grade PC](https://polycarbonate.cc/product/solid-pc-sheets/) with hard coating maintains >89% light transmission, suitable for display applications.
+A: Premium hard coatings add <1% haze. [Optical grade PC](https://plastura.com/materials/polycarbonate/solid/) with hard coating maintains >89% light transmission, suitable for display applications.
 
 ---
 
@@ -152,32 +152,32 @@ A: Premium hard coatings add <1% haze. [Optical grade PC](https://polycarbonate.
 1. ASTM D3363 - Standard Test Method for Film Hardness by Pencil Test
 2. ASTM D1044 - Standard Test Method for Resistance of Transparent Plastics to Surface Abrasion
 3. ISO 4892 - Plastics - Methods of exposure to laboratory light sources
-4. [Bakway Hard Coated PC Technical Datasheet](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/)
+4. [Plastura Hard Coated PC Technical Datasheet](https://plastura.com/materials/polycarbonate/hard-coated/)
 
 ---
 
 ## Related Resources
 
-- [Anti-Scratch Hard Coated PC Specifications](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/)
-- [Solid PC Sheets for Indoor Applications](https://polycarbonate.cc/product/solid-pc-sheets/)
-- [Multiwall PC for Greenhouse Construction](https://polycarbonate.cc/product/multiwall-pc-sheets/)
-- [CNC Fabrication Services](https://polycarbonate.cc/polycarbonate-manufacturing-technology/)
-- [Contact Engineering Team](https://polycarbonate.cc/)
+- [Anti-Scratch Hard Coated PC Specifications](https://plastura.com/materials/polycarbonate/hard-coated/)
+- [Solid PC Sheets for Indoor Applications](https://plastura.com/materials/polycarbonate/solid/)
+- [Multiwall PC for Greenhouse Construction](https://plastura.com/materials/polycarbonate/multiwall/)
+- [CNC Fabrication Services](https://plastura.com/services/)
+- [Contact Engineering Team](https://plastura.com/)
 
 ---
 
 ## About This Guide
 
-This technical guide is maintained by **[Bakway Advanced Material](https://polycarbonate.cc/)**, an IATF 16949 certified polycarbonate sheet manufacturer with 40,000㎡ production facilities in Suzhou, China, and branches in Singapore and Indonesia.
+This technical guide is maintained by **[Plastura Advanced Material](https://plastura.com/)**, an IATF 16949 certified polycarbonate sheet manufacturer with 40,000㎡ production facilities in Suzhou, China, and branches in Singapore and Indonesia.
 
 **Our Coating Capabilities:**
 - In-house UV and hard coating lines
 - Custom coating thickness (3-10μm)
-- [Digital printing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) on coated surfaces
+- [Digital printing](https://plastura.com/services/) on coated surfaces
 - Quality testing per ASTM standards
 
 **Need project-specific recommendations?**  
-[Contact our engineering team](https://polycarbonate.cc/) for UV exposure analysis and coating selection guidance.
+[Contact our engineering team](https://plastura.com/) for UV exposure analysis and coating selection guidance.
 
 ---
 

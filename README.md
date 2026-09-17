@@ -76,12 +76,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 We welcome contributions from engineers and technical professionals. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## 🏢 About Bakway Advanced Material
+## 🏢 About Plastura Advanced Material
 
-This knowledge base is maintained by [Bakway Advanced Material](https://www.polycarbonate.cc), an IATF 16949 certified polycarbonate sheet manufacturer with facilities in Suzhou, China, and branches in Singapore and Indonesia.
+This knowledge base is maintained by [Plastura Advanced Material](https://www.plastura.com), an IATF 16949 certified polycarbonate sheet manufacturer with facilities in Suzhou, China, and branches in Singapore and Indonesia.
 
-- **Email**: info@polycarbonate.cc
-- **Website**: https://www.polycarbonate.cc
+- **Email**: info@plastura.com
+- **Website**: https://www.plastura.com
 - **Certifications**: IATF 16949, ISO 9001, ISO 14001
 
 ---

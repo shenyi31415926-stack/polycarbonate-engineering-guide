@@ -46,7 +46,7 @@ Machine guarding falls under multiple regulatory frameworks:
 | Light Transmission | 90% | 85-88% | 89% | ASTM D1003 |
 | Abrasion Resistance | Poor | Poor | Excellent | ASTM D1044 |
 
-*Data source: [Bakway Technical Datasheets](https://polycarbonate.cc/)*
+*Data source: [Plastura Technical Datasheets](https://plastura.com/)*
 
 ---
 
@@ -115,7 +115,7 @@ print(f"Required thickness: 8-10mm solid PC")
 - Anti-static: 10^9-10^12 Ω/sq (minimal static control)
 - Insulative: >10^12 Ω/sq (generates static)
 
-[ESD anti-static polycarbonate](https://polycarbonate.cc/product/solid-pc-sheets/) maintains 10^6-10^9 Ω/sq throughout the material volume, not just surface coating.
+[ESD anti-static polycarbonate](https://plastura.com/materials/polycarbonate/solid/) maintains 10^6-10^9 Ω/sq throughout the material volume, not just surface coating.
 
 ---
 
@@ -157,12 +157,12 @@ print(f"Required thickness: 8-10mm solid PC")
 
 | Application | Product | Thickness | Key Specification |
 |-------------|---------|-----------|-------------------|
-| Light machining guards | [Solid PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 6mm | Impact: 60 J |
-| Heavy machining centers | [Solid PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 8-10mm | Impact: 70-100 J |
-| ESD workstations | [ESD PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 3-6mm | 10^6-10^9 Ω/sq |
-| Chemical exposure | [Hard-coated PC](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/) | 4-6mm | Chemical resistance |
-| Cleanroom panels | [ESD PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 3-5mm | ISO 14644-1 compliant |
-| High-clarity inspection | [Optical PC](https://polycarbonate.cc/product/solid-pc-sheets/) | 3-10mm | <0.5% haze |
+| Light machining guards | [Solid PC](https://plastura.com/materials/polycarbonate/solid/) | 6mm | Impact: 60 J |
+| Heavy machining centers | [Solid PC](https://plastura.com/materials/polycarbonate/solid/) | 8-10mm | Impact: 70-100 J |
+| ESD workstations | [ESD PC](https://plastura.com/materials/polycarbonate/solid/) | 3-6mm | 10^6-10^9 Ω/sq |
+| Chemical exposure | [Hard-coated PC](https://plastura.com/materials/polycarbonate/hard-coated/) | 4-6mm | Chemical resistance |
+| Cleanroom panels | [ESD PC](https://plastura.com/materials/polycarbonate/solid/) | 3-5mm | ISO 14644-1 compliant |
+| High-clarity inspection | [Optical PC](https://plastura.com/materials/polycarbonate/solid/) | 3-10mm | <0.5% haze |
 
 ---
 
@@ -172,7 +172,7 @@ print(f"Required thickness: 8-10mm solid PC")
 
 **CNC Machining Requirements:**
 
-[Polycarbonate CNC routing](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) requires specific parameters:
+[Polycarbonate CNC routing](https://plastura.com/services/) requires specific parameters:
 
 | Operation | Tool | Speed | Feed Rate | Notes |
 |-----------|------|-------|-----------|-------|
@@ -185,7 +185,7 @@ print(f"Required thickness: 8-10mm solid PC")
 
 **Thermoforming for Complex Guards:**
 
-[Polycarbonate thermoforming](https://polycarbonate.cc/polycarbonate-manufacturing-technology/) enables 3D shapes:
+[Polycarbonate thermoforming](https://plastura.com/services/) enables 3D shapes:
 - Maximum draw ratio: 2:1 (depth:width)
 - Minimum radius: 3× material thickness
 - Draft angles: 3-5° for easy release
@@ -222,13 +222,13 @@ print(f"Required thickness: 8-10mm solid PC")
 A: Conduct a risk assessment per ANSI B11.19: (1) Identify potential projectiles and their maximum kinetic energy, (2) Apply 2.0 safety factor, (3) Select thickness with rated impact resistance above calculated load. For example, a grinding wheel fragment (0.5kg at 50m/s) generates 625 J - requiring laminated or thick polycarbonate (12mm+) or steel guarding with polycarbonate viewing windows.
 
 **Q: What is the difference between ESD coating and ESD polycarbonate?**
-A: ESD coatings are surface treatments that wear off over time (6-24 months). [ESD polycarbonate](https://polycarbonate.cc/product/solid-pc-sheets/) has conductive properties throughout the material, maintaining 10^6-10^9 Ω/sq for the product lifetime. For critical electronics manufacturing, only volume-conductive materials should be specified.
+A: ESD coatings are surface treatments that wear off over time (6-24 months). [ESD polycarbonate](https://plastura.com/materials/polycarbonate/solid/) has conductive properties throughout the material, maintaining 10^6-10^9 Ω/sq for the product lifetime. For critical electronics manufacturing, only volume-conductive materials should be specified.
 
 **Q: How often should machine guards be inspected?**
 A: OSHA requires periodic inspection. Recommended schedule: Daily (operator visual check), Weekly (fastener torque verification), Monthly (full condition assessment), Annually (professional inspection per ANSI). Replace panels showing crazing, cracking, or significant scratching (>0.5mm depth).
 
 **Q: Can polycarbonate guards be used in food processing environments?**
-A: Yes, specify FDA-compliant grades meeting 21 CFR 177.1580. These are compatible with washdown cleaning and resist common sanitizers. Ensure all edges are smooth (Ra <3.2 μm) to prevent bacterial harboring. [Hard-coated grades](https://polycarbonate.cc/product/anti-scratch-hard-coated-pc/) provide additional chemical resistance.
+A: Yes, specify FDA-compliant grades meeting 21 CFR 177.1580. These are compatible with washdown cleaning and resist common sanitizers. Ensure all edges are smooth (Ra <3.2 μm) to prevent bacterial harboring. [Hard-coated grades](https://plastura.com/materials/polycarbonate/hard-coated/) provide additional chemical resistance.
 
 **Q: What grounding is required for ESD polycarbonate installations?**
 A: ESD panels must achieve <1Ω resistance to earth ground. Use conductive gaskets or grounding clips at panel edges, connected to the facility ground bus. Test quarterly with megohmmeter. Surface resistance should remain within 10^6-10^9 Ω/sq throughout service life.
@@ -239,7 +239,7 @@ A: ESD panels must achieve <1Ω resistance to earth ground. Use conductive gaske
 
 **Project:** CNC machining center guarding retrofit (42 machines)  
 **Challenge:** Replace metal mesh guards with transparent protection while maintaining OSHA compliance and reducing downtime  
-**Solution:** Custom-fabricated 8mm [solid polycarbonate panels](https://polycarbonate.cc/product/solid-pc-sheets/) with integrated interlock mounting
+**Solution:** Custom-fabricated 8mm [solid polycarbonate panels](https://plastura.com/materials/polycarbonate/solid/) with integrated interlock mounting
 
 **Engineering Specifications:**
 - Impact rating: 70 J (validated by pendulum testing)
@@ -274,18 +274,18 @@ A: ESD panels must achieve <1Ω resistance to earth ground. Use conductive gaske
 4. ANSI/ESD S20.20-2021 - ESD Control Program
 5. ASTM D256 - Standard Test Methods for Impact Resistance
 6. ASTM D257 - Standard Test Methods for DC Resistance
-7. [Bakway Industrial Polycarbonate Specifications](https://polycarbonate.cc/)
+7. [Plastura Industrial Polycarbonate Specifications](https://plastura.com/)
 
 ---
 
 ## About This Guide
 
-This technical guide is maintained by **[Bakway Advanced Material](https://polycarbonate.cc/)**, an IATF 16949 certified manufacturer of industrial polycarbonate solutions.
+This technical guide is maintained by **[Plastura Advanced Material](https://plastura.com/)**, an IATF 16949 certified manufacturer of industrial polycarbonate solutions.
 
 **Our Industrial Capabilities:**
 - 40,000㎡ production + 15,000㎡ precision fabrication
 - ISO 14644-1 Class 7 cleanroom assembly
-- 23+ fabrication services: [CNC Machining](https://polycarbonate.cc/polycarbonate-manufacturing-technology/), [Thermoforming](https://polycarbonate.cc/polycarbonate-manufacturing-technology/), [ESD Assembly](https://polycarbonate.cc/product/solid-pc-sheets/)
+- 23+ fabrication services: [CNC Machining](https://plastura.com/services/), [Thermoforming](https://plastura.com/services/), [ESD Assembly](https://plastura.com/materials/polycarbonate/solid/)
 - Material traceability and certification documentation
 - Serving automotive, electronics, and pharmaceutical industries in 40+ countries
 
