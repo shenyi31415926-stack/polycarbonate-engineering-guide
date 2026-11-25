@@ -60,6 +60,23 @@
     assertEqual(specification.calculations.thermalExpansionMm, 6.5, "roofing thermal movement");
     assert(specification.missing.some((item) => item.includes("Design wind/snow load")), "roofing should require design load");
 
+    assertEqual(assistant.solidPolycarbonateSpanM(10, -1.5), null, "negative load must not produce a span");
+    assertEqual(assistant.estimateWeightKg({
+      materialFamily: "polycarbonate",
+      structure: "solid",
+      thicknessMm: 10,
+      widthMm: 1000,
+      lengthMm: 2000,
+      quantity: 1.5,
+    }), null, "fractional quantity must not produce order weight");
+    assertEqual(assistant.estimateWeightKg({
+      materialFamily: "polycarbonate",
+      thicknessMm: 10,
+      widthMm: 1000,
+      lengthMm: 2000,
+      quantity: 5,
+    }), null, "unspecified structure must not default to solid weight");
+
     const summary = assistant.buildEmailSummary(specification);
     assert(summary.includes("POLYCARBONATE / ACRYLIC RFQ TECHNICAL SUMMARY"), "summary title");
     assert(summary.includes("Multiwall polycarbonate roofing sheet"), "summary candidate");

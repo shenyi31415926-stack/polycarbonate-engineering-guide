@@ -33,6 +33,18 @@
     return Number.isFinite(number) ? number : null;
   }
 
+  function positiveNumberOrNull(value, integer = false) {
+    const number = numberOrNull(value);
+    if (number === null || number <= 0) return null;
+    if (integer && !Number.isInteger(number)) return null;
+    return number;
+  }
+
+  function nonNegativeNumberOrNull(value) {
+    const number = numberOrNull(value);
+    return number !== null && number >= 0 ? number : null;
+  }
+
   function round(value, decimals = 2) {
     if (value === null || value === undefined || !Number.isFinite(value)) return null;
     const factor = 10 ** decimals;
@@ -44,15 +56,15 @@
   }
 
   function thermalExpansionMm(lengthMm, temperatureSwingC, materialFamily) {
-    const length = numberOrNull(lengthMm);
-    const swing = numberOrNull(temperatureSwingC);
+    const length = positiveNumberOrNull(lengthMm);
+    const swing = nonNegativeNumberOrNull(temperatureSwingC);
     if (!length || !swing) return null;
     const coefficient = materialFamily === "acrylic" ? PMMA_EXPANSION_MM_PER_MK : PC_EXPANSION_MM_PER_MK;
     return round(coefficient * (length / 1000) * swing, 2);
   }
 
   function fastenerHoleDiameterMm(screwDiameterMm, expansionMm) {
-    const screw = numberOrNull(screwDiameterMm);
+    const screw = positiveNumberOrNull(screwDiameterMm);
     if (!screw) return null;
     const documentedBaseline = screw + (screw <= 6 ? 3 : 5);
     const expansionAllowance = expansionMm ? screw + Math.ceil(expansionMm + 1) : 0;
@@ -60,17 +72,17 @@
   }
 
   function sheetAreaM2(widthMm, lengthMm) {
-    const width = numberOrNull(widthMm);
-    const length = numberOrNull(lengthMm);
+    const width = positiveNumberOrNull(widthMm);
+    const length = positiveNumberOrNull(lengthMm);
     if (!width || !length) return null;
     return round((width * length) / 1_000_000, 4);
   }
 
   function estimateWeightKg(input) {
-    const width = numberOrNull(input.widthMm);
-    const length = numberOrNull(input.lengthMm);
-    const quantity = numberOrNull(input.quantity);
-    const thickness = numberOrNull(input.thicknessMm);
+    const width = positiveNumberOrNull(input.widthMm);
+    const length = positiveNumberOrNull(input.lengthMm);
+    const quantity = positiveNumberOrNull(input.quantity, true);
+    const thickness = positiveNumberOrNull(input.thicknessMm);
     if (!width || !length || !thickness || !quantity) return null;
 
     let kgPerM2 = null;
@@ -87,8 +99,8 @@
   }
 
   function solidPolycarbonateSpanM(thicknessMm, designLoadKnM2) {
-    const thickness = numberOrNull(thicknessMm);
-    const load = numberOrNull(designLoadKnM2);
+    const thickness = positiveNumberOrNull(thicknessMm);
+    const load = positiveNumberOrNull(designLoadKnM2);
     if (!thickness || !load) return null;
 
     const widthMm = 1000;
@@ -148,12 +160,12 @@
     if (!input.materialFamily) missing.push("Material family preference or constraints");
 
     const checks = {
-      thickness: [!numberOrNull(input.thicknessMm), "Target thickness or performance requirement"],
-      dimensions: [!numberOrNull(input.widthMm) || !numberOrNull(input.lengthMm), "Finished sheet width and length"],
-      quantity: [!numberOrNull(input.quantity), "Quantity"],
+      thickness: [!positiveNumberOrNull(input.thicknessMm), "Target thickness or performance requirement"],
+      dimensions: [!positiveNumberOrNull(input.widthMm) || !positiveNumberOrNull(input.lengthMm), "Finished sheet width and length"],
+      quantity: [!positiveNumberOrNull(input.quantity, true), "Quantity"],
       destination: [!input.destination, "Destination country or port"],
-      design_load: [!numberOrNull(input.designLoadKnM2), "Design wind/snow load"],
-      temperature_swing: [!numberOrNull(input.temperatureSwingC), "Expected temperature swing"],
+      design_load: [!positiveNumberOrNull(input.designLoadKnM2), "Design wind/snow load"],
+      temperature_swing: [!nonNegativeNumberOrNull(input.temperatureSwingC), "Expected temperature swing"],
     };
     const requiredInputs = APPLICATION_RULES.rules[input.application]?.required_inputs || [
       "thickness", "dimensions", "quantity", "destination"
@@ -216,15 +228,15 @@
       "DIMENSIONS AND ORDER INPUTS",
       `Material family: ${input.materialFamily || "pending"}`,
       `Structure: ${input.structure || "pending"}`,
-      `Thickness: ${valueOrPending(numberOrNull(input.thicknessMm), " mm")}`,
-      `Finished size: ${valueOrPending(numberOrNull(input.widthMm), " mm")} × ${valueOrPending(numberOrNull(input.lengthMm), " mm")}`,
-      `Quantity: ${valueOrPending(numberOrNull(input.quantity))}`,
+      `Thickness: ${valueOrPending(positiveNumberOrNull(input.thicknessMm), " mm")}`,
+      `Finished size: ${valueOrPending(positiveNumberOrNull(input.widthMm), " mm")} × ${valueOrPending(positiveNumberOrNull(input.lengthMm), " mm")}`,
+      `Quantity: ${valueOrPending(positiveNumberOrNull(input.quantity, true))}`,
       `Functional requirements: ${requirements}`,
       `Outdoor exposure: ${input.outdoorExposure ? "yes" : "no / not specified"}`,
       `Destination: ${input.destination || "pending"}`,
-      `Design load input: ${valueOrPending(numberOrNull(input.designLoadKnM2), " kN/m²")}`,
-      `Temperature swing input: ${valueOrPending(numberOrNull(input.temperatureSwingC), " °C")}`,
-      `Fastener diameter input: ${valueOrPending(numberOrNull(input.screwDiameterMm), " mm")}`,
+      `Design load input: ${valueOrPending(positiveNumberOrNull(input.designLoadKnM2), " kN/m²")}`,
+      `Temperature swing input: ${valueOrPending(nonNegativeNumberOrNull(input.temperatureSwingC), " °C")}`,
+      `Fastener diameter input: ${valueOrPending(positiveNumberOrNull(input.screwDiameterMm), " mm")}`,
       "",
       "ENGINEERING / SPECIFICATION CHECKS",
       `Estimated sheet area per piece: ${valueOrPending(calc.sheetAreaM2, " m²")}`,
