@@ -69,17 +69,17 @@
   function estimateWeightKg(input) {
     const width = numberOrNull(input.widthMm);
     const length = numberOrNull(input.lengthMm);
-    const quantity = numberOrNull(input.quantity) || 1;
+    const quantity = numberOrNull(input.quantity);
     const thickness = numberOrNull(input.thicknessMm);
-    if (!width || !length || !thickness) return null;
+    if (!width || !length || !thickness || !quantity) return null;
 
     let kgPerM2 = null;
     if (input.structure === "multiwall") {
       kgPerM2 = MULTIWALL_WEIGHT_KG_PER_M2[thickness] || null;
-    } else if (input.materialFamily === "acrylic") {
-      kgPerM2 = PMMA_DENSITY_KG_PER_M2_PER_MM * thickness;
-    } else {
-      kgPerM2 = PC_DENSITY_KG_PER_M2_PER_MM * thickness;
+    } else if (input.structure === "solid") {
+      kgPerM2 = input.materialFamily === "acrylic"
+        ? PMMA_DENSITY_KG_PER_M2_PER_MM * thickness
+        : PC_DENSITY_KG_PER_M2_PER_MM * thickness;
     }
 
     if (!kgPerM2) return null;
