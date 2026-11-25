@@ -59,6 +59,16 @@ polycarbonate-engineering-guide/
 - [Check roofing structural guidance](docs/engineering/polycarbonate-roofing-structural-guide.html) before specifying panels for wind, snow, or daylighting projects.
 - [Review CNC machining guidance](docs/fabrication/cnc-machining-guide.html) for fabricated polycarbonate guards, shields, and custom OEM parts.
 
+## 🧱 Materials Data Platform
+
+SinoPlastix is developing a software and structured-data layer for polymer sheet engineering. Current building blocks include the load-capacity calculator, an initial structured materials dataset, and dataset validation tooling.
+
+- [Materials Data Platform Roadmap](docs/digital-platform/materials-data-platform-roadmap.md)
+- [Structured polycarbonate dataset](data/materials/polycarbonate-sheets.json)
+- [Dataset validation utility](tools/validate_materials_data.py)
+
+The current dataset contains legacy engineering estimates and must be validated against manufacturer datasheets before production use.
+
 ## 🔗 Quick Reference
 
 | Property | Solid Sheet | Twin-Wall | Triple-Wall |
