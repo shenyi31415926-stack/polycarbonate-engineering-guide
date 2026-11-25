@@ -53,6 +53,26 @@ def validate_entry(entry, index):
         fail(errors, key, "u_value_w_per_m2k must be positive")
     if entry["weight_kg_per_m2"] <= 0:
         fail(errors, key, "weight_kg_per_m2 must be positive")
+    for field in ("section_modulus_mm3_per_m", "moment_of_inertia_mm4_per_m", "allowable_flexural_stress_mpa"):
+        if entry[field] <= 0:
+            fail(errors, key, f"{field} must be positive")
+
+    width_mm = 1000
+    thickness = entry["thickness_mm"]
+    solid_section_modulus = width_mm * thickness**2 / 6
+    solid_moment_of_inertia = width_mm * thickness**3 / 12
+    section_modulus = entry["section_modulus_mm3_per_m"]
+    moment_of_inertia = entry["moment_of_inertia_mm4_per_m"]
+
+    if section_modulus > solid_section_modulus * 1.01:
+        fail(errors, key, "section_modulus_mm3_per_m exceeds the solid-section upper bound")
+    if moment_of_inertia > solid_moment_of_inertia * 1.01:
+        fail(errors, key, "moment_of_inertia_mm4_per_m exceeds the solid-section upper bound")
+    if entry["material_type"] == "solid":
+        if abs(section_modulus - solid_section_modulus) / solid_section_modulus > 0.01:
+            fail(errors, key, "solid-section modulus does not match rectangular geometry")
+        if abs(moment_of_inertia - solid_moment_of_inertia) / solid_moment_of_inertia > 0.01:
+            fail(errors, key, "solid-section moment of inertia does not match rectangular geometry")
     if not entry["applications"]:
         fail(errors, key, "applications must not be empty")
 
