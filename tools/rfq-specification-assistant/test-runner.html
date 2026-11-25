@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RFQ Specification Assistant Tests</title>
+</head>
+<body>
+  <h1>RFQ Specification Assistant Tests</h1>
+  <pre id="result">Running…</pre>
+  <script src="application_rules.js"></script>
+  <script src="specification_logic.js"></script>
+  <script src="test_specification_logic.js"></script>
+  <script>
+    const result = document.getElementById("result");
+    try {
+      result.textContent = window.runSpecificationAssistantTests();
+      document.body.dataset.testStatus = "passed";
+    } catch (error) {
+      result.textContent = error.stack;
+      document.body.dataset.testStatus = "failed";
+    }
+  </script>
+</body>
+</html>

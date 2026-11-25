@@ -7,9 +7,11 @@ This repository currently contains the first building blocks rather than a finis
 - `calculators/polycarbonate_load_calculator.py` — initial load-capacity calculation code
 - `data/materials/polycarbonate-sheets.json` — initial structured materials dataset
 - `tools/validate_materials_data.py` — dataset validation utility
+- `tools/rfq-specification-assistant/` — first internal prototype for structured RFQ intake, application routing, engineering screening checks and quotation-support summaries
+- `data/applications/application-selection-rules.json` — initial structured application-rule dataset used by the RFQ assistant
 - Engineering documentation covering selection, structural design, fabrication, roofing, and greenhouse applications
 
-The dataset is marked as legacy engineering estimates. Values must be validated against current manufacturer datasheets before customer-facing or production use.
+The materials dataset is currently limited to geometrically determinate solid polycarbonate sheet properties. Values must be validated against current manufacturer datasheets before customer-facing or production use.
 
 ## 90-Day Engineering Plan
 
@@ -26,18 +28,19 @@ The dataset is marked as legacy engineering estimates. Values must be validated 
 - Add continuous integration for tests, schema validation, and documentation checks
 - Connect documentation references to the same structured data used by the calculation code
 
-### Days 36–60: Selection MVP
+### Days 36–60: Selection MVP pilot
 
-- Build a lightweight material-selection workflow for internal engineering and sales teams
-- Inputs: application, dimensions, load, climate, fabrication constraints, and documentation requirements
-- Outputs: candidate material, thickness, limitations, required confirmations, and a quotation-support technical summary
+- Pilot the first internal RFQ specification assistant against real inquiries
+- Move application-specific logic into validated structured rules and record evidence status
+- Expand inputs beyond the prototype: load, climate, fabrication constraints, documentation requirements and customer segment
+- Improve outputs: candidate material, thickness, limitations, required confirmations, missing information and quotation-support technical summary
 
 ### Days 61–90: Pilot and iteration
 
 - Test the MVP against real quotation and technical-support cases
 - Measure repeated manual engineering work avoided
 - Add AI-assisted retrieval only after the underlying dataset and source citations are reliable
-- Define the next product phase: customer self-service selection, distributor tools, and automated technical documentation
+- Define the next product phase using the [Polymer Application Engineering OS Strategy](polymer-application-engineering-os-strategy.md): customer self-service selection, distributor tools, traceable evidence, and automated technical documentation
 
 ## Product Principles
 
