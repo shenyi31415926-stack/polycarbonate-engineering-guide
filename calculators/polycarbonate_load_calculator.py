@@ -10,7 +10,7 @@ Website: https://sinoplastix.com
 License: MIT
 
 Usage:
-    python polycarbonate_load_calculator.py --load 1.5 --thickness 10 --type twin-wall
+    python polycarbonate_load_calculator.py --load 1.5 --thickness 10 --type solid
     python polycarbonate_load_calculator.py --interactive
 """
 
@@ -33,26 +33,16 @@ class MaterialSpec:
     max_stress: float = 12.0  # MPa (allowable flexural stress with safety factor)
 
 
-# Manufacturer test data - based on SinoPlastix specifications
+# Solid rectangular-section geometric properties per metre width.
+# Hollow-wall section properties are geometry-dependent and require validated manufacturer data.
 MATERIAL_DATABASE = {
     "solid": {
-        3: MaterialSpec(3, "solid", 15000, 22500, 3.6, 5.6, 90),
-        4: MaterialSpec(4, "solid", 26667, 53333, 4.8, 5.4, 90),
-        5: MaterialSpec(5, "solid", 41667, 104167, 6.0, 5.2, 89),
-        6: MaterialSpec(6, "solid", 60000, 180000, 7.2, 5.0, 89),
-        8: MaterialSpec(8, "solid", 106667, 426667, 9.6, 4.8, 88),
-        10: MaterialSpec(10, "solid", 166667, 833333, 12.0, 4.6, 88),
-    },
-    "twin-wall": {
-        4: MaterialSpec(4, "twin-wall", 12000, 24000, 0.8, 3.5, 82),
-        6: MaterialSpec(6, "twin-wall", 28000, 84000, 1.0, 2.8, 80),
-        8: MaterialSpec(8, "twin-wall", 65000, 260000, 1.3, 2.6, 78),
-        10: MaterialSpec(10, "twin-wall", 95000, 475000, 1.5, 2.4, 76),
-    },
-    "triple-wall": {
-        10: MaterialSpec(10, "triple-wall", 75000, 375000, 1.2, 2.1, 74),
-        16: MaterialSpec(16, "triple-wall", 210000, 1680000, 1.7, 1.8, 70),
-        20: MaterialSpec(20, "triple-wall", 380000, 3800000, 2.1, 1.6, 66),
+        3: MaterialSpec(3, "solid", 1500, 2250, 3.6, 5.6, 90),
+        4: MaterialSpec(4, "solid", 2666.67, 5333.33, 4.8, 5.4, 90),
+        5: MaterialSpec(5, "solid", 4166.67, 10416.67, 6.0, 5.2, 89),
+        6: MaterialSpec(6, "solid", 6000, 18000, 7.2, 5.0, 89),
+        8: MaterialSpec(8, "solid", 10666.67, 42666.67, 9.6, 4.8, 88),
+        10: MaterialSpec(10, "solid", 16666.67, 83333.33, 12.0, 4.6, 88),
     }
 }
 
@@ -67,13 +57,12 @@ class LoadCalculator:
                                        load_kn_m2: float) -> float:
         """
         Calculate maximum span based on flexural stress
-        Formula: span = sqrt(8 * I * allowable_stress / load)
+        Formula for a 1 m wide strip: span = sqrt(8 * Z * allowable_stress / line_load)
         """
-        allowable_stress = material.max_stress / self.safety_factor  # MPa
-        load_n_mm2 = load_kn_m2 * 0.001  # Convert kN/m² to N/mm²
+        allowable_stress = material.max_stress / self.safety_factor  # MPa (N/mm²)
+        line_load_n_mm = load_kn_m2  # 1 kN/m² over 1 m width equals 1 N/mm
         
-        # span² = 8 * I * allowable_stress / load
-        span_squared = (8 * material.moment_of_inertia * allowable_stress) / load_n_mm2
+        span_squared = (8 * material.section_modulus * allowable_stress) / line_load_n_mm
         span_mm = (span_squared) ** 0.5
         span_m = span_mm / 1000
         
@@ -87,13 +76,12 @@ class LoadCalculator:
         E = 2300 MPa (flexural modulus for polycarbonate)
         """
         E = 2300  # MPa
-        load_n_mm2 = load_kn_m2 * 0.001
+        line_load_n_mm = load_kn_m2  # 1 kN/m² over 1 m width equals 1 N/mm
         
-        # Deflection-limited span calculation
-        # For simply supported beam: deflection = 5 * w * L⁴ / (384 * E * I)
-        # Setting deflection = L/200 and solving for L
-        
-        L_cubed = (384 * E * material.moment_of_inertia * 200) / (5 * load_n_mm2 * 1000)
+        # Deflection-limited span for a simply supported 1 m wide strip:
+        # deflection = 5 * w * L⁴ / (384 * E * I); setting deflection = L/200
+        # gives L³ = 384 * E * I / (1000 * w).
+        L_cubed = (384 * E * material.moment_of_inertia) / (1000 * line_load_n_mm)
         span_mm = L_cubed ** (1/3)
         span_m = span_mm / 1000
         
@@ -125,11 +113,11 @@ class LoadCalculator:
                                load_kn_m2: float, 
                                actual_span_m: float) -> Dict:
         """Calculate actual stress for a given span"""
-        load_n_mm2 = load_kn_m2 * 0.001
+        line_load_n_mm = load_kn_m2  # 1 kN/m² over 1 m width equals 1 N/mm
         span_mm = actual_span_m * 1000
         
         # Maximum moment for simply supported beam: M = w*L²/8
-        max_moment = (load_n_mm2 * span_mm ** 2) / 8  # N·mm/mm
+        max_moment = (line_load_n_mm * span_mm ** 2) / 8  # N·mm per metre width
         
         # Stress = M / Z
         actual_stress = max_moment / material.section_modulus  # MPa
@@ -279,8 +267,8 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Calculate for 10mm twin-wall under 1.5 kN/m² snow load
-  python %(prog)s --type twin-wall --thickness 10 --load 1.5
+  # Calculate for 10mm solid sheet under 1.5 kN/m² snow load
+  python %(prog)s --type solid --thickness 10 --load 1.5
 
   # Calculate with custom safety factor
   python %(prog)s --type solid --thickness 6 --load 2.0 --safety-factor 2.0
@@ -293,7 +281,7 @@ For more information: https://sinoplastix.com
     )
     
     parser.add_argument("--type", "-t", 
-                       choices=["solid", "twin-wall", "triple-wall"],
+                       choices=["solid"],
                        help="Material type")
     parser.add_argument("--thickness", "-th", type=int,
                        help="Sheet thickness in mm")
