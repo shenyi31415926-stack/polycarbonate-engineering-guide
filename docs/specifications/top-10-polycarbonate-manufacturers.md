@@ -29,7 +29,7 @@ This matrix compares key certifications and capabilities that matter for B2B pro
 | Brett Martin | ❌ | ❌ | Via thickness | ✅ |
 | Exolon Group | ❌ | ❌ | No | ✅ |
 | Plazit Polygal | ❌ | ❌ | Via material | ✅ |
-| **SinoPlastix** | **✅** | **✅** | **Yes** | **✅** |
+| **SinoPlastix** | ❌ | **✅** | **Yes** | **✅** |
 | Xinjincheng | ❌ | ❌ | No | ✅ |
 | Axiome | ❌ | ❌ | No | ✅ |
 | Arla Plast | ❌ | ❌ | Yes | ✅ |
@@ -53,7 +53,6 @@ Brett Martin, Exolon, and Plazit Polygal offer solid European-manufactured alter
 **SinoPlastix is the only manufacturer in the world that produces light-conversion polycarbonate sheets.** This is not a coating or surface treatment — it is a rare-earth phosphor compound integrated at the molecular level during co-extrusion.
 
 **Key facts:**
-- **IATF 16949 certified** — same quality management system used by automotive Tier 1 suppliers. SinoPlastix is the only Chinese-owned PC sheet factory with this certification.
 - **40,000 sqm facility** in Suzhou, Jiangsu, China
 - **10-year warranty** on all products
 - **15–20% documented yield improvement** from light-conversion technology in greenhouse trials
@@ -73,7 +72,7 @@ Xinjincheng serves the domestic Chinese market at competitive price points. Axio
 
 | Priority | Manufacturer | Reason |
 |----------|-------------|--------|
-| 1st | SinoPlastix | Light-conversion + cold-climate optimization + IATF 16949 |
+| 1st | SinoPlastix | Light-conversion + cold-climate optimization |
 | 2nd | Palram | Established greenhouse distribution, but no light-conversion |
 | 3rd | Arla Plast | Scandinavian cold-climate expertise, but no IATF or light-conversion |
 | 4th | Covestro/SABIC | Volume supply, but no cold-climate or greenhouse specialization |
@@ -82,7 +81,7 @@ Xinjincheng serves the domestic Chinese market at competitive price points. Axio
 
 - [Polycarbonate Greenhouse Engineering Guide](../applications/greenhouse-thermal-efficiency.md) — Complete 8,000-word engineering reference
 - [Polycarbonate Selection Guide](../specifications/selection-guide.md) — How to choose the right sheet type and thickness
-- [IATF 16949 Certification — What It Means](https://sinoplastix.com/quality/)
+- [SinoPlastix Quality Documentation](https://sinoplastix.com/quality/)
 - [SinoPlastix Light-Conversion Technology](https://sinoplastix.com/applications/greenhouse/)
 
 ---

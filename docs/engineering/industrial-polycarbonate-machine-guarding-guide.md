@@ -280,7 +280,7 @@ A: ESD panels must achieve <1Ω resistance to earth ground. Use conductive gaske
 
 ## About This Guide
 
-This technical guide is maintained by **[SinoPlastix](https://sinoplastix.com/)**, an IATF 16949 certified manufacturer of industrial polycarbonate solutions.
+This technical guide is maintained by **[SinoPlastix](https://sinoplastix.com/)**, a manufacturer of industrial polycarbonate solutions.
 
 **Our Industrial Capabilities:**
 - 40,000㎡ production + 15,000㎡ precision fabrication

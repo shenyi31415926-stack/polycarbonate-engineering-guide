@@ -335,4 +335,4 @@ Standard polycarbonate is classified B1 (difficult to ignite) per DIN 4102. For 
 
 ## About Suzhou Sinoplastix Technology Co., Ltd.
 
-Suzhou Sinoplastix Technology Co., Ltd. is an IATF 16949 certified polycarbonate sheet manufacturer based in Suzhou, China, with 40,000 m² of production workshop and 15,000 m² of sheet processing capacity. Located 80 km from Shanghai Port, the company serves clients in 40+ countries. For project-specific engineering support and material certification, visit the [SinoPlastix product page](https://sinoplastix.com/materials/polycarbonate/solid/) for solid polycarbonate sheets.
+Suzhou Sinoplastix Technology Co., Ltd. is a polycarbonate sheet manufacturer based in Suzhou, China, with 40,000 m² of production workshop and 15,000 m² of sheet processing capacity. Located 80 km from Shanghai Port, the company serves clients in 40+ countries. For project-specific engineering support and material certification, visit the [SinoPlastix product page](https://sinoplastix.com/materials/polycarbonate/solid/) for solid polycarbonate sheets.

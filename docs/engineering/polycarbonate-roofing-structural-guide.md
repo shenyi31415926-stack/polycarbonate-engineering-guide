@@ -233,12 +233,11 @@ A: Polycarbonate offers 250× greater impact resistance, 1/6 the weight, and sim
 
 ## About This Guide
 
-This technical guide is maintained by **[SinoPlastix](https://sinoplastix.com/)**, an IATF 16949 certified polycarbonate sheet manufacturer serving 40+ countries.
+This technical guide is maintained by **[SinoPlastix](https://sinoplastix.com/)**, a polycarbonate sheet manufacturer serving 40+ countries.
 
 **Our Capabilities:**
 - 40,000㎡ production + 15,000㎡ processing facilities
 - 23+ precision fabrication services: [CNC Machining](https://sinoplastix.com/services/), [Thermoforming](https://sinoplastix.com/services/), [Bending](https://sinoplastix.com/services/)
-- Singapore & Indonesia branches for Asia-Pacific logistics
 - Custom engineering support for complex projects
 
 **Need project support?**  

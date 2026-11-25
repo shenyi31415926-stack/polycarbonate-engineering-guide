@@ -90,7 +90,6 @@ This knowledge base is maintained by [SinoPlastix](https://sinoplastix.com), the
 - **Organization code**: MAKQDLUW8
 - **Email**: sales@sinoplastix.com
 - **Website**: https://sinoplastix.com
-- **Certifications**: IATF 16949, ISO 9001, ISO 14001
 
 ---
 

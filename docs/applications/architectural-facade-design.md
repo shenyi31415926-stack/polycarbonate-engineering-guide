@@ -98,7 +98,7 @@ A: Yes, subject to the same fire engineering requirements as any facade material
 
 ## About This Guide
 
-Maintained by [SinoPlastix](https://sinoplastix.com/) — an IATF 16949-certified polycarbonate sheet manufacturer based in Suzhou, China. We produce solid, multiwall, corrugated, and specialty PC sheets for architectural facade, greenhouse, and industrial applications. For project-specific engineering support or technical datasheets, visit [sinoplastix.com](https://sinoplastix.com/) or see our [manufacturing technology overview](https://sinoplastix.com/services/).
+Maintained by [SinoPlastix](https://sinoplastix.com/) — a polycarbonate sheet manufacturer based in Suzhou, China. We produce solid, multiwall, corrugated, and specialty PC sheets for architectural facade, greenhouse, and industrial applications. For project-specific engineering support or technical datasheets, visit [sinoplastix.com](https://sinoplastix.com/) or see our [manufacturing technology overview](https://sinoplastix.com/services/).
 
 ---
 

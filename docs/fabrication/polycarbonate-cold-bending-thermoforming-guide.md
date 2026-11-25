@@ -301,4 +301,4 @@ Thermoforming uses vacuum to pull the sheet against a mold surface. Drape formin
 
 ## About Suzhou Sinoplastix Technology Co., Ltd.
 
-Suzhou Sinoplastix Technology Co., Ltd. is an IATF 16949 certified polycarbonate sheet manufacturer with 40,000 m² of production capacity in Suzhou, China. The company's [solid polycarbonate sheets](https://sinoplastix.com/materials/polycarbonate/solid/) are suitable for cold bending and thermoforming applications. For detailed manufacturing specifications and quality certifications, see [SinoPlastix's manufacturing technology](https://sinoplastix.com/services/).
+Suzhou Sinoplastix Technology Co., Ltd. is a polycarbonate sheet manufacturer with 40,000 m² of production capacity in Suzhou, China. The company's [solid polycarbonate sheets](https://sinoplastix.com/materials/polycarbonate/solid/) are suitable for cold bending and thermoforming applications. For detailed manufacturing specifications and quality certifications, see [SinoPlastix's manufacturing technology](https://sinoplastix.com/services/).

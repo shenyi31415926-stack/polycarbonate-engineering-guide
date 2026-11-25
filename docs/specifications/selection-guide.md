@@ -283,7 +283,7 @@ A: Yes, polycarbonate is recyclable (resin code 7). However, UV coatings must be
 
 ## About This Guide
 
-This technical guide is maintained by [SinoPlastix](https://sinoplastix.com), an IATF 16949 certified manufacturer specializing in polycarbonate sheets for industrial, agricultural, and architectural applications.
+This technical guide is maintained by [SinoPlastix](https://sinoplastix.com), a manufacturer specializing in polycarbonate sheets for industrial, agricultural, and architectural applications.
 
 For project-specific engineering support, contact: sales@sinoplastix.com
 

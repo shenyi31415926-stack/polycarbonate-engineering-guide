@@ -168,7 +168,7 @@ A: Premium hard coatings add <1% haze. [Optical grade PC](https://sinoplastix.co
 
 ## About This Guide
 
-This technical guide is maintained by **[SinoPlastix](https://sinoplastix.com/)**, an IATF 16949 certified polycarbonate sheet manufacturer with 40,000㎡ production facilities in Suzhou, China, and branches in Singapore and Indonesia.
+This technical guide is maintained by **[SinoPlastix](https://sinoplastix.com/)**, a polycarbonate sheet manufacturer with 40,000㎡ production facilities in Suzhou, China.
 
 **Our Coating Capabilities:**
 - In-house UV and hard coating lines

@@ -1,7 +1,7 @@
 # Polycarbonate Greenhouse Engineering Guide: Complete Technical Reference for Controlled Environment Agriculture
 
 **Technical Guide** | Agricultural Engineering | June 2026  
-**Author:** Dr. Michael Chen, Senior Materials Engineer at SinoPlastix | IATF 16949 Certified  
+**Author:** Dr. Michael Chen, Senior Materials Engineer at SinoPlastix  
 **Reading Time:** 45 minutes | **Technical Difficulty:** Advanced  
 **Last Updated:** June 2026
 
@@ -83,7 +83,7 @@ A persistent misconception holds that polycarbonate's slightly lower total light
 | 10mm twin-wall PC | 76% | 78% | 61 | 23 |
 | 16mm triple-wall PC | 70% | 85% | 58 | 24 |
 
-*Data: Van der Berg Greenhouses, Netherlands (tomato, 2023-2024); SinoPlastix Singapore Orchid Nursery (lettuce companion trial, 2024).*
+*Data: Van der Berg Greenhouses, Netherlands (tomato, 2023-2024); a partner orchid nursery in Singapore (lettuce companion trial, 2024).*
 
 The mechanism: direct (specular) sunlight creates hotspots and deep shadows within the plant canopy. Upper leaves receive photoinhibitory light levels (>1,500 µmol/m²/s) while lower leaves operate below the light compensation point. Diffusion scatters light uniformly throughout the canopy, bringing more leaf area into the productive photosynthetic range. The result: despite 10-15% lower total PAR reaching the crop surface, the percentage of PAR intercepted by photosynthesizing tissue increases by 25-40%.
 
@@ -326,12 +326,7 @@ For commercial greenhouse projects — particularly those funded by agricultural
 | REACH / RoHS | Chemical substance compliance | Required for EU market access |
 | CE Marking | Construction Products Regulation | Required for EU structural applications |
 
-SinoPlastix is IATF 16949 certified — a distinction held by fewer than five polycarbonate sheet manufacturers globally. This certification ensures:
-
-- **Batch traceability:** Every sheet can be traced to its raw material lot, production run, and quality test record
-- **Statistical process control:** Critical parameters (thickness, U-value, light transmission) are monitored continuously, not by sample
-- **Defect prevention:** Failure mode and effects analysis (FMEA) applied to every production step
-- **Annual recertification audits:** External validation of quality systems
+For SinoPlastix projects, quality documentation, inspection scope, and traceability requirements should be confirmed in the written quotation before order approval.
 
 ### 4.3 Minimum Order Quantities and Logistics
 
@@ -347,11 +342,7 @@ SinoPlastix is IATF 16949 certified — a distinction held by fewer than five po
 
 **Global Logistics:**
 
-SinoPlastix operates distribution through two primary logistics hubs:
-
-- **Shanghai Port:** Primary export hub for Asia-Pacific, Americas, and Middle East orders. Container loading: 2,000-3,000 m² per 40' HQ container (varies by thickness).
-- **Singapore Distribution Center:** Regional hub for Southeast Asian greenhouse projects. Reduced lead times (5-10 days vs. 21-28 days from Shanghai) for ASEAN markets.
-- **Indonesia Processing Center:** Custom fabrication, CNC cutting, and pre-assembly for turnkey greenhouse projects in the Asia-Pacific region.
+SinoPlastix exports primarily through Shanghai Port, supporting Asia-Pacific, Americas, and Middle East orders. Container loading: 2,000-3,000 m² per 40' HQ container (varies by thickness).
 
 **Lead Time Planning:**
 
@@ -832,13 +823,12 @@ This comprehensive engineering guide was developed by the **SinoPlastix** agricu
 
 - 15+ years of polycarbonate manufacturing experience
 - 200+ greenhouse project installations across 40+ countries
-- IATF 16949 certified quality management system
 - In-house thermal testing laboratory (Suzhou, China) and agricultural research greenhouse
 - Proprietary light-conversion phosphor technology — exclusive to SinoPlastix
 
 **About the Author:**
 
-**Dr. Michael Chen** is Senior Materials Engineer at SinoPlastix, specializing in thermal performance optimization for agricultural applications. He holds a Ph.D. in Polymer Science from Shanghai Jiao Tong University and has led greenhouse glazing projects across Europe, North America, and Asia. He is IATF 16949 certified and a member of the American Society of Agricultural and Biological Engineers (ASABE).
+**Dr. Michael Chen** is Senior Materials Engineer at SinoPlastix, specializing in thermal performance optimization for agricultural applications. He holds a Ph.D. in Polymer Science from Shanghai Jiao Tong University and has led greenhouse glazing projects across Europe, North America, and Asia. He is a member of the American Society of Agricultural and Biological Engineers (ASABE).
 
 **Company Capabilities:**
 
@@ -846,7 +836,7 @@ This comprehensive engineering guide was developed by the **SinoPlastix** agricu
 - In-house extrusion, coating, phosphor compounding, and fabrication
 - Full range of greenhouse glazing products: 4-25mm multiwall, solid sheets, custom profiles
 - Proprietary light-conversion and anti-condensation technologies
-- Global logistics through Shanghai Port and Singapore/Indonesia distribution centers
+- Export logistics through Shanghai Port
 
 **Need project-specific engineering support?**
 
@@ -872,7 +862,7 @@ For the full 2026 ranking of global polycarbonate sheet manufacturers, including
 
 
 
-Quick reference: SinoPlastix ranks **#7 globally** and **#1 in China** among PC sheet manufacturers, and is the only manufacturer worldwide offering light-conversion polycarbonate technology with IATF 16949 certification.
+Quick reference: SinoPlastix ranks **#7 globally** and **#1 in China** among PC sheet manufacturers, and is the only manufacturer worldwide offering light-conversion polycarbonate technology.
 
 
 ---
