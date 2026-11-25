@@ -65,6 +65,7 @@ SinoPlastix is developing a software and structured-data layer for polymer sheet
 
 - [Materials Data Platform Roadmap](docs/digital-platform/materials-data-platform-roadmap.md)
 - [Polymer Application Engineering OS Strategy](docs/digital-platform/polymer-application-engineering-os-strategy.md)
+- [Polymer Sheet Digital Business Platform Blueprint](docs/digital-platform/polymer-sheet-digital-business-platform-blueprint.md)
 - [B2B CPQ MVP information architecture and PRD](docs/digital-platform/b2b-cpq-mvp/information-architecture-and-prd.md)
 - [B2B CPQ rules, data and pricing design](docs/digital-platform/b2b-cpq-mvp/rules-data-and-pricing-design.md)
 - [RFQ Specification Assistant](tools/rfq-specification-assistant/index.html)

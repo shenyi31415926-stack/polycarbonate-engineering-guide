@@ -17,6 +17,7 @@ The materials dataset is currently limited to geometrically determinate solid po
 
 The first product frame is a B2B CPQ and engineering-specification workflow for polymer sheet and fabrication customers. It combines scenario-based material selection, 2D/template quotation inputs, plastic-specific DFM checks, nesting and cost formulas, PDF quotation output, and structured inquiry persistence.
 
+- [Digital business platform blueprint](polymer-sheet-digital-business-platform-blueprint.md)
 - [Information architecture, user flows and PRD](b2b-cpq-mvp/information-architecture-and-prd.md)
 - [Rules, data model, pricing formulas and DFM design](b2b-cpq-mvp/rules-data-and-pricing-design.md)
 
