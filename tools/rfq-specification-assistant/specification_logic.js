@@ -58,7 +58,7 @@
   function thermalExpansionMm(lengthMm, temperatureSwingC, materialFamily) {
     const length = positiveNumberOrNull(lengthMm);
     const swing = nonNegativeNumberOrNull(temperatureSwingC);
-    if (!length || !swing) return null;
+    if (length === null || swing === null) return null;
     const coefficient = materialFamily === "acrylic" ? PMMA_EXPANSION_MM_PER_MK : PC_EXPANSION_MM_PER_MK;
     return round(coefficient * (length / 1000) * swing, 2);
   }
