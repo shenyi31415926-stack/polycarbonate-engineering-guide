@@ -13,6 +13,15 @@ This repository currently contains the first building blocks rather than a finis
 
 The materials dataset is currently limited to geometrically determinate solid polycarbonate sheet properties. Values must be validated against current manufacturer datasheets before customer-facing or production use.
 
+## Phase 1 product frame
+
+The first product frame is a B2B CPQ and engineering-specification workflow for polymer sheet and fabrication customers. It combines scenario-based material selection, 2D/template quotation inputs, plastic-specific DFM checks, nesting and cost formulas, PDF quotation output, and structured inquiry persistence.
+
+- [Information architecture, user flows and PRD](b2b-cpq-mvp/information-architecture-and-prd.md)
+- [Rules, data model, pricing formulas and DFM design](b2b-cpq-mvp/rules-data-and-pricing-design.md)
+
+The immediate three-day structural-framework goal is to validate this architecture as a clickable prototype and data/rules framework. It is not yet a production CPQ system.
+
 ## 90-Day Engineering Plan
 
 ### Days 1–15: Data and calculation core
