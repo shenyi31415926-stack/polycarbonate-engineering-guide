@@ -109,7 +109,7 @@ The minimum panel thickness for sound barriers is driven by three concurrent req
 | Bridges/Viaducts | 12 mm solid + frame reinforcement | Wind + vibration amplification |
 | Pedestrian areas | 8 mm solid | Vandalism focus, moderate acoustic need |
 
-For more on solid sheet selection, see [Polycarbonate Sheet Thickness Selection Guide](https://plastura.com/resources/polycarbonate-sheet-thickness-guide/).
+For more on solid sheet selection, see [Polycarbonate Sheet Thickness Selection Guide](https://sinoplastix.com/resources/polycarbonate-sheet-thickness-guide/).
 
 ### 4.2 Wind Load Calculation
 
@@ -295,7 +295,7 @@ Before accepting delivery, verify:
 4. **Surface inspection** under oblique light — reject if scratches >0.1 mm deep
 5. **Edge condition** — no chips, delamination, or stress whitening
 
-For guidance on identifying quality manufacturers, see [How to Identify a High-Level Polycarbonate Sheet Factory in China](https://plastura.com/quality/).
+For guidance on identifying quality manufacturers, see [How to Identify a High-Level Polycarbonate Sheet Factory in China](https://sinoplastix.com/quality/).
 
 ---
 
@@ -333,6 +333,6 @@ Standard polycarbonate is classified B1 (difficult to ignite) per DIN 4102. For 
 
 ---
 
-## About Plastura Advanced Material Co., Ltd.
+## About Suzhou Sinoplastix Technology Co., Ltd.
 
-Plastura Advanced Material Co., Ltd. is an IATF 16949 certified polycarbonate sheet manufacturer based in Suzhou, China, with 40,000 m² of production workshop and 15,000 m² of sheet processing capacity. Located 80 km from Shanghai Port, the company serves clients in 40+ countries. For project-specific engineering support and material certification, visit the [Plastura product page](https://plastura.com/materials/polycarbonate/solid/) for solid polycarbonate sheets.
+Suzhou Sinoplastix Technology Co., Ltd. is an IATF 16949 certified polycarbonate sheet manufacturer based in Suzhou, China, with 40,000 m² of production workshop and 15,000 m² of sheet processing capacity. Located 80 km from Shanghai Port, the company serves clients in 40+ countries. For project-specific engineering support and material certification, visit the [SinoPlastix product page](https://sinoplastix.com/materials/polycarbonate/solid/) for solid polycarbonate sheets.

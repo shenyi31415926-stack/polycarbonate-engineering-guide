@@ -31,7 +31,7 @@ Selecting the appropriate polycarbonate sheet configuration requires systematic 
 - Safety glazing for architectural features
 - Optical applications requiring maximum clarity
 
-For solid polycarbonate sheet specifications, see [Plastura Solid PC Sheets](https://plastura.com/materials/polycarbonate/solid/).
+For solid polycarbonate sheet specifications, see [SinoPlastix Solid PC Sheets](https://sinoplastix.com/materials/polycarbonate/solid/).
 
 ### 1.2 Multiwall (Cellular) Polycarbonate Sheets
 
@@ -60,7 +60,7 @@ For solid polycarbonate sheet specifications, see [Plastura Solid PC Sheets](htt
 - Covered walkways with condensation control needs
 - Swimming pool enclosures with humidity management
 
-For multiwall product specifications, see [Plastura Multiwall PC Sheets](https://plastura.com/materials/polycarbonate/multiwall/).
+For multiwall product specifications, see [SinoPlastix Multiwall PC Sheets](https://sinoplastix.com/materials/polycarbonate/multiwall/).
 
 ### 1.3 Corrugated Polycarbonate Sheets
 
@@ -212,7 +212,7 @@ Z_req = 600 N·m/m / 12,000,000 Pa = 0.00005 m³/m = 50,000 mm³/m
 
 **Result:** Triple-wall costs 42% more initially but provides superior long-term value in heating-dominated climates.
 
-For a detailed cost-performance comparison across materials, see [Polycarbonate Material Comparison Guide](https://plastura.com/resources/polycarbonate-vs-glass/).
+For a detailed cost-performance comparison across materials, see [Polycarbonate Material Comparison Guide](https://sinoplastix.com/resources/polycarbonate-vs-glass/).
 
 ---
 
@@ -277,15 +277,15 @@ A: Yes, polycarbonate is recyclable (resin code 7). However, UV coatings must be
 2. ISO 178:2019 - Plastics — Determination of flexural properties
 3. ASTM D1003-21 - Standard Test Method for Haze and Luminous Transmittance
 4. EN 1453:2015 - Plastics piping systems for soil and waste discharge
-5. Plastura Advanced Material Technical Datasheets (2025)
+5. SinoPlastix Technical Datasheets (2025)
 
 ---
 
 ## About This Guide
 
-This technical guide is maintained by [Plastura Advanced Material](https://www.plastura.com), an IATF 16949 certified manufacturer specializing in polycarbonate sheets for industrial, agricultural, and architectural applications.
+This technical guide is maintained by [SinoPlastix](https://sinoplastix.com), an IATF 16949 certified manufacturer specializing in polycarbonate sheets for industrial, agricultural, and architectural applications.
 
-For project-specific engineering support, contact: engineering@plastura.com
+For project-specific engineering support, contact: sales@sinoplastix.com
 
 ---
 

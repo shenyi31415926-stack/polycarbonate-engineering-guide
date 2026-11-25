@@ -76,12 +76,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 We welcome contributions from engineers and technical professionals. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## 🏢 About Plastura Advanced Material
+## 🏢 About SinoPlastix
 
-This knowledge base is maintained by [Plastura Advanced Material](https://www.plastura.com), an IATF 16949 certified polycarbonate sheet manufacturer with facilities in Suzhou, China, and branches in Singapore and Indonesia.
+This knowledge base is maintained by [SinoPlastix](https://sinoplastix.com), the brand of **Suzhou Sinoplastix Technology Co., Ltd.** (苏州赛达斯科技有限公司).
 
-- **Email**: info@plastura.com
-- **Website**: https://www.plastura.com
+- **Unified Social Credit Code**: 91320507MAKQDLUW8R
+- **Chinese legal name**: 苏州赛达斯科技有限公司
+- **English legal name**: Suzhou Sinoplastix Technology Co., Ltd.
+- **Registered address (Chinese)**: 江苏省苏州市相城区高铁新城相融路600号CCF大厦4层
+- **Registered address (English)**: No.600 Xiangrong Road, High-Speed Rail New Town, Xiangcheng District, Suzhou
+- **Customs registration code**: 3205968CQZ
+- **Inspection and quarantine enterprise code**: 8320098184
+- **Organization code**: MAKQDLUW8
+- **Email**: sales@sinoplastix.com
+- **Website**: https://sinoplastix.com
 - **Certifications**: IATF 16949, ISO 9001, ISO 14001
 
 ---
