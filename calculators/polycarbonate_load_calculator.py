@@ -48,6 +48,11 @@ MATERIAL_DATABASE = {
 }
 
 
+def conservative_cm(span_mm: float) -> float:
+    """Round down to centimetres while tolerating insignificant floating-point error."""
+    return math.floor((span_mm + 1e-6) / 10) / 100
+
+
 class LoadCalculator:
     """Calculator for polycarbonate load capacity"""
     
@@ -65,7 +70,7 @@ class LoadCalculator:
         
         span_squared = (8 * material.section_modulus * allowable_stress) / line_load_n_mm
         span_mm = (span_squared) ** 0.5
-        return math.floor(span_mm / 10) / 100
+        return conservative_cm(span_mm)
     
     def calculate_max_span_deflection_based(self, material: MaterialSpec,
                                            load_kn_m2: float,
@@ -82,7 +87,7 @@ class LoadCalculator:
         # gives L³ = 384 * E * I / (1000 * w).
         L_cubed = (384 * E * material.moment_of_inertia) / (1000 * line_load_n_mm)
         span_mm = L_cubed ** (1/3)
-        return math.floor(span_mm / 10) / 100
+        return conservative_cm(span_mm)
     
     def calculate_governing_span(self, material: MaterialSpec, 
                                 load_kn_m2: float) -> Dict:
