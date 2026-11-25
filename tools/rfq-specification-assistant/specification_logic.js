@@ -158,6 +158,7 @@
     const missing = [];
     if (!input.application) missing.push("Application or end use");
     if (!input.materialFamily) missing.push("Material family preference or constraints");
+    if (!input.structure) missing.push("Sheet structure");
 
     const checks = {
       thickness: [!positiveNumberOrNull(input.thicknessMm), "Target thickness or performance requirement"],
@@ -165,7 +166,7 @@
       quantity: [!positiveNumberOrNull(input.quantity, true), "Quantity"],
       destination: [!input.destination, "Destination country or port"],
       design_load: [!positiveNumberOrNull(input.designLoadKnM2), "Design wind/snow load"],
-      temperature_swing: [!nonNegativeNumberOrNull(input.temperatureSwingC), "Expected temperature swing"],
+      temperature_swing: [nonNegativeNumberOrNull(input.temperatureSwingC) === null, "Expected temperature swing"],
     };
     const requiredInputs = APPLICATION_RULES.rules[input.application]?.required_inputs || [
       "thickness", "dimensions", "quantity", "destination"

@@ -19,6 +19,18 @@
     assertEqual(assistant.thermalExpansionMm(3000, 60, "polycarbonate"), 11.7, "PC thermal expansion");
     assertEqual(assistant.thermalExpansionMm(3000, 60, "acrylic"), 12.6, "acrylic thermal expansion");
     assertEqual(assistant.thermalExpansionMm(3000, 0, "polycarbonate"), 0, "zero temperature swing");
+    assert(!assistant.missingInformation({
+      application: "greenhouse",
+      materialFamily: "polycarbonate",
+      structure: "multiwall",
+      thicknessMm: 10,
+      widthMm: 1000,
+      lengthMm: 2000,
+      quantity: 1,
+      destination: "Hamburg",
+      temperatureSwingC: 0,
+    }).some((item) => item.includes("temperature")), "zero temperature swing must not be missing");
+    assert(assistant.missingInformation({ application: "greenhouse", materialFamily: "polycarbonate" }).some((item) => item.includes("Sheet structure")), "missing sheet structure should be reported");
     assertEqual(assistant.fastenerHoleDiameterMm(6, 11.7), 19, "expansion-driven fastener clearance");
     assertEqual(assistant.fastenerHoleDiameterMm(8, 3), 13, "documented fastener baseline");
     assertEqual(assistant.sheetAreaM2(1000, 2000), 2, "sheet area");
