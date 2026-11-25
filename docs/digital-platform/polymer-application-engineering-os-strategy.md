@@ -4,7 +4,7 @@
 
 Commodity polymer sheet businesses compete mainly on price, lead time and sales responsiveness. A materials technology company can create a different position by turning application engineering into software: capturing customer requirements as structured data, selecting materials through explicit rules and validated evidence, generating technical documentation automatically, and learning from every quotation, order and field outcome.
 
-The long-term product is not a generic chatbot and not a collection of isolated calculators. It is an **application engineering operating system for polymer sheet products**.
+The long-term product is not a generic chatbot and not a collection of isolated calculators. It is an **application engineering operating system for polymer sheet products**. The first focused implementation is the [B2B CPQ MVP](b2b-cpq-mvp/information-architecture-and-prd.md): scenario-based selection, 2D/template quotation inputs, DFM checks, nesting and price breakdown, PDF quotation output, and structured inquiry records.
 
 ## Industry problems worth solving
 
