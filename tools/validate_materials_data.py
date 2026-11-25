@@ -57,6 +57,9 @@ def validate_entry(entry, index):
         if entry[field] <= 0:
             fail(errors, key, f"{field} must be positive")
 
+    if entry["thickness_mm"] <= 0:
+        return errors
+
     width_mm = 1000
     thickness = entry["thickness_mm"]
     solid_section_modulus = width_mm * thickness**2 / 6
