@@ -19,7 +19,7 @@ def fail(errors, message):
 def main():
     errors = []
     try:
-        canonical = json.loads(SOURCE.read_text())
+        canonical = json.loads(SOURCE.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         print(f"Application-rules validation failed: {exc}", file=sys.stderr)
         return 1
@@ -35,10 +35,10 @@ def main():
                 continue
             if not rule["product_link"].startswith("https://sinoplastix.com/"):
                 fail(errors, f"{key}: product_link must be a sinoplastix.com HTTPS URL")
-            if not rule["confirmations"]:
-                fail(errors, f"{key}: confirmations must not be empty")
-            if not rule["warnings"]:
-                fail(errors, f"{key}: warnings must not be empty")
+            for list_field in ("confirmations", "warnings"):
+                value = rule[list_field]
+                if not isinstance(value, list) or not value or not all(isinstance(item, str) and item.strip() for item in value):
+                    fail(errors, f"{key}: {list_field} must be a non-empty list of non-empty strings")
             invalid_inputs = set(rule["required_inputs"]) - VALID_REQUIRED_INPUTS
             if invalid_inputs:
                 fail(errors, f"{key}: unsupported required_inputs {sorted(invalid_inputs)}")
@@ -49,7 +49,7 @@ def main():
                 fail(errors, f"{key}: every requirement override must be an object")
 
     try:
-        generated = GENERATED.read_text()
+        generated = GENERATED.read_text(encoding="utf-8")
         start = generated.index("  const data = ") + len("  const data = ")
         end = generated.index(";\n  if (typeof module", start)
         generated_data = json.loads(generated[start:end])
