@@ -333,9 +333,22 @@
     document.getElementById("generate").addEventListener("click", render);
     document.getElementById("copy").addEventListener("click", async () => {
       const summary = document.getElementById("summary");
+      const status = document.getElementById("copy-status");
       if (!summary.value) render();
-      await navigator.clipboard.writeText(summary.value);
-      document.getElementById("copy-status").textContent = " Copied.";
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(summary.value);
+        } else {
+          summary.focus();
+          summary.select();
+          if (!document.execCommand("copy")) throw new Error("execCommand copy failed");
+        }
+        status.textContent = " Copied.";
+      } catch (error) {
+        summary.focus();
+        summary.select();
+        status.textContent = " Copy unavailable; copy the selected text manually.";
+      }
     });
     document.getElementById("reset").addEventListener("click", () => {
       document.querySelectorAll("input, select").forEach((element) => {
