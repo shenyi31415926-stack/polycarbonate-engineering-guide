@@ -83,7 +83,7 @@ A persistent misconception holds that polycarbonate's slightly lower total light
 | 10mm twin-wall PC | 76% | 78% | 61 | 23 |
 | 16mm triple-wall PC | 70% | 85% | 58 | 24 |
 
-*Data: Van der Berg Greenhouses, Netherlands (tomato, 2023-2024); a partner orchid nursery in Singapore (lettuce companion trial, 2024).*
+*Data: Van der Berg Greenhouses, Netherlands (tomato, 2023-2024); partner-nursery lettuce companion trial, 2024.*
 
 The mechanism: direct (specular) sunlight creates hotspots and deep shadows within the plant canopy. Upper leaves receive photoinhibitory light levels (>1,500 µmol/m²/s) while lower leaves operate below the light compensation point. Diffusion scatters light uniformly throughout the canopy, bringing more leaf area into the productive photosynthetic range. The result: despite 10-15% lower total PAR reaching the crop surface, the percentage of PAR intercepted by photosynthesizing tissue increases by 25-40%.
 
@@ -185,9 +185,9 @@ Vertical farming environments present unique glazing challenges: light must pene
 
 SinoPlastix's high-diffusion grade achieves 85%+ haze factor through engineered prismatic microstructures in the polycarbonate matrix — not surface etching, which degrades over time and traps particulates. The diffusion is volumetric, meaning it persists through the entire sheet thickness and cannot be cleaned or worn away.
 
-**Diffusion Plate Case Study — Vertical Leafy Green Facility, Singapore:**
+**Diffusion Plate Case Study — Tropical Vertical Leafy Green Facility:**
 
-A 2,400 m² multi-tier vertical farm in Singapore (1.3°N, year-round 27-32°C) replaced single-glass skylights with SinoPlastix 8mm high-diffusion twin-wall polycarbonate in 2024:
+A 2,400 m² multi-tier vertical farm operating year-round at 27-32°C replaced single-glass skylights with SinoPlastix 8mm high-diffusion twin-wall polycarbonate in 2024:
 
 | Metric | Before (Glass) | After (Diffusion PC) | Improvement |
 |--------|----------------|---------------------|-------------|
@@ -195,7 +195,7 @@ A 2,400 m² multi-tier vertical farm in Singapore (1.3°N, year-round 27-32°C) 
 | Lettuce heads per m² per cycle | 38 | 49 | +29% |
 | Reject rate (uneven growth) | 18% | 4% | -78% |
 | Supplemental lighting hours (daily) | 8h | 3h | -62% |
-| Annual electricity cost | SGD $94,000 | SGD $41,000 | -56% |
+| Annual electricity cost index | 100 | 44 | -56% |
 
 The diffusion plates eliminated the need for supplemental LED lighting on the lower two tiers during daylight hours, delivering a 62% reduction in artificial lighting energy — the single largest operational cost in vertical farming.
 
