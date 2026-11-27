@@ -262,15 +262,15 @@
     const t = input.thicknessMm || 0;
     const rules = config.dfm;
 
-    if (metrics.holesPerPart > 0 && input.holeEdgeDistanceMm !== null && input.holeEdgeDistanceMm !== undefined && input.holeDiameterMm) {
-      const minimum = Math.max(rules.minHoleEdgeToThicknessFactor * t, 2 * input.holeDiameterMm);
+    if (metrics.holesPerPart > 0 && input.holeEdgeDistanceMm !== null && input.holeEdgeDistanceMm !== undefined && metrics.holeDiameterMm) {
+      const minimum = Math.max(rules.minHoleEdgeToThicknessFactor * t, 2 * metrics.holeDiameterMm);
       if (input.holeEdgeDistanceMm < minimum) {
         add("DFM-001", "manual_review", `Hole edge distance ${input.holeEdgeDistanceMm}mm is below the prototype minimum of ${round(minimum, 1)}mm.`, "Increase edge distance or request engineering confirmation.");
       }
     }
 
-    if (metrics.holesPerPart > 0 && input.holeDiameterMm && input.holeDiameterMm < rules.minHoleDiameterToThicknessFactor * t) {
-      add("DFM-002", "warning", `Hole diameter ${input.holeDiameterMm}mm is small relative to ${t}mm thickness.`, "Confirm drilling quality, cracking risk and tolerance.");
+    if (metrics.holesPerPart > 0 && metrics.holeDiameterMm && metrics.holeDiameterMm < rules.minHoleDiameterToThicknessFactor * t) {
+      add("DFM-002", "warning", `Hole diameter ${metrics.holeDiameterMm}mm is small relative to ${t}mm thickness.`, "Confirm drilling quality, cracking risk and tolerance.");
     }
 
     if (input.outdoorExposure && input.screwDiameterMm && input.temperatureSwingC !== null && input.temperatureSwingC !== undefined) {
