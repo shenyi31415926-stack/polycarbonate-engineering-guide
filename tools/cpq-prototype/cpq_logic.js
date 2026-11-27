@@ -254,20 +254,21 @@
     const rates = config.processRates;
     const qty = input.quantity;
     const cuttingRate = rates.cutting;
-    const cutting = cuttingRate.setupFee + Math.max(cuttingRate.minimumCharge, metrics.cuttingPerimeterM * qty * cuttingRate.ratePerM);
+    const withMinimum = (rate, usage) => Math.max(rate.minimumCharge, rate.setupFee + usage);
+    const cutting = withMinimum(cuttingRate, metrics.cuttingPerimeterM * qty * cuttingRate.ratePerM);
 
     const drilling = metrics.holesPerPart > 0
-      ? rates.drilling.setupFee + Math.max(rates.drilling.minimumCharge, metrics.holesPerPart * qty * rates.drilling.ratePerHole)
+      ? withMinimum(rates.drilling, metrics.holesPerPart * qty * rates.drilling.ratePerHole)
       : 0;
     const bending = metrics.bendCountPerPart > 0
-      ? rates.bending.setupFee + Math.max(rates.bending.minimumCharge, metrics.bendCountPerPart * qty * rates.bending.ratePerBend)
+      ? withMinimum(rates.bending, metrics.bendCountPerPart * qty * rates.bending.ratePerBend)
       : 0;
     const polishedLengthM = (input.polishedLengthMm || 0) / 1000;
     const polishing = polishedLengthM > 0
-      ? rates.polishing.setupFee + Math.max(rates.polishing.minimumCharge, polishedLengthM * qty * rates.polishing.ratePerM)
+      ? withMinimum(rates.polishing, polishedLengthM * qty * rates.polishing.ratePerM)
       : 0;
     const coating = input.coatingType && input.coatingType !== "none"
-      ? rates.coating.setupFee + Math.max(rates.coating.minimumCharge, metrics.partAreaM2 * qty * rates.coating.ratePerM2)
+      ? withMinimum(rates.coating, metrics.partAreaM2 * qty * rates.coating.ratePerM2)
       : 0;
 
     return {
