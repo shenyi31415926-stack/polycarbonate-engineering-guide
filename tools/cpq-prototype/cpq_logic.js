@@ -188,8 +188,13 @@
         const down = Math.floor((sheet.usableLengthMm + sheet.kerfMm) / (partL + sheet.kerfMm));
         const partsPerSheet = across * down;
         if (!partsPerSheet) continue;
-        const candidate = { sheet, rotate, partsPerSheet, across, down };
-        if (!best || partsPerSheet > best.partsPerSheet || (partsPerSheet === best.partsPerSheet && sheet.usableWidthMm * sheet.usableLengthMm < best.sheet.usableWidthMm * best.sheet.usableLengthMm)) {
+        const sheetCount = Math.ceil(input.quantity / partsPerSheet);
+        const stockAreaMm2 = sheet.widthMm * sheet.lengthMm;
+        const candidate = { sheet, rotate, partsPerSheet, across, down, sheetCount, stockAreaMm2 };
+        if (!best
+          || sheetCount < best.sheetCount
+          || (sheetCount === best.sheetCount && stockAreaMm2 < best.stockAreaMm2)
+          || (sheetCount === best.sheetCount && stockAreaMm2 === best.stockAreaMm2 && partsPerSheet > best.partsPerSheet)) {
           best = candidate;
         }
       }
