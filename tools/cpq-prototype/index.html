@@ -320,7 +320,9 @@
         Area/part: <strong>${m.partAreaM2} m²</strong><br>
         Cutting perimeter/part: <strong>${m.cuttingPerimeterM} m</strong><br>
         Holes/part: <strong>${m.holesPerPart}</strong> · Bends/part: <strong>${m.bendCountPerPart}</strong><br>
-        Geometry confidence: <strong>${esc(m.geometryConfidence)}</strong>
+        Geometry confidence: <strong>${esc(m.geometryConfidence)}</strong><br>
+        Thermal movement screening: <strong>${q.thermalMovementMm ?? "pending"} mm</strong><br>
+        Span/load screening: <strong>${q.spanScreening ? `${q.spanScreening.governingSpanM} m (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence / review" : "not requested"}</strong>
       ` : "Geometry inputs incomplete.";
     }
 
@@ -396,7 +398,7 @@
         <div class="quote-section"><h3>Customer</h3><p>${esc(input.customerName || "Pending customer")}<br>Destination: ${esc(input.destination || "pending")}</p></div>
         <div class="quote-section"><h3>Item specification</h3><table><tr><th>Material</th><td>${esc(q.material ? q.material.name : "pending")}</td></tr><tr><th>Thickness / size / qty</th><td>${input.thicknessMm || "pending"} mm · ${input.widthMm || "?"}×${input.lengthMm || "?"} mm · ${input.quantity || "pending"} pcs</td></tr><tr><th>Geometry / process</th><td>${esc(input.template)} · holes ${q.metrics ? q.metrics.holesPerPart : "?"} · bends ${q.metrics ? q.metrics.bendCountPerPart : "?"} · ${esc(input.cuttingMethod)} cutting</td></tr></table></div>
         <div class="quote-section"><h3>Quotation breakdown</h3>${p ? `<table><tr><td>Material</td><td>${money(p.materialCost)}</td></tr><tr><td>Fabrication processes</td><td>${money(p.processCost)}</td></tr><tr><td>Packaging</td><td>${money(p.packagingCost)}</td></tr><tr><td>Logistics reference</td><td>${money(p.logisticsReferenceCost)}</td></tr><tr class="total-row"><td>Total</td><td>${money(p.total)}</td></tr></table><p><strong>Status:</strong> ${esc(p.status)}${p.status !== "automated-list-price" ? ` · Reference range ${money(p.referenceLow)} – ${money(p.referenceHigh)}` : ""}</p>` : "<p>Price pending complete inputs.</p>"}</div>
-        <div class="quote-section"><h3>Engineering selection note</h3><p>${esc(q.recommendation.summary)} Thermal movement screening: ${q.thermalMovementMm ?? "pending"} mm over stated conditions. This document is a prototype quotation structure, not certified engineering design or final manufacturer confirmation.</p></div>
+        <div class="quote-section"><h3>Engineering selection note</h3><p>${esc(q.recommendation.summary)} Thermal movement screening: ${q.thermalMovementMm ?? "pending"} mm over stated conditions. Span/load screening: ${q.spanScreening ? `${q.spanScreening.governingSpanM} m (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence or engineering review" : "not requested"}. This document is a prototype quotation structure, not certified engineering design or final manufacturer confirmation.</p></div>
         <div class="quote-section"><h3>DFM and review notes</h3><ul>${(q.dfmFindings.length ? q.dfmFindings.map(f => `${f.id}: ${f.message}`) : ["No prototype DFM warnings triggered."]).map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
       `;
       $("inquiry-json").textContent = JSON.stringify({ quoteNumber: q.quoteNumber, customer: input.customerName, destination: input.destination, application: input.application, materialId: input.materialId, metrics: q.metrics, nesting: q.nesting, price: q.price, manualReviewRequired: q.manualReasons.length > 0 }, null, 2);

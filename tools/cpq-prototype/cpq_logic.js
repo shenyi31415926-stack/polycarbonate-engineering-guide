@@ -35,6 +35,32 @@
     return config.applicationGuidance[application] || null;
   }
 
+  function conservativeCm(spanMm) {
+    return Math.floor((spanMm + 1e-6) / 10) / 100;
+  }
+
+  function solidPolycarbonateSpanM(thicknessMm, loadKnM2, material) {
+    if (!material || material.polymer !== "PC" || material.structure !== "solid") return null;
+    const thicknessKey = String(thicknessMm);
+    const sectionModulus = material.sectionModulusMm3PerM ? material.sectionModulusMm3PerM[thicknessKey] : null;
+    const momentOfInertia = material.momentOfInertiaMm4PerM ? material.momentOfInertiaMm4PerM[thicknessKey] : null;
+    const allowableStress = material.allowableFlexuralStressMpa;
+    if (!sectionModulus || !momentOfInertia || !allowableStress || !loadKnM2 || loadKnM2 <= 0) return null;
+
+    const stressSpanMm = Math.sqrt((8 * sectionModulus * allowableStress) / loadKnM2);
+    const modulusMpa = 2300;
+    const deflectionSpanMm = Math.cbrt((384 * modulusMpa * momentOfInertia) / (1000 * loadKnM2));
+    const stressSpanM = conservativeCm(stressSpanMm);
+    const deflectionSpanM = conservativeCm(deflectionSpanMm);
+    return {
+      stressSpanM,
+      deflectionSpanM,
+      governingSpanM: Math.min(stressSpanM, deflectionSpanM),
+      governingFactor: deflectionSpanM < stressSpanM ? "deflection" : "stress",
+      basis: "solid rectangular-section geometric baseline; validate manufacturer data before production use"
+    };
+  }
+
   function recommendMaterial(config, input) {
     const guidance = applicationGuidance(config, input.application);
     const requirements = input.requirements || [];
@@ -52,15 +78,25 @@
 
     const material = materialById(config, materialId) || config.materials[0];
     const thickness = positive(input.thicknessMm) || (guidance ? guidance.thicknessMm : material.thicknessesMm[0]);
+    const reasons = [
+      material.note,
+      "This is a prototype recommendation using demonstration data, not a certified engineering approval."
+    ];
+    const designLoad = positive(input.designLoadKnM2);
+    if (designLoad) {
+      const span = solidPolycarbonateSpanM(thickness, designLoad, material);
+      if (span) {
+        reasons.push(`Preliminary solid-PC span screening at ${thickness}mm and ${designLoad} kN/m²: ${span.governingSpanM}m governing span (${span.governingFactor}-governed); validate frame, fixing and manufacturer data.`);
+      } else {
+        reasons.push("Span/load performance for this material route cannot be inferred from solid-sheet geometry and requires manufacturer-specific structural data or engineering review.");
+      }
+    }
     return {
       material,
       suggestedThicknessMm: thickness,
       title: guidance ? guidance.title : "Custom application",
       summary: guidance ? guidance.summary : "Confirm application requirements before material selection.",
-      reasons: [
-        material.note,
-        "This is a prototype recommendation using demonstration data, not a certified engineering approval."
-      ]
+      reasons
     };
   }
 
@@ -77,6 +113,7 @@
     input.bendRadiusMm = positive(raw.bendRadiusMm);
     input.polishedLengthMm = nonNegative(raw.polishedLengthMm);
     input.temperatureSwingC = nonNegative(raw.temperatureSwingC);
+    input.designLoadKnM2 = positive(raw.designLoadKnM2);
     input.screwDiameterMm = positive(raw.screwDiameterMm);
     input.toleranceMm = positive(raw.toleranceMm);
     input.cornerRadiusMm = nonNegative(raw.cornerRadiusMm);
@@ -246,6 +283,15 @@
       add("DFM-012", "info", "Cut edges, drilled holes or bent areas may not retain the selected surface treatment.", "Confirm coating scope, edge protection and inspection requirement.");
     }
 
+    if (input.designLoadKnM2) {
+      const span = solidPolycarbonateSpanM(input.thicknessMm, input.designLoadKnM2, material);
+      if (span) {
+        add("DFM-014", "warning", `Preliminary solid-PC span screening gives a ${span.governingSpanM}m governing span (${span.governingFactor}-governed) at ${input.designLoadKnM2} kN/m².`, "Validate frame spacing, fixing system, edge engagement and manufacturer data before use.");
+      } else {
+        add("DFM-014", "manual_review", "Span/load performance for this material route cannot be inferred from solid-sheet geometry.", "Obtain manufacturer-specific structural data or complete engineering review before quoting structural use.");
+      }
+    }
+
     return findings;
   }
 
@@ -305,6 +351,7 @@
 
     const manualReasons = [];
     if (!input.materialId) manualReasons.push("Material not explicitly selected");
+    if (material && input.thicknessMm && material.thicknessesMm && !material.thicknessesMm.includes(input.thicknessMm)) manualReasons.push(`${input.thicknessMm}mm is not a configured thickness for ${material.name}`);
     if (!metrics) manualReasons.push("Geometry incomplete");
     if (metrics && metrics.requiresManualGeometryReview) manualReasons.push("Simulated DXF requires real parser validation in production");
     if (nest && !nest.fits) manualReasons.push(nest.manualReviewReason);
@@ -338,6 +385,8 @@
       };
     }
 
+    const spanScreening = material ? solidPolycarbonateSpanM(input.thicknessMm, input.designLoadKnM2, material) : null;
+
     return {
       input,
       recommendation,
@@ -346,6 +395,7 @@
       nesting: nest,
       dfmFindings: findings,
       thermalMovementMm: thermalMovement,
+      spanScreening,
       weightKg: weight,
       costs,
       packaging,
@@ -371,6 +421,7 @@
     thermalMovementMm,
     weightKg,
     nesting,
+    solidPolycarbonateSpanM,
     dfmFindings,
     processCosts,
     packagingAndLogistics,

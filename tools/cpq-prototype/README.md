@@ -8,7 +8,7 @@ The prototype walks through the intended customer and internal-sales flow:
 
 1. **Scenario selection** — choose the application, UV/outdoor exposure, performance requirements, temperature swing and load context.
 2. **Geometry and fabrication input** — use a parametric rectangle, cover plate, simple L-bend, simple U-bend, or a clearly labeled simulated-DXF example.
-3. **Nesting and price breakdown** — calculate bounding-box part metrics, standard-sheet fit, parts per sheet, sheet count, utilization, waste ratio, weight, process cost, packaging/CBM estimate, logistics reference and total.
+3. **Nesting and price breakdown** — calculate bounding-box part metrics, standard-sheet fit, parts per sheet, sheet count, utilization, waste ratio, weight, thermal-movement screening, solid-polycarbonate span screening, process cost, packaging/CBM estimate, logistics reference and total.
 4. **Quotation preview** — render a PDF-ready document structure and a structured inquiry record. Browser print can save the preview as a PDF.
 5. **Admin configuration demo** — edit placeholder material, process and commercial rates to demonstrate that pricing is configuration-driven rather than hard-coded in formulas.
 

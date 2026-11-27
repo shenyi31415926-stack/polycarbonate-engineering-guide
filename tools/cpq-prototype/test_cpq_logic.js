@@ -31,6 +31,7 @@
       toleranceMm: "1",
       screwDiameterMm: "6",
       temperatureSwingC: "50",
+      designLoadKnM2: "",
       cuttingMethod: "cnc",
       polishedLengthMm: "0",
       coatingType: "none",
@@ -71,6 +72,16 @@
 
     const acrylicLaser = logic.calculateQuote(baseInput({ materialId: "pmma-cast", thicknessMm: "5", cuttingMethod: "laser" }), config);
     assert(acrylicLaser.dfmFindings.some((finding) => finding.id === "DFM-006"), "laser-cut acrylic warning");
+
+    const solidLoad = logic.calculateQuote(baseInput({ materialId: "pc-solid", designLoadKnM2: "1.5" }), config);
+    assertEqual(solidLoad.spanScreening.governingSpanM, 0.36, "solid PC governing span");
+    assert(solidLoad.dfmFindings.some((finding) => finding.id === "DFM-014"), "solid load screening finding");
+
+    const multiwallLoad = logic.calculateQuote(baseInput({ designLoadKnM2: "1.5" }), config);
+    assert(multiwallLoad.dfmFindings.some((finding) => finding.id === "DFM-014" && finding.severity === "manual_review"), "multiwall load requires manual evidence");
+
+    const unsupportedThickness = logic.calculateQuote(baseInput({ thicknessMm: "7" }), config);
+    assert(unsupportedThickness.manualReasons.some((reason) => reason.includes("not a configured thickness")), "unconfigured thickness should require review");
 
     return "CPQ prototype logic tests passed";
   };
