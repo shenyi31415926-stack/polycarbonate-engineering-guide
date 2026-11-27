@@ -98,6 +98,10 @@
     const lightingSuggestion = logic.recommendMaterial(config, { application: "lighting-signage", requirements: ["diffuser"], thicknessMm: "10" });
     assertEqual(lightingSuggestion.suggestedThicknessMm, 3, "scenario suggestion should replace unsupported thickness");
 
+    const missingBendRadius = logic.calculateQuote(baseInput({ materialId: "pc-solid", template: "l-bend", bendRadiusMm: "" }), config);
+    assert(missingBendRadius.dfmFindings.some((finding) => finding.id === "DFM-004" && finding.severity === "manual_review"), "missing bend radius should require review");
+    assertEqual(missingBendRadius.price.status, "reference-range", "missing bend radius must not receive exact automated pricing");
+
     return "CPQ prototype logic tests passed";
   };
 });

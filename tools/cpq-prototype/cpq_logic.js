@@ -261,8 +261,12 @@
     if (metrics.bendCountPerPart > 0) {
       if (material.structure === "multiwall") {
         add("DFM-009", "blocking", "Bending multiwall sheet is outside automated scope.", "Use solid sheet or request manual engineering review.");
-      } else if (material.bendFactor && input.bendRadiusMm && input.bendRadiusMm < material.bendFactor * t) {
-        add("DFM-004", "manual_review", `Bend radius ${input.bendRadiusMm}mm is below the prototype minimum radius of ${material.bendFactor * t}mm.`, "Increase bend radius or use controlled forming review.");
+      } else if (material.bendFactor) {
+        if (!input.bendRadiusMm) {
+          add("DFM-004", "manual_review", "Bend radius is missing, so bend feasibility cannot be screened.", "Enter bend radius or request engineering review.");
+        } else if (input.bendRadiusMm < material.bendFactor * t) {
+          add("DFM-004", "manual_review", `Bend radius ${input.bendRadiusMm}mm is below the prototype minimum radius of ${material.bendFactor * t}mm.`, "Increase bend radius or use controlled forming review.");
+        }
       }
     }
 
