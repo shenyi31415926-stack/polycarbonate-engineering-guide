@@ -102,6 +102,17 @@
     assert(missingBendRadius.dfmFindings.some((finding) => finding.id === "DFM-004" && finding.severity === "manual_review"), "missing bend radius should require review");
     assertEqual(missingBendRadius.price.status, "reference-range", "missing bend radius must not receive exact automated pricing");
 
+    const fractionalHoles = logic.calculateQuote(baseInput({ holesPerPart: "2.5" }), config);
+    assertEqual(fractionalHoles.metrics, null, "fractional hole count must not produce geometry metrics");
+    assert(fractionalHoles.manualReasons.some((reason) => reason.includes("holes per part")), "fractional hole count should be invalid");
+
+    const fractionalBends = logic.calculateQuote(baseInput({ materialId: "pc-solid", template: "l-bend", bendCount: "1.5" }), config);
+    assertEqual(fractionalBends.metrics, null, "fractional bend count must not produce geometry metrics");
+    assert(fractionalBends.manualReasons.some((reason) => reason.includes("bend count")), "fractional bend count should be invalid");
+
+    const noHoles = logic.calculateQuote(baseInput({ template: "rectangle", holesPerPart: "0", holeEdgeDistanceMm: "5" }), config);
+    assert(!noHoles.dfmFindings.some((finding) => finding.id === "DFM-001"), "hole edge DFM should not trigger when there are no holes");
+
     return "CPQ prototype logic tests passed";
   };
 });

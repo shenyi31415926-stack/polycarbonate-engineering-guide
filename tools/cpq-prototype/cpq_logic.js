@@ -104,22 +104,34 @@
   }
 
   function normalizeInput(raw) {
-    const input = { ...raw };
-    input.thicknessMm = positive(raw.thicknessMm);
-    input.widthMm = positive(raw.widthMm);
-    input.lengthMm = positive(raw.lengthMm);
-    input.quantity = positive(raw.quantity, true);
-    input.holesPerPart = nonNegative(raw.holesPerPart);
-    input.holeDiameterMm = positive(raw.holeDiameterMm);
-    input.holeEdgeDistanceMm = positive(raw.holeEdgeDistanceMm);
-    input.bendCount = nonNegative(raw.bendCount);
-    input.bendRadiusMm = positive(raw.bendRadiusMm);
-    input.polishedLengthMm = nonNegative(raw.polishedLengthMm);
-    input.temperatureSwingC = nonNegative(raw.temperatureSwingC);
-    input.designLoadKnM2 = positive(raw.designLoadKnM2);
-    input.screwDiameterMm = positive(raw.screwDiameterMm);
-    input.toleranceMm = positive(raw.toleranceMm);
-    input.cornerRadiusMm = nonNegative(raw.cornerRadiusMm);
+    const input = { ...raw, invalidFields: [] };
+    const provided = (value) => value !== null && value !== undefined && value !== "";
+    const positiveField = (value, field, integer = false) => {
+      const parsed = positive(value, integer);
+      if (provided(value) && parsed === null) input.invalidFields.push(field);
+      return parsed;
+    };
+    const nonNegativeField = (value, field, integer = false) => {
+      const parsed = nonNegative(value);
+      if (provided(value) && (parsed === null || (integer && !Number.isInteger(parsed)))) input.invalidFields.push(field);
+      return parsed !== null && integer && !Number.isInteger(parsed) ? null : parsed;
+    };
+
+    input.thicknessMm = positiveField(raw.thicknessMm, "thickness");
+    input.widthMm = positiveField(raw.widthMm, "width");
+    input.lengthMm = positiveField(raw.lengthMm, "length");
+    input.quantity = positiveField(raw.quantity, "quantity", true);
+    input.holesPerPart = nonNegativeField(raw.holesPerPart, "holes per part", true);
+    input.holeDiameterMm = positiveField(raw.holeDiameterMm, "hole diameter");
+    input.holeEdgeDistanceMm = positiveField(raw.holeEdgeDistanceMm, "hole edge distance");
+    input.bendCount = nonNegativeField(raw.bendCount, "bend count", true);
+    input.bendRadiusMm = positiveField(raw.bendRadiusMm, "bend radius");
+    input.polishedLengthMm = nonNegativeField(raw.polishedLengthMm, "polished length");
+    input.temperatureSwingC = nonNegativeField(raw.temperatureSwingC, "temperature swing");
+    input.designLoadKnM2 = positiveField(raw.designLoadKnM2, "design load");
+    input.screwDiameterMm = positiveField(raw.screwDiameterMm, "fastener diameter");
+    input.toleranceMm = positiveField(raw.toleranceMm, "critical tolerance");
+    input.cornerRadiusMm = nonNegativeField(raw.cornerRadiusMm, "internal corner radius");
     input.requirements = raw.requirements || [];
     return input;
   }
@@ -128,6 +140,7 @@
     const width = input.widthMm;
     const length = input.lengthMm;
     if (!width || !length) return null;
+    if ((input.invalidFields || []).some((field) => field === "holes per part" || field === "bend count")) return null;
 
     let holes = input.holesPerPart;
     let bends = input.bendCount;
@@ -239,14 +252,14 @@
     const t = input.thicknessMm || 0;
     const rules = config.dfm;
 
-    if (input.holeEdgeDistanceMm && input.holeDiameterMm) {
+    if (metrics.holesPerPart > 0 && input.holeEdgeDistanceMm && input.holeDiameterMm) {
       const minimum = Math.max(rules.minHoleEdgeToThicknessFactor * t, 2 * input.holeDiameterMm);
       if (input.holeEdgeDistanceMm < minimum) {
         add("DFM-001", "manual_review", `Hole edge distance ${input.holeEdgeDistanceMm}mm is below the prototype minimum of ${round(minimum, 1)}mm.`, "Increase edge distance or request engineering confirmation.");
       }
     }
 
-    if (input.holeDiameterMm && input.holeDiameterMm < rules.minHoleDiameterToThicknessFactor * t) {
+    if (metrics.holesPerPart > 0 && input.holeDiameterMm && input.holeDiameterMm < rules.minHoleDiameterToThicknessFactor * t) {
       add("DFM-002", "warning", `Hole diameter ${input.holeDiameterMm}mm is small relative to ${t}mm thickness.`, "Confirm drilling quality, cracking risk and tolerance.");
     }
 
@@ -367,6 +380,7 @@
     const packaging = packagingAndLogistics(input, metrics, material, config);
 
     const manualReasons = [];
+    if (input.invalidFields.length) manualReasons.push(`Invalid numeric input: ${input.invalidFields.join(", ")}`);
     if (!input.materialId) manualReasons.push("Material not explicitly selected");
     if (material && input.thicknessMm && material.thicknessesMm && !material.thicknessesMm.includes(input.thicknessMm)) manualReasons.push(`${input.thicknessMm}mm is not a configured thickness for ${material.name}`);
     if (!metrics) manualReasons.push("Geometry incomplete");
