@@ -133,10 +133,10 @@
       bends = bends || 0;
     } else if (input.template === "l-bend") {
       holes = holes || 0;
-      bends = bends === null ? 1 : bends;
+      bends = Math.max(1, bends || 0);
     } else if (input.template === "u-bend") {
       holes = holes || 0;
-      bends = bends === null ? 2 : bends;
+      bends = Math.max(2, bends || 0);
     } else {
       holes = holes || 0;
       bends = bends || 0;

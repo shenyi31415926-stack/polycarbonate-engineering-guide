@@ -58,7 +58,8 @@
     assert(tightHole.dfmFindings.some((finding) => finding.id === "DFM-001"), "small hole edge distance should trigger DFM-001");
     assertEqual(tightHole.price.status, "reference-range", "manual review finding should produce reference range");
 
-    const bentMultiwall = logic.calculateQuote(baseInput({ template: "l-bend", bendCount: "1" }), config);
+    const bentMultiwall = logic.calculateQuote(baseInput({ template: "l-bend" }), config);
+    assertEqual(bentMultiwall.metrics.bendCountPerPart, 1, "L-bend template should default to one bend");
     assert(bentMultiwall.dfmFindings.some((finding) => finding.id === "DFM-009" && finding.severity === "blocking"), "bent multiwall should be blocking");
     assertEqual(bentMultiwall.price.status, "manual-required", "blocking DFM should require manual review");
 

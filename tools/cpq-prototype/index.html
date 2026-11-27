@@ -314,6 +314,10 @@
     function pct(value) { return value === null || value === undefined ? "—" : `${Math.round(value * 100)}%`; }
 
     function renderGeometry() {
+      const template = $("template").value;
+      const bendInput = $("bendCount");
+      if (template === "l-bend" && Number(bendInput.value) < 1) bendInput.value = "1";
+      if (template === "u-bend" && Number(bendInput.value) < 2) bendInput.value = "2";
       const q = calculate();
       const m = q.metrics;
       $("geometry-summary").innerHTML = m ? `
