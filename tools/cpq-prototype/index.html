@@ -141,6 +141,7 @@
               <div class="form-grid">
                 <div><label for="temperatureSwingC">Temperature swing (°C)</label><input id="temperatureSwingC" type="number" min="0" value="50"></div>
                 <div><label for="designLoadKnM2">Load, if relevant (kN/m²)</label><input id="designLoadKnM2" type="number" min="0" step="0.1" value="1.5"></div>
+                <div><label for="spanMm">Support span, if relevant (mm)</label><input id="spanMm" type="number" min="0" step="1" value="600"></div>
               </div>
               <label class="inlinecheck" style="margin-top:12px"><input id="outdoorExposure" type="checkbox" checked> Outdoor / UV exposure</label>
               <h3>Performance requirements</h3>
@@ -273,7 +274,7 @@
     let currentQuote = null;
     let lastTemplate = null;
 
-    const fieldIds = ["application","temperatureSwingC","designLoadKnM2","outdoorExposure","materialId","thicknessMm","quantity","template","widthMm","lengthMm","holesPerPart","holeDiameterMm","holeEdgeDistanceMm","bendCount","bendRadiusMm","cornerRadiusMm","toleranceMm","screwDiameterMm","cuttingMethod","polishedLengthMm","coatingType","destination","customerName"];
+    const fieldIds = ["application","temperatureSwingC","designLoadKnM2","spanMm","outdoorExposure","materialId","thicknessMm","quantity","template","widthMm","lengthMm","holesPerPart","holeDiameterMm","holeEdgeDistanceMm","bendCount","bendRadiusMm","cornerRadiusMm","toleranceMm","screwDiameterMm","cuttingMethod","polishedLengthMm","coatingType","destination","customerName"];
     const $ = (id) => document.getElementById(id);
     const esc = (value) => String(value ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
 
@@ -337,7 +338,7 @@
         Holes/part: <strong>${m.holesPerPart}</strong> · Bends/part: <strong>${m.bendCountPerPart}</strong><br>
         Geometry confidence: <strong>${esc(m.geometryConfidence)}</strong><br>
         Thermal movement screening: <strong>${q.thermalMovementMm ?? "pending"} mm</strong><br>
-        Span/load screening: <strong>${q.spanScreening ? `${q.spanScreening.governingSpanM} m (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence / review" : "not requested"}</strong>
+        Span/load screening: <strong>${q.spanScreening ? `${q.spanScreening.governingSpanM} m max (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence / review" : "not requested"}${q.input.spanMm ? ` · stated span ${q.input.spanMm / 1000} m` : ""}</strong>
       ` : "Geometry inputs incomplete.";
     }
 
@@ -413,10 +414,10 @@
         <div class="quote-section"><h3>Customer</h3><p>${esc(input.customerName || "Pending customer")}<br>Destination: ${esc(input.destination || "pending")}</p></div>
         <div class="quote-section"><h3>Item specification</h3><table><tr><th>Material</th><td>${esc(q.material ? q.material.name : "pending")}</td></tr><tr><th>Thickness / size / qty</th><td>${input.thicknessMm || "pending"} mm · ${input.widthMm || "?"}×${input.lengthMm || "?"} mm · ${input.quantity || "pending"} pcs</td></tr><tr><th>Geometry / process</th><td>${esc(input.template)} · holes ${q.metrics ? q.metrics.holesPerPart : "?"} · bends ${q.metrics ? q.metrics.bendCountPerPart : "?"} · ${esc(input.cuttingMethod)} cutting</td></tr></table></div>
         <div class="quote-section"><h3>Quotation breakdown</h3>${p ? `<table><tr><td>Material</td><td>${money(p.materialCost)}</td></tr><tr><td>Fabrication processes</td><td>${money(p.processCost)}</td></tr><tr><td>Packaging</td><td>${money(p.packagingCost)}</td></tr><tr><td>Logistics reference</td><td>${money(p.logisticsReferenceCost)}</td></tr><tr class="total-row"><td>Total</td><td>${money(p.total)}</td></tr></table><p><strong>Status:</strong> ${esc(p.status)}${p.status !== "automated-list-price" ? ` · Reference range ${money(p.referenceLow)} – ${money(p.referenceHigh)}` : ""}</p>` : "<p>Price pending complete inputs.</p>"}</div>
-        <div class="quote-section"><h3>Engineering selection note</h3><p>${esc(q.recommendation.summary)} Thermal movement screening: ${q.thermalMovementMm ?? "pending"} mm over stated conditions. Span/load screening: ${q.spanScreening ? `${q.spanScreening.governingSpanM} m (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence or engineering review" : "not requested"}. This document is a prototype quotation structure, not certified engineering design or final manufacturer confirmation.</p></div>
+        <div class="quote-section"><h3>Engineering selection note</h3><p>${esc(q.recommendation.summary)} Thermal movement screening: ${q.thermalMovementMm ?? "pending"} mm over stated conditions. Span/load screening: ${q.spanScreening ? `${q.spanScreening.governingSpanM} m maximum (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence or engineering review" : "not requested"}${q.input.spanMm ? `; stated support span ${q.input.spanMm / 1000} m` : ""}. This document is a prototype quotation structure, not certified engineering design or final manufacturer confirmation.</p></div>
         <div class="quote-section"><h3>DFM and review notes</h3><ul>${(q.dfmFindings.length ? q.dfmFindings.map(f => `${f.id}: ${f.message}`) : ["No prototype DFM warnings triggered."]).map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
       `;
-      $("inquiry-json").textContent = JSON.stringify({ quoteNumber: q.quoteNumber, customer: input.customerName, destination: input.destination, application: input.application, materialId: input.materialId, specification: { thicknessMm: input.thicknessMm, widthMm: input.widthMm, lengthMm: input.lengthMm, quantity: input.quantity, cuttingMethod: input.cuttingMethod, holesPerPart: q.metrics ? q.metrics.holesPerPart : null, bendCountPerPart: q.metrics ? q.metrics.bendCountPerPart : null, coatingType: input.coatingType }, metrics: q.metrics, nesting: q.nesting, price: q.price, manualReviewRequired: q.manualReasons.length > 0 }, null, 2);
+      $("inquiry-json").textContent = JSON.stringify({ quoteNumber: q.quoteNumber, customer: input.customerName, destination: input.destination, application: input.application, materialId: input.materialId, specification: { thicknessMm: input.thicknessMm, widthMm: input.widthMm, lengthMm: input.lengthMm, quantity: input.quantity, cuttingMethod: input.cuttingMethod, designLoadKnM2: input.designLoadKnM2, spanMm: input.spanMm, holesPerPart: q.metrics ? q.metrics.holesPerPart : null, bendCountPerPart: q.metrics ? q.metrics.bendCountPerPart : null, coatingType: input.coatingType }, metrics: q.metrics, nesting: q.nesting, price: q.price, manualReviewRequired: q.manualReasons.length > 0 }, null, 2);
     }
 
     function go(step) {
@@ -445,7 +446,7 @@
     }
 
     function loadDemo() {
-      const values = { application:"roofing-canopy", materialId:"pc-multiwall", thicknessMm:"10", quantity:"40", template:"hole-cover", widthMm:"500", lengthMm:"800", holesPerPart:"4", holeDiameterMm:"8", holeEdgeDistanceMm:"25", bendCount:"0", bendRadiusMm:"600", cornerRadiusMm:"2", toleranceMm:"1", screwDiameterMm:"6", temperatureSwingC:"50", designLoadKnM2:"1.5", polishedLengthMm:"0", coatingType:"none", destination:"Hamburg, Germany", customerName:"Demo Industrial Customer GmbH" };
+      const values = { application:"roofing-canopy", materialId:"pc-multiwall", thicknessMm:"10", quantity:"40", template:"hole-cover", widthMm:"500", lengthMm:"800", holesPerPart:"4", holeDiameterMm:"8", holeEdgeDistanceMm:"25", bendCount:"0", bendRadiusMm:"600", cornerRadiusMm:"2", toleranceMm:"1", screwDiameterMm:"6", temperatureSwingC:"50", designLoadKnM2:"1.5", spanMm:"600", polishedLengthMm:"0", coatingType:"none", destination:"Hamburg, Germany", customerName:"Demo Industrial Customer GmbH" };
       Object.entries(values).forEach(([id,v]) => { if ($(id)) $(id).value = v; });
       $("outdoorExposure").checked = true;
       renderRecommendation(true); renderGeometry(); renderAnalysis(); go("3");

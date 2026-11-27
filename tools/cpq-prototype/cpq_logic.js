@@ -87,9 +87,15 @@
     ];
     const designLoad = positive(input.designLoadKnM2);
     if (designLoad) {
-      const span = solidPolycarbonateSpanM(thickness, designLoad, material);
-      if (span) {
-        reasons.push(`Preliminary solid-PC span screening at ${thickness}mm and ${designLoad} kN/m²: ${span.governingSpanM}m governing span (${span.governingFactor}-governed); validate frame, fixing and manufacturer data.`);
+      const screening = solidPolycarbonateSpanM(thickness, designLoad, material);
+      const actualSpanM = positive(input.spanMm) ? positive(input.spanMm) / 1000 : null;
+      if (screening) {
+        const suitability = actualSpanM
+          ? actualSpanM <= screening.governingSpanM
+            ? `stated ${actualSpanM}m span is within the preliminary limit`
+            : `stated ${actualSpanM}m span exceeds the preliminary limit`
+          : "no project span supplied";
+        reasons.push(`Preliminary solid-PC span screening at ${thickness}mm and ${designLoad} kN/m²: ${screening.governingSpanM}m governing span (${screening.governingFactor}-governed); ${suitability}. Validate frame, fixing and manufacturer data.`);
       } else {
         reasons.push("Span/load performance for this material route cannot be inferred from solid-sheet geometry and requires manufacturer-specific structural data or engineering review.");
       }
@@ -129,6 +135,7 @@
     input.polishedLengthMm = nonNegativeField(raw.polishedLengthMm, "polished length");
     input.temperatureSwingC = nonNegativeField(raw.temperatureSwingC, "temperature swing");
     input.designLoadKnM2 = positiveField(raw.designLoadKnM2, "design load");
+    input.spanMm = positiveField(raw.spanMm, "support span");
     input.screwDiameterMm = positiveField(raw.screwDiameterMm, "fastener diameter");
     input.toleranceMm = positiveField(raw.toleranceMm, "critical tolerance");
     input.cornerRadiusMm = nonNegativeField(raw.cornerRadiusMm, "internal corner radius");
@@ -313,10 +320,20 @@
       add("DFM-012", "info", "Cut edges, drilled holes or bent areas may not retain the selected surface treatment.", "Confirm coating scope, edge protection and inspection requirement.");
     }
 
+    if (input.spanMm && !input.designLoadKnM2) {
+      add("DFM-014", "manual_review", "Support span was provided without a design load.", "Enter the design load or clear the structural screening inputs.");
+    }
+
     if (input.designLoadKnM2) {
-      const span = solidPolycarbonateSpanM(input.thicknessMm, input.designLoadKnM2, material);
-      if (span) {
-        add("DFM-014", "warning", `Preliminary solid-PC span screening gives a ${span.governingSpanM}m governing span (${span.governingFactor}-governed) at ${input.designLoadKnM2} kN/m².`, "Validate frame spacing, fixing system, edge engagement and manufacturer data before use.");
+      const screening = solidPolycarbonateSpanM(input.thicknessMm, input.designLoadKnM2, material);
+      if (screening) {
+        if (!input.spanMm) {
+          add("DFM-014", "manual_review", `Preliminary solid-PC screening gives a ${screening.governingSpanM}m maximum span, but no project support span was entered.`, "Enter support span so the structural case can be routed correctly.");
+        } else {
+          const actualSpanM = round(input.spanMm / 1000, 3);
+          const exceeds = actualSpanM > screening.governingSpanM;
+          add("DFM-014", exceeds ? "manual_review" : "warning", `Stated ${actualSpanM}m span ${exceeds ? "exceeds" : "is within"} the preliminary ${screening.governingSpanM}m governing span (${screening.governingFactor}-governed) at ${input.designLoadKnM2} kN/m².`, "Validate frame spacing, fixing system, edge engagement and manufacturer data before use.");
+        }
       } else {
         add("DFM-014", "manual_review", "Span/load performance for this material route cannot be inferred from solid-sheet geometry.", "Obtain manufacturer-specific structural data or complete engineering review before quoting structural use.");
       }
@@ -391,7 +408,7 @@
     }
 
     let price = null;
-    if (metrics && nest && nest.fits && costs && packaging && material) {
+    if (!input.invalidFields.length && metrics && nest && nest.fits && costs && packaging && material) {
       const materialCost = nest.sheetCount * nest.stockAreaM2 * material.pricePerM2;
       const processCost = costs.cutting + costs.drilling + costs.bending + costs.polishing + costs.coating;
       const direct = materialCost + processCost + packaging.packagingCost;

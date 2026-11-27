@@ -82,9 +82,15 @@
     assert(pcLaser.dfmFindings.some((finding) => finding.id === "DFM-013" && finding.severity === "blocking"), "laser-cut polycarbonate should be blocking");
     assertEqual(pcLaser.price.status, "manual-required", "laser-cut polycarbonate must not receive automated pricing");
 
-    const solidLoad = logic.calculateQuote(baseInput({ materialId: "pc-solid", designLoadKnM2: "1.5" }), config);
+    const solidLoad = logic.calculateQuote(baseInput({ materialId: "pc-solid", designLoadKnM2: "1.5", spanMm: "300" }), config);
     assertEqual(solidLoad.spanScreening.governingSpanM, 0.36, "solid PC governing span");
-    assert(solidLoad.dfmFindings.some((finding) => finding.id === "DFM-014"), "solid load screening finding");
+    assert(solidLoad.dfmFindings.some((finding) => finding.id === "DFM-014" && finding.severity === "warning"), "in-limit solid load screening should warn but not force manual review");
+
+    const solidSpanExceeded = logic.calculateQuote(baseInput({ materialId: "pc-solid", designLoadKnM2: "1.5", spanMm: "500" }), config);
+    assert(solidSpanExceeded.dfmFindings.some((finding) => finding.id === "DFM-014" && finding.severity === "manual_review"), "excessive solid span should require manual review");
+
+    const spanWithoutLoad = logic.calculateQuote(baseInput({ spanMm: "300" }), config);
+    assert(spanWithoutLoad.dfmFindings.some((finding) => finding.id === "DFM-014" && finding.severity === "manual_review"), "span without load should be incomplete structural input");
 
     const multiwallLoad = logic.calculateQuote(baseInput({ designLoadKnM2: "1.5" }), config);
     assert(multiwallLoad.dfmFindings.some((finding) => finding.id === "DFM-014" && finding.severity === "manual_review"), "multiwall load requires manual evidence");
