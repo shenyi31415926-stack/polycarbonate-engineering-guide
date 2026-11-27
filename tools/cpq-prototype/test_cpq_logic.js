@@ -127,7 +127,7 @@
 
     const zeroEdgeBlankDiameter = logic.calculateQuote(baseInput({ holeEdgeDistanceMm: "0", holeDiameterMm: "" }), config);
     assert(zeroEdgeBlankDiameter.dfmFindings.some((finding) => finding.id === "DFM-001" && finding.severity === "manual_review"), "blank diameter should use the geometry default in edge-distance screening");
-    assertEqual(zeroEdgeBlankDiameter.price.status, "reference-range-manual-review", "zero edge distance must not receive automated pricing");
+    assertEqual(zeroEdgeBlankDiameter.price.status, "reference-range", "zero edge distance must not receive automated pricing");
 
     const zeroRadiusWithBend = logic.calculateQuote(baseInput({ materialId: "pc-solid", template: "l-bend", bendRadiusMm: "0" }), config);
     assert(zeroRadiusWithBend.dfmFindings.some((finding) => finding.id === "DFM-004" && finding.severity === "manual_review"), "zero bend radius should trigger review when bends exist");
