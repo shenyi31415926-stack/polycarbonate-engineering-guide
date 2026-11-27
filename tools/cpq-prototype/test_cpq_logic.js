@@ -51,6 +51,7 @@
     assertEqual(quote.nesting.sheetCount, 4, "sheet count");
     assert(quote.nesting.wasteRatio > 0.3 && quote.nesting.wasteRatio < 0.4, "waste ratio range");
     assertEqual(quote.weightKg, 24, "multiwall weight estimate");
+    assertEqual(quote.price.materialCost, 1800.72, "material cost includes full stock sheet trim area");
 
     const singlePart = logic.calculateQuote(baseInput({ quantity: "1" }), config);
     assertEqual(singlePart.nesting.sheetSizeId, "1220x2440", "single small part should use the smaller adequate stock sheet");

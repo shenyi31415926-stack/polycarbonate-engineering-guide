@@ -222,6 +222,7 @@
       down: best.down,
       sheetCount,
       sheetAreaM2: round(sheetAreaM2, 4),
+      stockAreaM2: round(best.stockAreaMm2 / 1_000_000, 4),
       utilization: round(utilization, 4),
       wasteRatio: round(1 - utilization, 4),
       method: metrics.geometryConfidence === "simulated-dxf-estimate" ? "bounding-box estimate from simulated DXF" : "rectangle template nesting"
@@ -370,8 +371,7 @@
 
     let price = null;
     if (metrics && nest && nest.fits && costs && packaging && material) {
-      const sheetArea = nest.sheetAreaM2;
-      const materialCost = nest.sheetCount * sheetArea * material.pricePerM2;
+      const materialCost = nest.sheetCount * nest.stockAreaM2 * material.pricePerM2;
       const processCost = costs.cutting + costs.drilling + costs.bending + costs.polishing + costs.coating;
       const direct = materialCost + processCost + packaging.packagingCost;
       const overhead = direct * config.commercial.overheadPct;
