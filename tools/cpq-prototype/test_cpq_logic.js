@@ -95,6 +95,9 @@
     const impactDiffuser = logic.recommendMaterial(config, { application: "lighting-signage", requirements: ["diffuser", "impact-resistant"] });
     assertEqual(impactDiffuser.material.id, "pc-solid", "impact resistance should take precedence over acrylic diffuser routing");
 
+    const lightingSuggestion = logic.recommendMaterial(config, { application: "lighting-signage", requirements: ["diffuser"], thicknessMm: "10" });
+    assertEqual(lightingSuggestion.suggestedThicknessMm, 3, "scenario suggestion should replace unsupported thickness");
+
     return "CPQ prototype logic tests passed";
   };
 });

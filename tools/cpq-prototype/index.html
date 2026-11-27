@@ -296,6 +296,9 @@
       const rec = logic.recommendMaterial(config, input);
       if (forceMaterial || !input.materialId) {
         $("materialId").value = rec.material.id;
+        if (!rec.material.thicknessesMm.includes(Number($("thicknessMm").value))) {
+          $("thicknessMm").value = rec.suggestedThicknessMm;
+        }
       }
       $("recommendation-box").innerHTML = `
         <h3>${esc(rec.title)}</h3>

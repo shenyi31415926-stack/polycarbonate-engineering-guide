@@ -77,7 +77,10 @@
     }
 
     const material = materialById(config, materialId) || config.materials[0];
-    const thickness = positive(input.thicknessMm) || (guidance ? guidance.thicknessMm : material.thicknessesMm[0]);
+    const requestedThickness = positive(input.thicknessMm);
+    const thickness = requestedThickness && material.thicknessesMm.includes(requestedThickness)
+      ? requestedThickness
+      : (guidance ? guidance.thicknessMm : material.thicknessesMm[0]);
     const reasons = [
       material.note,
       "This is a prototype recommendation using demonstration data, not a certified engineering approval."
