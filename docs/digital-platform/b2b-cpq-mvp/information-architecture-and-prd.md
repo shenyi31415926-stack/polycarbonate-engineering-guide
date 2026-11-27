@@ -288,7 +288,11 @@ Outputs:
 - quote-to-order conversion by application segment
 - number of DFM issues caught before order confirmation
 
-## 9. Key dependencies and risks
+## 9. Prototype implementation status
+
+The clickable structural prototype is available at [tools/cpq-prototype/index.html](../../../tools/cpq-prototype/index.html). It implements the four-step flow with parametric templates, a simulated-DXF demonstration mode, rectangle nesting, plastic-specific DFM findings, quotation breakdown, PDF-preview structure, local inquiry-record output and a placeholder admin-rate configuration panel. It intentionally uses demonstration rates and does not implement real DXF parsing, authentication, server persistence or production PDF generation.
+
+## 10. Key dependencies and risks
 
 - DXF parsing quality determines whether automated quoting is trusted.
 - Nesting can begin with conservative rectangle packing but must not claim exact production yield until validated.

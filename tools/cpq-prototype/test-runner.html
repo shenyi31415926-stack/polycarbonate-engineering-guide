@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CPQ Prototype Tests</title>
+</head>
+<body>
+  <h1>CPQ Prototype Tests</h1>
+  <pre id="result">Running…</pre>
+  <script src="cpq_demo_config.js"></script>
+  <script src="cpq_logic.js"></script>
+  <script src="test_cpq_logic.js"></script>
+  <script>
+    const result = document.getElementById("result");
+    try {
+      result.textContent = window.runCpqPrototypeTests();
+      document.body.dataset.testStatus = "passed";
+    } catch (error) {
+      result.textContent = error.stack;
+      document.body.dataset.testStatus = "failed";
+    }
+  </script>
+</body>
+</html>

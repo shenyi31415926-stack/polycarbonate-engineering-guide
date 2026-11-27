@@ -20,8 +20,10 @@ The first product frame is a B2B CPQ and engineering-specification workflow for 
 - [Digital business platform blueprint](polymer-sheet-digital-business-platform-blueprint.md)
 - [Information architecture, user flows and PRD](b2b-cpq-mvp/information-architecture-and-prd.md)
 - [Rules, data model, pricing formulas and DFM design](b2b-cpq-mvp/rules-data-and-pricing-design.md)
+- [Clickable CPQ structure prototype](../../tools/cpq-prototype/index.html)
+- [CPQ prototype documentation and limitations](../../tools/cpq-prototype/README.md)
 
-The immediate three-day structural-framework goal is to validate this architecture as a clickable prototype and data/rules framework. It is not yet a production CPQ system.
+The initial structural framework now exists as a clickable prototype and data/rules framework. It validates the product shape, but it is not yet a production CPQ system: manufacturer-validated data, server persistence, real DXF parsing, irregular nesting, PDF generation, authentication, audit trails and end-to-end browser tests remain open.
 
 ## 90-Day Engineering Plan
 

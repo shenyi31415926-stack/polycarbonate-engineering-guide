@@ -61,13 +61,15 @@ polycarbonate-engineering-guide/
 
 ## 🧱 Materials Data Platform
 
-SinoPlastix is developing a software and structured-data layer for polymer sheet engineering. Current building blocks include the load-capacity calculator, an initial structured materials dataset, dataset validation tooling, and a browser-based RFQ specification assistant for internal quotation support.
+SinoPlastix is developing a software and structured-data layer for polymer sheet engineering. Current building blocks include the load-capacity calculator, an initial structured materials dataset, dataset validation tooling, a browser-based RFQ specification assistant, and a clickable B2B CPQ structure prototype covering scenario selection, parametric geometry, simulated-DXF demonstration, nesting, DFM checks, quotation breakdown and inquiry records.
 
 - [Materials Data Platform Roadmap](docs/digital-platform/materials-data-platform-roadmap.md)
 - [Polymer Application Engineering OS Strategy](docs/digital-platform/polymer-application-engineering-os-strategy.md)
 - [Polymer Sheet Digital Business Platform Blueprint](docs/digital-platform/polymer-sheet-digital-business-platform-blueprint.md)
 - [B2B CPQ MVP information architecture and PRD](docs/digital-platform/b2b-cpq-mvp/information-architecture-and-prd.md)
 - [B2B CPQ rules, data and pricing design](docs/digital-platform/b2b-cpq-mvp/rules-data-and-pricing-design.md)
+- [B2B CPQ clickable structure prototype](tools/cpq-prototype/index.html)
+- [CPQ prototype documentation, validation and limitations](tools/cpq-prototype/README.md)
 - [RFQ Specification Assistant](tools/rfq-specification-assistant/index.html)
 - [RFQ assistant documentation and limitations](tools/rfq-specification-assistant/README.md)
 - [Structured polycarbonate dataset](data/materials/polycarbonate-sheets.json)
