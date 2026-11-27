@@ -261,6 +261,10 @@
       add("DFM-006", "warning", "Laser-cut acrylic edges can retain stress in load-bearing or exposed applications.", "Confirm edge quality, stress relief and end-use requirements.");
     }
 
+    if (material.polymer === "PC" && input.cuttingMethod === "laser") {
+      add("DFM-013", "blocking", "Laser cutting is not an approved polycarbonate process in the prototype rules because it can produce poor edges and hazardous fumes.", "Select CNC/mechanical cutting or request engineering review.");
+    }
+
     if (input.cornerRadiusMm !== null && input.cornerRadiusMm !== undefined && input.cornerRadiusMm < rules.minInternalCornerRadiusMm) {
       add("DFM-007", "warning", "Very sharp internal corners increase stress concentration.", "Add a small internal radius where function allows.");
     }

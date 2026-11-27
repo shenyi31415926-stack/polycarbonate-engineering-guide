@@ -73,6 +73,10 @@
     const acrylicLaser = logic.calculateQuote(baseInput({ materialId: "pmma-cast", thicknessMm: "5", cuttingMethod: "laser" }), config);
     assert(acrylicLaser.dfmFindings.some((finding) => finding.id === "DFM-006"), "laser-cut acrylic warning");
 
+    const pcLaser = logic.calculateQuote(baseInput({ materialId: "pc-solid", cuttingMethod: "laser" }), config);
+    assert(pcLaser.dfmFindings.some((finding) => finding.id === "DFM-013" && finding.severity === "blocking"), "laser-cut polycarbonate should be blocking");
+    assertEqual(pcLaser.price.status, "manual-required", "laser-cut polycarbonate must not receive automated pricing");
+
     const solidLoad = logic.calculateQuote(baseInput({ materialId: "pc-solid", designLoadKnM2: "1.5" }), config);
     assertEqual(solidLoad.spanScreening.governingSpanM, 0.36, "solid PC governing span");
     assert(solidLoad.dfmFindings.some((finding) => finding.id === "DFM-014"), "solid load screening finding");
