@@ -271,6 +271,7 @@
     const config = window.CpqDemoConfig;
     const logic = window.CpqLogic;
     let currentQuote = null;
+    let lastTemplate = null;
 
     const fieldIds = ["application","temperatureSwingC","designLoadKnM2","outdoorExposure","materialId","thicknessMm","quantity","template","widthMm","lengthMm","holesPerPart","holeDiameterMm","holeEdgeDistanceMm","bendCount","bendRadiusMm","cornerRadiusMm","toleranceMm","screwDiameterMm","cuttingMethod","polishedLengthMm","coatingType","destination","customerName"];
     const $ = (id) => document.getElementById(id);
@@ -320,8 +321,12 @@
     function renderGeometry() {
       const template = $("template").value;
       const bendInput = $("bendCount");
-      if (template === "l-bend" && Number(bendInput.value) < 1) bendInput.value = "1";
-      if (template === "u-bend" && Number(bendInput.value) < 2) bendInput.value = "2";
+      if (template !== lastTemplate) {
+        if (template === "l-bend") bendInput.value = "1";
+        else if (template === "u-bend") bendInput.value = "2";
+        else bendInput.value = "0";
+        lastTemplate = template;
+      }
       const q = calculate();
       const m = q.metrics;
       $("geometry-summary").innerHTML = m ? `
