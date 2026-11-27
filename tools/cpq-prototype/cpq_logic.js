@@ -69,7 +69,7 @@
     if ((input.application === "display-retail" || input.application === "lighting-signage" || input.application === "interior-partition") && requirements.includes("impact-resistant")) {
       materialId = "pc-solid";
     }
-    if (input.application === "lighting-signage" && requirements.includes("diffuser")) {
+    if (input.application === "lighting-signage" && requirements.includes("diffuser") && !requirements.includes("impact-resistant")) {
       materialId = "pmma-extruded";
     }
     if (input.application === "greenhouse" || input.application === "roofing-canopy") {

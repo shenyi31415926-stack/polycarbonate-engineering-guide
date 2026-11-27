@@ -92,6 +92,9 @@
     const unsupportedThickness = logic.calculateQuote(baseInput({ thicknessMm: "7" }), config);
     assert(unsupportedThickness.manualReasons.some((reason) => reason.includes("not a configured thickness")), "unconfigured thickness should require review");
 
+    const impactDiffuser = logic.recommendMaterial(config, { application: "lighting-signage", requirements: ["diffuser", "impact-resistant"] });
+    assertEqual(impactDiffuser.material.id, "pc-solid", "impact resistance should take precedence over acrylic diffuser routing");
+
     return "CPQ prototype logic tests passed";
   };
 });
