@@ -295,8 +295,9 @@
       const input = collectInput();
       const rec = logic.recommendMaterial(config, input);
       if (forceMaterial || !input.materialId) {
+        const materialChanged = $("materialId").value !== rec.material.id;
         $("materialId").value = rec.material.id;
-        if (!rec.material.thicknessesMm.includes(Number($("thicknessMm").value))) {
+        if (materialChanged && !rec.material.thicknessesMm.includes(Number($("thicknessMm").value))) {
           $("thicknessMm").value = rec.suggestedThicknessMm;
         }
       }
