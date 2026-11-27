@@ -119,6 +119,15 @@
     const noHoles = logic.calculateQuote(baseInput({ template: "rectangle", holesPerPart: "0", holeEdgeDistanceMm: "5" }), config);
     assert(!noHoles.dfmFindings.some((finding) => finding.id === "DFM-001"), "hole edge DFM should not trigger when there are no holes");
 
+    const unmachinedZeros = logic.calculateQuote(baseInput({ template: "rectangle", holesPerPart: "0", bendCount: "0", holeDiameterMm: "0", holeEdgeDistanceMm: "0", bendRadiusMm: "0" }), config);
+    assertEqual(unmachinedZeros.price.status, "automated-list-price", "zero unused machining dimensions should not force manual review");
+
+    const zeroEdgeWithHoles = logic.calculateQuote(baseInput({ holeEdgeDistanceMm: "0" }), config);
+    assert(zeroEdgeWithHoles.dfmFindings.some((finding) => finding.id === "DFM-001" && finding.severity === "manual_review"), "zero hole edge distance should trigger review when holes exist");
+
+    const zeroRadiusWithBend = logic.calculateQuote(baseInput({ materialId: "pc-solid", template: "l-bend", bendRadiusMm: "0" }), config);
+    assert(zeroRadiusWithBend.dfmFindings.some((finding) => finding.id === "DFM-004" && finding.severity === "manual_review"), "zero bend radius should trigger review when bends exist");
+
     return "CPQ prototype logic tests passed";
   };
 });

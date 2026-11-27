@@ -128,10 +128,13 @@
     input.lengthMm = positiveField(raw.lengthMm, "length");
     input.quantity = positiveField(raw.quantity, "quantity", true);
     input.holesPerPart = nonNegativeField(raw.holesPerPart, "holes per part", true);
-    input.holeDiameterMm = positiveField(raw.holeDiameterMm, "hole diameter");
-    input.holeEdgeDistanceMm = positiveField(raw.holeEdgeDistanceMm, "hole edge distance");
     input.bendCount = nonNegativeField(raw.bendCount, "bend count", true);
-    input.bendRadiusMm = positiveField(raw.bendRadiusMm, "bend radius");
+    const effectiveHoles = input.holesPerPart ?? (raw.template === "hole-cover" ? 4 : 0);
+    input.holeDiameterMm = effectiveHoles > 0
+      ? positiveField(raw.holeDiameterMm, "hole diameter")
+      : nonNegativeField(raw.holeDiameterMm, "hole diameter");
+    input.holeEdgeDistanceMm = nonNegativeField(raw.holeEdgeDistanceMm, "hole edge distance");
+    input.bendRadiusMm = nonNegativeField(raw.bendRadiusMm, "bend radius");
     input.polishedLengthMm = nonNegativeField(raw.polishedLengthMm, "polished length");
     input.temperatureSwingC = nonNegativeField(raw.temperatureSwingC, "temperature swing");
     input.designLoadKnM2 = positiveField(raw.designLoadKnM2, "design load");
@@ -259,7 +262,7 @@
     const t = input.thicknessMm || 0;
     const rules = config.dfm;
 
-    if (metrics.holesPerPart > 0 && input.holeEdgeDistanceMm && input.holeDiameterMm) {
+    if (metrics.holesPerPart > 0 && input.holeEdgeDistanceMm !== null && input.holeEdgeDistanceMm !== undefined && input.holeDiameterMm) {
       const minimum = Math.max(rules.minHoleEdgeToThicknessFactor * t, 2 * input.holeDiameterMm);
       if (input.holeEdgeDistanceMm < minimum) {
         add("DFM-001", "manual_review", `Hole edge distance ${input.holeEdgeDistanceMm}mm is below the prototype minimum of ${round(minimum, 1)}mm.`, "Increase edge distance or request engineering confirmation.");
@@ -282,7 +285,7 @@
       if (material.structure === "multiwall") {
         add("DFM-009", "blocking", "Bending multiwall sheet is outside automated scope.", "Use solid sheet or request manual engineering review.");
       } else if (material.bendFactor) {
-        if (!input.bendRadiusMm) {
+        if (input.bendRadiusMm === null || input.bendRadiusMm === undefined) {
           add("DFM-004", "manual_review", "Bend radius is missing, so bend feasibility cannot be screened.", "Enter bend radius or request engineering review.");
         } else if (input.bendRadiusMm < material.bendFactor * t) {
           add("DFM-004", "manual_review", `Bend radius ${input.bendRadiusMm}mm is below the prototype minimum radius of ${material.bendFactor * t}mm.`, "Increase bend radius or use controlled forming review.");
