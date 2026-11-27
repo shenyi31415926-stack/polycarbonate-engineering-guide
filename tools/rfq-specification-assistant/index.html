@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFQ Specification Assistant — SinoPlastix</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5d6b7a;
+      --line: #d9e0e7;
+      --accent: #0a6ebd;
+      --accent-soft: #eaf4fc;
+      --panel: #ffffff;
+      --background: #f5f7fa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--background);
+      line-height: 1.5;
+    }
+
+    header {
+      background: #102a43;
+      color: #fff;
+      padding: 2rem clamp(1rem, 4vw, 3rem);
+    }
+
+    header h1 { margin: 0 0 .4rem; font-size: clamp(1.55rem, 3vw, 2.35rem); }
+    header p { max-width: 850px; margin: 0; color: #d9e8f5; }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(320px, 520px) minmax(320px, 1fr);
+      gap: 1rem;
+      padding: 1rem clamp(1rem, 4vw, 3rem) 3rem;
+    }
+
+    section, aside {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 2px 12px rgba(16, 42, 67, .05);
+    }
+
+    h2 { margin: 0 0 1rem; font-size: 1.2rem; }
+    h3 { margin: 1.25rem 0 .5rem; font-size: 1rem; }
+    label { display: block; font-weight: 650; margin-top: .9rem; }
+    input, select, textarea {
+      width: 100%;
+      margin-top: .25rem;
+      padding: .62rem .7rem;
+      border: 1px solid #c7d1db;
+      border-radius: 8px;
+      font: inherit;
+      background: #fff;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid rgba(10, 110, 189, .25);
+      border-color: var(--accent);
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+
+    .checks {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .35rem .7rem;
+      margin-top: .45rem;
+    }
+
+    .checks label {
+      display: flex;
+      gap: .4rem;
+      align-items: center;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .checks input { width: auto; margin: 0; }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: .7rem 1rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+      margin-top: 1rem;
+    }
+
+    button.secondary {
+      background: #e7edf3;
+      color: #17324d;
+      margin-left: .5rem;
+    }
+
+    .notice {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: .85rem 1rem;
+      border-radius: 8px;
+      color: #17324d;
+      margin-bottom: 1rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .75rem;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: .85rem;
+      background: #fbfcfd;
+    }
+
+    .card strong { display: block; font-size: 1.35rem; }
+    .card span { color: var(--muted); font-size: .9rem; }
+
+    ul { padding-left: 1.25rem; }
+    textarea {
+      min-height: 430px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .87rem;
+      white-space: pre;
+    }
+
+    .muted { color: var(--muted); font-size: .92rem; }
+    .error { color: #9f1d20; font-weight: 650; }
+
+    @media (max-width: 920px) {
+      main { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .grid2, .checks, .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RFQ Specification Assistant</h1>
+    <p>Internal prototype for turning incomplete sheet inquiries into a structured technical summary before quotation. It combines application routing, missing-information checks, thermal movement, fastener clearance, weight estimation and solid-sheet span screening.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="input-title">
+      <h2 id="input-title">Project inputs</h2>
+      <div class="notice">Use this as a sales and technical-support starting point. It is not a certified structural design, manufacturer datasheet, or final order specification.</div>
+
+      <label for="application">Application</label>
+      <select id="application">
+        <option value="">Select application</option>
+        <option value="roofing-canopy">Roofing, carport or canopy</option>
+        <option value="greenhouse">Greenhouse</option>
+        <option value="machine-guarding">Machine guarding</option>
+        <option value="glazing-facade">Glazing or facade</option>
+        <option value="lighting-signage">Lighting or signage</option>
+        <option value="display-retail">Display or retail</option>
+        <option value="sound-barrier">Sound barrier</option>
+        <option value="energy-storage">Energy-storage insulation panel</option>
+        <option value="fabrication-part">Cut-to-size or CNC fabricated part</option>
+        <option value="interior-partition">Interior partition or screen</option>
+        <option value="splashback">Acrylic splashback</option>
+      </select>
+
+      <div class="grid2">
+        <div>
+          <label for="materialFamily">Material family</label>
+          <select id="materialFamily">
+            <option value="">Unspecified</option>
+            <option value="polycarbonate">Polycarbonate</option>
+            <option value="acrylic">Acrylic</option>
+          </select>
+        </div>
+        <div>
+          <label for="structure">Sheet structure</label>
+          <select id="structure">
+            <option value="">Unspecified</option>
+            <option value="solid">Solid / monolithic</option>
+            <option value="multiwall">Multiwall</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label for="thicknessMm">Thickness (mm)</label>
+          <input id="thicknessMm" type="number" min="0" step="0.1" placeholder="e.g. 10">
+        </div>
+        <div>
+          <label for="quantity">Quantity</label>
+          <input id="quantity" type="number" min="1" step="1" placeholder="e.g. 25">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label for="widthMm">Finished width (mm)</label>
+          <input id="widthMm" type="number" min="0" step="1" placeholder="e.g. 1000">
+        </div>
+        <div>
+          <label for="lengthMm">Finished length (mm)</label>
+          <input id="lengthMm" type="number" min="0" step="1" placeholder="e.g. 2000">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label for="temperatureSwingC">Temperature swing (°C)</label>
+          <input id="temperatureSwingC" type="number" min="0" step="1" placeholder="e.g. 50">
+        </div>
+        <div>
+          <label for="screwDiameterMm">Fastener diameter (mm)</label>
+          <input id="screwDiameterMm" type="number" min="0" step="0.1" placeholder="e.g. 6">
+        </div>
+      </div>
+
+      <label for="designLoadKnM2">Design load for solid-sheet span screen (kN/m²)</label>
+      <input id="designLoadKnM2" type="number" min="0" step="0.1" placeholder="e.g. 1.5">
+
+      <label for="destination">Destination country / port</label>
+      <input id="destination" type="text" placeholder="e.g. Hamburg, Germany">
+
+      <h3>Functional requirements</h3>
+      <div class="checks">
+        <label><input type="checkbox" value="uv-resistant"> UV resistant</label>
+        <label><input type="checkbox" value="impact-resistant"> Impact resistant</label>
+        <label><input type="checkbox" value="anti-fog"> Anti-fog</label>
+        <label><input type="checkbox" value="hard-coated"> Hard coated</label>
+        <label><input type="checkbox" value="flame-retardant"> Flame retardant</label>
+        <label><input type="checkbox" value="esd"> ESD / anti-static</label>
+        <label><input type="checkbox" value="diffuser"> Diffuser / opal</label>
+        <label><input type="checkbox" value="coloured"> Coloured</label>
+      </div>
+
+      <label style="margin-top:1rem"><input id="outdoorExposure" type="checkbox" style="width:auto;margin-right:.35rem"> Outdoor exposure</label>
+
+      <button id="generate" type="button">Generate technical summary</button>
+      <button class="secondary" id="reset" type="button">Reset</button>
+      <p id="form-error" class="error" role="alert"></p>
+    </section>
+
+    <aside aria-labelledby="output-title">
+      <h2 id="output-title">Recommendation and quotation support</h2>
+      <div class="cards" aria-live="polite">
+        <div class="card"><strong id="candidate">—</strong><span>Candidate route</span></div>
+        <div class="card"><strong id="area">—</strong><span>Area per piece</span></div>
+        <div class="card"><strong id="weight">—</strong><span>Estimated total weight</span></div>
+        <div class="card"><strong id="movement">—</strong><span>Thermal movement</span></div>
+      </div>
+
+      <h3>Key confirmations</h3>
+      <ul id="confirmations"><li>Generate a summary to populate this list.</li></ul>
+
+      <h3>Missing information</h3>
+      <ul id="missing"><li>Generate a summary to populate this list.</li></ul>
+
+      <h3>Copy-ready technical summary</h3>
+      <p class="muted">Paste this into an internal quotation note or technical reply after reviewing the limitations.</p>
+      <textarea id="summary" readonly></textarea>
+      <button id="copy" type="button">Copy summary</button>
+      <span id="copy-status" class="muted"></span>
+    </aside>
+  </main>
+
+  <script src="application_rules.js"></script>
+  <script src="specification_logic.js"></script>
+  <script>
+    const assistant = window.SpecificationAssistant;
+    const ids = [
+      "application", "materialFamily", "structure", "thicknessMm", "widthMm", "lengthMm",
+      "quantity", "temperatureSwingC", "screwDiameterMm", "designLoadKnM2", "destination", "outdoorExposure"
+    ];
+
+    function field(id) {
+      return document.getElementById(id);
+    }
+
+    function collectInput() {
+      const input = {};
+      for (const id of ids) {
+        const element = field(id);
+        input[id] = element.type === "checkbox" ? element.checked : element.value.trim();
+      }
+      input.requirements = Array.from(document.querySelectorAll(".checks input:checked")).map((item) => item.value);
+      return input;
+    }
+
+    function setList(id, items, emptyText) {
+      const list = document.getElementById(id);
+      list.innerHTML = "";
+      const values = items && items.length ? items : [emptyText];
+      for (const item of values) {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      }
+    }
+
+    function render() {
+      const input = collectInput();
+      const specification = assistant.buildSpecification(input);
+      const calc = specification.calculations;
+      const recommendation = specification.recommendation;
+
+      document.getElementById("candidate").textContent = input.application ? recommendation.candidate : "—";
+      document.getElementById("area").textContent = calc.sheetAreaM2 === null ? "—" : `${calc.sheetAreaM2} m²`;
+      document.getElementById("weight").textContent = calc.estimatedWeightKg === null ? "—" : `${calc.estimatedWeightKg} kg`;
+      document.getElementById("movement").textContent = calc.thermalExpansionMm === null ? "—" : `${calc.thermalExpansionMm} mm`;
+
+      setList("confirmations", input.application ? recommendation.confirmations : [], "Generate a summary to populate this list.");
+      setList("missing", specification.missing, "No missing core fields identified.");
+      document.getElementById("summary").value = assistant.buildEmailSummary(specification);
+    }
+
+    document.getElementById("generate").addEventListener("click", render);
+    document.getElementById("copy").addEventListener("click", async () => {
+      const summary = document.getElementById("summary");
+      const status = document.getElementById("copy-status");
+      if (!summary.value) render();
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(summary.value);
+        } else {
+          summary.focus();
+          summary.select();
+          if (!document.execCommand("copy")) throw new Error("execCommand copy failed");
+        }
+        status.textContent = " Copied.";
+      } catch (error) {
+        summary.focus();
+        summary.select();
+        status.textContent = " Copy unavailable; copy the selected text manually.";
+      }
+    });
+    document.getElementById("reset").addEventListener("click", () => {
+      document.querySelectorAll("input, select").forEach((element) => {
+        if (element.type === "checkbox") element.checked = false;
+        else element.value = "";
+      });
+      document.getElementById("summary").value = "";
+      document.getElementById("copy-status").textContent = "";
+      render();
+    });
+
+    for (const id of ids) {
+      field(id).addEventListener("input", render);
+      field(id).addEventListener("change", render);
+    }
+    document.querySelectorAll(".checks input").forEach((element) => element.addEventListener("change", render));
+    render();
+  </script>
+</body>
+</html>

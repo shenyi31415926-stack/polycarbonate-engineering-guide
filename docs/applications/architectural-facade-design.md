@@ -26,7 +26,7 @@ The governing principle for facade specification is dead load reduction. A 10mm 
 
 **Impact performance** is the second differentiator. Solid polycarbonate carries a notched Izod impact strength of 600-850 J/m per ISO 180/A, versus 0.5-1.0 J/m for annealed glass. In hail-prone regions and for ground-floor facades subject to accidental impact, polycarbonate removes the need for laminated safety glass entirely.
 
-For solid PC sheet specifications, see [Plastura Solid Polycarbonate Sheets](https://plastura.com/materials/polycarbonate/solid/).
+For solid PC sheet specifications, see [SinoPlastix Solid Polycarbonate Sheets](https://sinoplastix.com/materials/polycarbonate/solid/).
 
 ## 2. Fire Performance and Code Compliance
 
@@ -48,7 +48,7 @@ For full three-dimensional geometries, thermoforming (vacuum forming) permits co
 
 ### 3.3 Translucency Spectrum
 
-Solid PC in opal, bronze, or grey tints delivers 20-65% light transmission with obscured visibility — ideal for ground-floor commercial facades needing daylight without street-level transparency. Multiwall PC with opalescent pigment balances diffusion and insulation for atria and stair cores. For textured and decorative finishes, see [Plastura Embossed & Textured PC Sheets](https://plastura.com/materials/polycarbonate/textured/).
+Solid PC in opal, bronze, or grey tints delivers 20-65% light transmission with obscured visibility — ideal for ground-floor commercial facades needing daylight without street-level transparency. Multiwall PC with opalescent pigment balances diffusion and insulation for atria and stair cores. For textured and decorative finishes, see [SinoPlastix Embossed & Textured PC Sheets](https://sinoplastix.com/materials/polycarbonate/textured/).
 
 ## 4. Thermal Bridging and Condensation Control
 
@@ -98,7 +98,7 @@ A: Yes, subject to the same fire engineering requirements as any facade material
 
 ## About This Guide
 
-Maintained by [Plastura Advanced Material](https://plastura.com/) — an IATF 16949-certified polycarbonate sheet manufacturer based in Suzhou, China. We produce solid, multiwall, corrugated, and specialty PC sheets for architectural facade, greenhouse, and industrial applications. For project-specific engineering support or technical datasheets, visit [plastura.com](https://plastura.com/) or see our [manufacturing technology overview](https://plastura.com/services/).
+Maintained by [SinoPlastix](https://sinoplastix.com/) — a polycarbonate sheet manufacturer based in Suzhou, China. We produce solid, multiwall, corrugated, and specialty PC sheets for architectural facade, greenhouse, and industrial applications. For project-specific engineering support or technical datasheets, visit [sinoplastix.com](https://sinoplastix.com/) or see our [manufacturing technology overview](https://sinoplastix.com/services/).
 
 ---
 

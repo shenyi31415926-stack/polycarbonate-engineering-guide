@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.1.0",
+  "dataset": "polycarbonate-sheet-engineering-baseline",
+  "scope": "solid-polycarbonate-sheets-only",
+  "verification_status": "geometric-baseline-requires-manufacturer-datasheet-validation-before-production-use",
+  "source": "Solid rectangular-section geometric properties calculated per metre width. Hollow-wall sheets are omitted because their section properties depend on manufacturer-specific geometry.",
+  "entries": [
+    {
+      "material_type": "solid",
+      "thickness_mm": 3,
+      "section_modulus_mm3_per_m": 1500,
+      "moment_of_inertia_mm4_per_m": 2250,
+      "weight_kg_per_m2": 3.6,
+      "u_value_w_per_m2k": 5.6,
+      "light_transmission_percent": 90,
+      "allowable_flexural_stress_mpa": 12.0,
+      "applications": ["glazing", "machine-guarding", "fabrication"]
+    },
+    {
+      "material_type": "solid",
+      "thickness_mm": 4,
+      "section_modulus_mm3_per_m": 2666.67,
+      "moment_of_inertia_mm4_per_m": 5333.33,
+      "weight_kg_per_m2": 4.8,
+      "u_value_w_per_m2k": 5.4,
+      "light_transmission_percent": 90,
+      "allowable_flexural_stress_mpa": 12.0,
+      "applications": ["glazing", "machine-guarding", "fabrication"]
+    },
+    {
+      "material_type": "solid",
+      "thickness_mm": 5,
+      "section_modulus_mm3_per_m": 4166.67,
+      "moment_of_inertia_mm4_per_m": 10416.67,
+      "weight_kg_per_m2": 6.0,
+      "u_value_w_per_m2k": 5.2,
+      "light_transmission_percent": 89,
+      "allowable_flexural_stress_mpa": 12.0,
+      "applications": ["glazing", "machine-guarding", "fabrication"]
+    },
+    {
+      "material_type": "solid",
+      "thickness_mm": 6,
+      "section_modulus_mm3_per_m": 6000,
+      "moment_of_inertia_mm4_per_m": 18000,
+      "weight_kg_per_m2": 7.2,
+      "u_value_w_per_m2k": 5.0,
+      "light_transmission_percent": 89,
+      "allowable_flexural_stress_mpa": 12.0,
+      "applications": ["glazing", "machine-guarding", "fabrication"]
+    },
+    {
+      "material_type": "solid",
+      "thickness_mm": 8,
+      "section_modulus_mm3_per_m": 10666.67,
+      "moment_of_inertia_mm4_per_m": 42666.67,
+      "weight_kg_per_m2": 9.6,
+      "u_value_w_per_m2k": 4.8,
+      "light_transmission_percent": 88,
+      "allowable_flexural_stress_mpa": 12.0,
+      "applications": ["structural-glazing", "machine-guarding", "fabrication"]
+    },
+    {
+      "material_type": "solid",
+      "thickness_mm": 10,
+      "section_modulus_mm3_per_m": 16666.67,
+      "moment_of_inertia_mm4_per_m": 83333.33,
+      "weight_kg_per_m2": 12.0,
+      "u_value_w_per_m2k": 4.6,
+      "light_transmission_percent": 88,
+      "allowable_flexural_stress_mpa": 12.0,
+      "applications": ["structural-glazing", "machine-guarding", "sound-barriers"]
+    }
+  ]
+}

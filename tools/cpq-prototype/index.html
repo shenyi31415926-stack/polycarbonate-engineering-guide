@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SinoPlastix CPQ Structure Prototype</title>
+  <style>
+    :root {
+      --bg: #eef2f5;
+      --panel: #ffffff;
+      --ink: #17232f;
+      --muted: #647386;
+      --line: #d5dde5;
+      --navy: #102a43;
+      --blue: #126fb3;
+      --cyan: #11a3b8;
+      --good: #16794c;
+      --warn: #9a6200;
+      --bad: #a62639;
+      --soft: #eef6fb;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); }
+    button, input, select { font: inherit; }
+    .topbar { background: var(--navy); color: white; padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .brand { font-weight: 800; letter-spacing: .02em; font-size: 20px; }
+    .brand small { display: block; font-size: 11px; color: #bdd6ea; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+    .topbar-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .topbar button, .ghost { border: 1px solid #7ba5c4; color: white; background: transparent; border-radius: 7px; padding: 8px 11px; cursor: pointer; }
+    .layout { display: grid; grid-template-columns: 270px minmax(0, 1fr); min-height: calc(100vh - 70px); }
+    .sidebar { background: #132f49; color: #dcebf5; padding: 22px 16px; }
+    .stepnav { display: grid; gap: 8px; }
+    .stepnav button { text-align: left; border: 1px solid rgba(255,255,255,.12); color: #dcebf5; background: transparent; border-radius: 10px; padding: 12px; cursor: pointer; }
+    .stepnav button.active { background: #1a466a; border-color: #3b8ec2; color: white; }
+    .stepnav strong { display: block; font-size: 14px; }
+    .stepnav span { font-size: 12px; color: #a9c2d4; }
+    .side-note { margin-top: 24px; padding: 13px; border-left: 3px solid var(--cyan); background: rgba(255,255,255,.06); font-size: 13px; line-height: 1.45; }
+    main { padding: 22px; }
+    .workspace { max-width: 1420px; margin: 0 auto; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .page-title { margin: 0 0 5px; font-size: 26px; }
+    .page-subtitle { margin: 0 0 18px; color: var(--muted); }
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: minmax(320px, 480px) minmax(360px, 1fr); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 13px; padding: 18px; box-shadow: 0 2px 9px rgba(20, 45, 70, .05); }
+    .panel h2, .panel h3 { margin-top: 0; }
+    label { display: block; font-size: 13px; font-weight: 700; margin: 12px 0 4px; }
+    input, select { width: 100%; border: 1px solid #c7d2dc; border-radius: 7px; padding: 9px 10px; background: white; }
+    input:focus, select:focus { border-color: var(--blue); outline: 2px solid rgba(18,111,179,.15); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 12px; }
+    .form-grid.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .checks { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 7px 12px; margin-top: 8px; }
+    .checks label, .inlinecheck { display: flex; gap: 7px; align-items: center; font-weight: 550; margin: 0; }
+    .checks input, .inlinecheck input { width: auto; }
+    .actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+    .primary { border: 0; background: var(--blue); color: white; padding: 10px 15px; border-radius: 8px; font-weight: 750; cursor: pointer; }
+    .secondary { border: 1px solid #b6c5d1; background: #f6f9fb; color: #183650; padding: 10px 15px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    .recommendation { border-left: 5px solid var(--cyan); background: var(--soft); padding: 16px; border-radius: 9px; }
+    .recommendation h3 { margin: 0 0 6px; color: #0d5976; }
+    .muted { color: var(--muted); font-size: 13px; }
+    .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 9px; font-size: 12px; font-weight: 800; background: #e7eef4; color: #29445a; }
+    .pill.good { background: #e5f5eb; color: var(--good); }
+    .pill.warn { background: #fff2d6; color: var(--warn); }
+    .pill.bad { background: #fbe7eb; color: var(--bad); }
+    .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
+    .kpi { border: 1px solid var(--line); border-radius: 10px; padding: 12px; background: #fbfdfe; }
+    .kpi strong { display: block; font-size: 20px; }
+    .kpi span { color: var(--muted); font-size: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; border-bottom: 1px solid #e3e9ee; padding: 8px; vertical-align: top; }
+    th { color: #42576b; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+    .dfm { display: grid; gap: 8px; margin-top: 10px; }
+    .dfm-item { border-left: 4px solid #9aa9b5; background: #f7f9fb; padding: 9px 11px; border-radius: 7px; }
+    .dfm-item.warning { border-color: var(--warn); }
+    .dfm-item.manual_review { border-color: #c25d00; }
+    .dfm-item.blocking { border-color: var(--bad); }
+    .nest-box { background: #f7fafc; border: 1px dashed #aab9c5; border-radius: 10px; padding: 12px; overflow: auto; }
+    svg text { font-family: inherit; }
+    .quote-paper { background: white; color: #142331; border: 1px solid #cfd9e1; width: min(920px, 100%); margin: 0 auto; padding: 34px; box-shadow: 0 8px 30px rgba(10,30,50,.10); }
+    .quote-head { display: flex; justify-content: space-between; border-bottom: 3px solid var(--navy); padding-bottom: 16px; margin-bottom: 18px; }
+    .quote-logo { font-size: 24px; font-weight: 900; color: var(--navy); }
+    .quote-logo small { display: block; font-size: 11px; color: var(--muted); font-weight: 600; }
+    .quote-meta { text-align: right; font-size: 13px; color: #42576b; }
+    .quote-section { margin-top: 20px; }
+    .quote-section h3 { margin: 0 0 8px; font-size: 15px; color: var(--navy); text-transform: uppercase; letter-spacing: .06em; }
+    .total-row td { font-weight: 850; font-size: 15px; background: #f1f6fa; }
+    .admin { margin-top: 20px; }
+    .admin input { max-width: 130px; }
+    pre { white-space: pre-wrap; background: #102a43; color: #e2eef7; padding: 12px; border-radius: 9px; font-size: 12px; max-height: 220px; overflow: auto; }
+    @media (max-width: 1050px) { .layout { grid-template-columns: 1fr; } .sidebar { position: static; } .stepnav { grid-template-columns: repeat(4, 1fr); } .grid.two, .grid.three { grid-template-columns: 1fr; } .kpis { grid-template-columns: repeat(2,1fr); } }
+    @media print {
+      body * { visibility: hidden; }
+      .quote-paper, .quote-paper * { visibility: visible; }
+      .quote-paper { position: absolute; inset: 0; width: auto; box-shadow: none; border: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">SinoPlastix CPQ <small>Engineering plastics structure prototype</small></div>
+    <div class="topbar-actions">
+      <button type="button" id="load-demo">Load demo inquiry</button>
+      <button type="button" id="toggle-admin">Admin configuration</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="stepnav" aria-label="Prototype workflow">
+        <button type="button" data-step="1" class="active"><strong>1. Selection</strong><span>Scenario and conditions</span></button>
+        <button type="button" data-step="2"><strong>2. Geometry / process</strong><span>Template, DXF demo, operations</span></button>
+        <button type="button" data-step="3"><strong>3. Nesting / price</strong><span>Yield, DFM, cost breakdown</span></button>
+        <button type="button" data-step="4"><strong>4. Quote preview</strong><span>PDF structure and inquiry record</span></button>
+      </nav>
+      <div class="side-note"><strong>Prototype scope</strong><br>Placeholder rates, parametric templates and simulated DXF only. No ERP, inventory, payment, 3D modeling or multi-factory bidding.</div>
+    </aside>
+
+    <main>
+      <div class="workspace">
+        <section class="page active" id="page-1">
+          <h1 class="page-title">Scenario selection wizard</h1>
+          <p class="page-subtitle">Convert an application inquiry into a material route, starting thickness and engineering cautions.</p>
+          <div class="grid two">
+            <div class="panel">
+              <h2>Application and operating conditions</h2>
+              <label for="application">Application scenario</label>
+              <select id="application">
+                <option value="machine-guarding">Machine guarding</option>
+                <option value="greenhouse">Greenhouse</option>
+                <option value="roofing-canopy" selected>Roofing / canopy</option>
+                <option value="display-retail">Display / retail</option>
+                <option value="lighting-signage">Lighting / signage</option>
+                <option value="splashback">Acrylic splashback</option>
+                <option value="sound-barrier">Sound barrier</option>
+                <option value="energy-storage">Energy-storage insulation</option>
+                <option value="fabrication-part">Fabricated part</option>
+                <option value="interior-partition">Interior partition</option>
+              </select>
+              <div class="form-grid">
+                <div><label for="temperatureSwingC">Temperature swing (°C)</label><input id="temperatureSwingC" type="number" min="0" value="50"></div>
+                <div><label for="designLoadKnM2">Load, if relevant (kN/m²)</label><input id="designLoadKnM2" type="number" min="0" step="0.1" value="1.5"></div>
+                <div><label for="spanMm">Support span, if relevant (mm)</label><input id="spanMm" type="number" min="0" step="1" placeholder="Enter project span"></div>
+              </div>
+              <label class="inlinecheck" style="margin-top:12px"><input id="outdoorExposure" type="checkbox" checked> Outdoor / UV exposure</label>
+              <h3>Performance requirements</h3>
+              <div class="checks">
+                <label><input type="checkbox" value="uv-resistant" checked> UV resistant</label>
+                <label><input type="checkbox" value="impact-resistant"> Impact resistant</label>
+                <label><input type="checkbox" value="flame-retardant"> Flame retardant</label>
+                <label><input type="checkbox" value="anti-fog"> Anti-fog</label>
+                <label><input type="checkbox" value="esd"> ESD / anti-static</label>
+                <label><input type="checkbox" value="diffuser"> Diffuser / opal</label>
+              </div>
+              <div class="actions"><button type="button" class="primary" data-go="2">Continue to geometry</button></div>
+            </div>
+            <div class="panel">
+              <h2>Recommendation</h2>
+              <div class="recommendation" id="recommendation-box"></div>
+              <h3>Material route</h3>
+              <label for="materialId">Material family / grade route</label>
+              <select id="materialId"></select>
+              <div class="form-grid">
+                <div><label for="thicknessMm">Thickness (mm)</label><input id="thicknessMm" type="number" min="0" step="0.1" value="10"></div>
+                <div><label for="quantity">Quantity</label><input id="quantity" type="number" min="1" step="1" value="40"></div>
+              </div>
+              <p class="muted">Recommendations use demonstration rules. They are not certified structural design or final grade approval.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="page-2">
+          <h1 class="page-title">2D geometry and fabrication input</h1>
+          <p class="page-subtitle">Use a parametric template or simulated DXF example. Real DXF parsing is explicitly outside this structure prototype.</p>
+          <div class="grid two">
+            <div class="panel">
+              <h2>Geometry source</h2>
+              <label for="template">Input method</label>
+              <select id="template">
+                <option value="rectangle">Parametric template — rectangular plate</option>
+                <option value="hole-cover" selected>Parametric template — cover plate with holes</option>
+                <option value="l-bend">Parametric template — simple L-bent guard</option>
+                <option value="u-bend">Parametric template — simple U-bent guard</option>
+                <option value="simulated-dxf">Simulated DXF — parsed result demo</option>
+              </select>
+              <div class="form-grid">
+                <div><label for="widthMm">Part width / flat blank width (mm)</label><input id="widthMm" type="number" min="0" value="500"></div>
+                <div><label for="lengthMm">Part length / flat blank length (mm)</label><input id="lengthMm" type="number" min="0" value="800"></div>
+              </div>
+              <div class="form-grid three">
+                <div><label for="holesPerPart">Holes / part</label><input id="holesPerPart" type="number" min="0" step="1" value="4"></div>
+                <div><label for="holeDiameterMm">Hole diameter (mm)</label><input id="holeDiameterMm" type="number" min="0" step="0.1" value="8"></div>
+                <div><label for="holeEdgeDistanceMm">Hole edge distance (mm)</label><input id="holeEdgeDistanceMm" type="number" min="0" step="0.1" value="25"></div>
+              </div>
+              <div class="form-grid three">
+                <div><label for="bendCount">Bends / part</label><input id="bendCount" type="number" min="0" step="1" value="0"></div>
+                <div><label for="bendRadiusMm">Bend radius (mm)</label><input id="bendRadiusMm" type="number" min="0" step="1" value="600"></div>
+                <div><label for="cornerRadiusMm">Internal corner radius (mm)</label><input id="cornerRadiusMm" type="number" min="0" step="0.1" value="2"></div>
+              </div>
+              <div class="form-grid">
+                <div><label for="toleranceMm">Critical tolerance (mm)</label><input id="toleranceMm" type="number" min="0" step="0.1" value="1"></div>
+                <div><label for="screwDiameterMm">Fastener diameter (mm)</label><input id="screwDiameterMm" type="number" min="0" step="0.1" value="6"></div>
+              </div>
+            </div>
+            <div class="panel">
+              <h2>Processes and destination</h2>
+              <label for="cuttingMethod">Cutting method</label>
+              <select id="cuttingMethod"><option value="cnc">CNC cutting</option><option value="laser">Laser cutting</option></select>
+              <div class="form-grid">
+                <div><label for="polishedLengthMm">Polished edge length / part (mm)</label><input id="polishedLengthMm" type="number" min="0" value="0"></div>
+                <div><label for="coatingType">Surface / coating</label><select id="coatingType"><option value="none">None</option><option value="hard-coated">Hard coated</option><option value="anti-fog">Anti-fog</option><option value="esd">ESD</option><option value="flame-retardant">Flame-retardant grade</option></select></div>
+              </div>
+              <label for="destination">Destination</label>
+              <input id="destination" value="Hamburg, Germany">
+              <label for="customerName">Customer / company</label>
+              <input id="customerName" value="Demo Industrial Customer GmbH">
+              <h3>Extracted geometry metrics</h3>
+              <div id="geometry-summary" class="muted"></div>
+              <div class="actions"><button type="button" class="secondary" data-go="1">Back</button><button type="button" class="primary" data-go="3">Calculate nesting and price</button></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="page-3">
+          <h1 class="page-title">Nesting, DFM and quotation breakdown</h1>
+          <p class="page-subtitle">Demonstration rates only. Exact price is shown only for standard automated cases; exceptions produce manual-review states or reference ranges.</p>
+          <div id="quote-status" style="margin-bottom:12px"></div>
+          <div class="kpis" id="analysis-kpis"></div>
+          <div class="grid two">
+            <div class="panel">
+              <h2>2D nesting result</h2>
+              <div class="nest-box" id="nesting-visual"></div>
+              <div id="nesting-table"></div>
+            </div>
+            <div class="panel">
+              <h2>Plastic-specific DFM findings</h2>
+              <div class="dfm" id="dfm-list"></div>
+            </div>
+          </div>
+          <div class="grid two" style="margin-top:16px">
+            <div class="panel"><h2>Price breakdown</h2><div id="price-table"></div></div>
+            <div class="panel"><h2>Manual review / missing information</h2><ul id="manual-list"></ul><div class="actions"><button type="button" class="secondary" data-go="2">Back</button><button type="button" class="primary" data-go="4">Preview quotation</button></div></div>
+          </div>
+        </section>
+
+        <section class="page" id="page-4">
+          <h1 class="page-title">PDF quotation structure preview</h1>
+          <p class="page-subtitle">Browser print can save this preview as PDF. Production implementation would generate and store versioned PDF documents.</p>
+          <div class="actions" style="margin-bottom:14px"><button type="button" class="secondary" data-go="3">Back</button><button type="button" class="primary" onclick="window.print()">Print / save as PDF</button><button type="button" class="secondary" id="save-inquiry">Save demo inquiry record</button></div>
+          <div class="quote-paper" id="quote-paper"></div>
+          <h2 style="margin-top:22px">Structured inquiry record</h2>
+          <pre id="inquiry-json"></pre>
+        </section>
+
+        <section class="panel admin" id="admin-panel" hidden>
+          <h2>Admin configuration demo</h2>
+          <p class="muted">These inputs demonstrate that prices and rates are configuration-driven. They are placeholders, not real commercial rates.</p>
+          <div class="grid three">
+            <div><h3>Material price / m²</h3><div id="admin-materials"></div></div>
+            <div><h3>Process base rates</h3><div id="admin-processes"></div></div>
+            <div><h3>Commercial assumptions</h3><div id="admin-commercial"></div></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="cpq_demo_config.js"></script>
+  <script src="cpq_logic.js"></script>
+  <script>
+    const config = window.CpqDemoConfig;
+    const logic = window.CpqLogic;
+    let currentQuote = null;
+    let lastTemplate = null;
+
+    const fieldIds = ["application","temperatureSwingC","designLoadKnM2","spanMm","outdoorExposure","materialId","thicknessMm","quantity","template","widthMm","lengthMm","holesPerPart","holeDiameterMm","holeEdgeDistanceMm","bendCount","bendRadiusMm","cornerRadiusMm","toleranceMm","screwDiameterMm","cuttingMethod","polishedLengthMm","coatingType","destination","customerName"];
+    const $ = (id) => document.getElementById(id);
+    const esc = (value) => String(value ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+
+    function collectInput() {
+      const input = {};
+      for (const id of fieldIds) {
+        const el = $(id);
+        input[id] = el.type === "checkbox" ? el.checked : el.value;
+      }
+      input.requirements = Array.from(document.querySelectorAll(".checks input:checked")).map(el => el.value);
+      return input;
+    }
+
+    function populateMaterials() {
+      const select = $("materialId");
+      select.innerHTML = config.materials.map(m => `<option value="${m.id}">${esc(m.name)}</option>`).join("");
+    }
+
+    function renderRecommendation(forceMaterial = false) {
+      const input = collectInput();
+      const rec = logic.recommendMaterial(config, input);
+      if (forceMaterial || !input.materialId) {
+        const materialChanged = $("materialId").value !== rec.material.id;
+        $("materialId").value = rec.material.id;
+        if (materialChanged && !rec.material.thicknessesMm.includes(Number($("thicknessMm").value))) {
+          $("thicknessMm").value = rec.suggestedThicknessMm;
+        }
+      }
+      $("recommendation-box").innerHTML = `
+        <h3>${esc(rec.title)}</h3>
+        <p><strong>${esc(rec.material.name)}</strong> · suggested start ${rec.suggestedThicknessMm} mm</p>
+        <p>${esc(rec.summary)}</p>
+        <ul>${rec.reasons.map(r => `<li>${esc(r)}</li>`).join("")}</ul>
+      `;
+    }
+
+    function calculate() {
+      currentQuote = logic.calculateQuote(collectInput(), config);
+      return currentQuote;
+    }
+
+    function money(value) { return logic.formatMoney(value, config.meta.currency); }
+    function pct(value) { return value === null || value === undefined ? "—" : `${Math.round(value * 100)}%`; }
+
+    function renderGeometry(commitBendMinimum = false) {
+      const template = $("template").value;
+      const bendInput = $("bendCount");
+      if (template !== lastTemplate) {
+        if (template === "l-bend") bendInput.value = "1";
+        else if (template === "u-bend") bendInput.value = "2";
+        else bendInput.value = "0";
+        lastTemplate = template;
+      }
+      if (commitBendMinimum && template === "l-bend" && Number(bendInput.value) < 1) bendInput.value = "1";
+      if (commitBendMinimum && template === "u-bend" && Number(bendInput.value) < 2) bendInput.value = "2";
+      const q = calculate();
+      const m = q.metrics;
+      $("geometry-summary").innerHTML = m ? `
+        Area/part: <strong>${m.partAreaM2} m²</strong><br>
+        Cutting perimeter/part: <strong>${m.cuttingPerimeterM} m</strong><br>
+        Holes/part: <strong>${m.holesPerPart}</strong> · Bends/part: <strong>${m.bendCountPerPart}</strong><br>
+        Geometry confidence: <strong>${esc(m.geometryConfidence)}</strong><br>
+        Thermal movement screening: <strong>${q.thermalMovementMm ?? "pending"} mm</strong><br>
+        Span/load screening: <strong>${q.spanScreening ? `${q.spanScreening.governingSpanM} m max (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence / review" : "not requested"}${q.input.spanMm ? ` · stated span ${q.input.spanMm / 1000} m` : ""}</strong>
+      ` : "Geometry inputs incomplete.";
+    }
+
+    function statusPill(q) {
+      if (!q.price) return `<span class="pill bad">Incomplete</span>`;
+      if (q.price.status === "automated-list-price") return `<span class="pill good">Automated list price</span>`;
+      if (q.price.status === "reference-range") return `<span class="pill warn">Reference range — manual review</span>`;
+      return `<span class="pill bad">Manual engineering review required</span>`;
+    }
+
+    function renderAnalysis() {
+      const q = calculate();
+      $("quote-status").innerHTML = statusPill(q);
+      $("analysis-kpis").innerHTML = `
+        <div class="kpi"><strong>${q.nesting && q.nesting.fits ? q.nesting.sheetCount : "—"}</strong><span>standard sheets</span></div>
+        <div class="kpi"><strong>${q.nesting && q.nesting.fits ? pct(q.nesting.wasteRatio) : "—"}</strong><span>estimated waste</span></div>
+        <div class="kpi"><strong>${q.weightKg ?? "—"} kg</strong><span>estimated weight</span></div>
+        <div class="kpi"><strong>${q.price ? money(q.price.total) : "—"}</strong><span>total / reference</span></div>
+      `;
+      renderNesting(q);
+      renderDfm(q);
+      renderPrice(q);
+      renderManual(q);
+      renderQuotePreview(q);
+    }
+
+    function renderNesting(q) {
+      const n = q.nesting;
+      if (!n || !n.fits) {
+        $("nesting-visual").innerHTML = `<p class="muted">No fit within configured standard sheets.</p>`;
+        $("nesting-table").innerHTML = "";
+        return;
+      }
+      const scale = Math.min(520 / n.usableWidthMm, 280 / n.usableLengthMm);
+      const sw = n.usableWidthMm * scale;
+      const sh = n.usableLengthMm * scale;
+      const pw = (n.rotate ? q.metrics.lengthMm : q.metrics.widthMm) * scale;
+      const pl = (n.rotate ? q.metrics.widthMm : q.metrics.lengthMm) * scale;
+      let parts = "";
+      for (let y = 0; y < n.down; y++) {
+        for (let x = 0; x < n.across; x++) {
+          parts += `<rect x="${8 + x * pw}" y="${8 + y * pl}" width="${Math.max(2, pw - 2)}" height="${Math.max(2, pl - 2)}" fill="#d8edf7" stroke="#2b84b8"/>`;
+        }
+      }
+      $("nesting-visual").innerHTML = `<svg width="${sw + 18}" height="${sh + 18}" viewBox="0 0 ${sw + 18} ${sh + 18}"><rect x="5" y="5" width="${sw}" height="${sh}" fill="#fff" stroke="#51697d" stroke-width="2"/>${parts}<text x="10" y="${sh + 14}" font-size="11">${n.sheetSizeId} · ${n.partsPerSheet} parts/sheet · ${n.across} × ${n.down}</text></svg>`;
+      $("nesting-table").innerHTML = `<table><tr><th>Method</th><td>${esc(n.method)}</td></tr><tr><th>Sheet size</th><td>${n.sheetSizeId}</td></tr><tr><th>Rotation</th><td>${n.rotate ? "rotated" : "not rotated"}</td></tr><tr><th>Utilization</th><td>${pct(n.utilization)}</td></tr></table>`;
+    }
+
+    function renderDfm(q) {
+      const rows = q.dfmFindings.length ? q.dfmFindings : [{ id: "none", severity: "info", message: "No prototype DFM warnings triggered.", action: "Continue with normal engineering review." }];
+      $("dfm-list").innerHTML = rows.map(f => `<div class="dfm-item ${f.severity}"><strong>${esc(f.id)} · ${esc(f.severity)}</strong><br>${esc(f.message)}<br><span class="muted">${esc(f.action)}</span></div>`).join("");
+    }
+
+    function renderPrice(q) {
+      if (!q.price) { $("price-table").innerHTML = "<p class='muted'>Price incomplete.</p>"; return; }
+      const p = q.price;
+      const rows = [
+        ["Material", p.materialCost], ["Cutting", q.costs.cutting], ["Drilling", q.costs.drilling], ["Bending", q.costs.bending], ["Polishing", q.costs.polishing], ["Coating", q.costs.coating], ["Packaging", p.packagingCost], ["Sea freight reference", p.logisticsReferenceCost], ["Overhead", p.overhead], ["Margin", p.margin]
+      ];
+      $("price-table").innerHTML = `<table>${rows.map(([k,v]) => `<tr><td>${k}</td><td>${money(v)}</td></tr>`).join("")}<tr class="total-row"><td>Total</td><td>${money(p.total)}</td></tr>${p.status !== "automated-list-price" ? `<tr><td>Reference range</td><td>${money(p.referenceLow)} – ${money(p.referenceHigh)}</td></tr>` : ""}</table><p class="muted">Placeholder rates for structure validation only.</p>`;
+    }
+
+    function renderManual(q) {
+      const items = q.manualReasons.length ? q.manualReasons : ["No blocking manual-review item in this demo case."];
+      $("manual-list").innerHTML = items.map(item => `<li>${esc(item)}</li>`).join("");
+    }
+
+    function renderQuotePreview(q) {
+      const input = q.input;
+      const p = q.price;
+      $("quote-paper").innerHTML = `
+        <div class="quote-head"><div><div class="quote-logo">SinoPlastix<small>ENGINEERING POLYMER SHEETS</small></div></div><div class="quote-meta"><strong>Quotation ${q.quoteNumber}</strong><br>Date: ${new Date().toISOString().slice(0,10)}<br>Validity: 14 days · Demo</div></div>
+        <div class="quote-section"><h3>Customer</h3><p>${esc(input.customerName || "Pending customer")}<br>Destination: ${esc(input.destination || "pending")}</p></div>
+        <div class="quote-section"><h3>Item specification</h3><table><tr><th>Material</th><td>${esc(q.material ? q.material.name : "pending")}</td></tr><tr><th>Thickness / size / qty</th><td>${input.thicknessMm || "pending"} mm · ${input.widthMm || "?"}×${input.lengthMm || "?"} mm · ${input.quantity || "pending"} pcs</td></tr><tr><th>Geometry / process</th><td>${esc(input.template)} · holes ${q.metrics ? q.metrics.holesPerPart : "?"} · bends ${q.metrics ? q.metrics.bendCountPerPart : "?"} · ${esc(input.cuttingMethod)} cutting</td></tr></table></div>
+        <div class="quote-section"><h3>Quotation breakdown</h3>${p ? `<table><tr><td>Material</td><td>${money(p.materialCost)}</td></tr><tr><td>Fabrication processes</td><td>${money(p.processCost)}</td></tr><tr><td>Packaging</td><td>${money(p.packagingCost)}</td></tr><tr><td>Logistics reference</td><td>${money(p.logisticsReferenceCost)}</td></tr><tr class="total-row"><td>Total</td><td>${money(p.total)}</td></tr></table><p><strong>Status:</strong> ${esc(p.status)}${p.status !== "automated-list-price" ? ` · Reference range ${money(p.referenceLow)} – ${money(p.referenceHigh)}` : ""}</p>` : "<p>Price pending complete inputs.</p>"}</div>
+        <div class="quote-section"><h3>Engineering selection note</h3><p>${esc(q.recommendation.summary)} Thermal movement screening: ${q.thermalMovementMm ?? "pending"} mm over stated conditions. Span/load screening: ${q.spanScreening ? `${q.spanScreening.governingSpanM} m maximum (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence or engineering review" : "not requested"}${q.input.spanMm ? `; stated support span ${q.input.spanMm / 1000} m` : ""}. This document is a prototype quotation structure, not certified engineering design or final manufacturer confirmation.</p></div>
+        <div class="quote-section"><h3>DFM and review notes</h3><ul>${(q.dfmFindings.length ? q.dfmFindings.map(f => `${f.id}: ${f.message}`) : ["No prototype DFM warnings triggered."]).map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
+      `;
+      $("inquiry-json").textContent = JSON.stringify({ quoteNumber: q.quoteNumber, customer: input.customerName, destination: input.destination, application: input.application, materialId: input.materialId, specification: { thicknessMm: input.thicknessMm, widthMm: input.widthMm, lengthMm: input.lengthMm, quantity: input.quantity, cuttingMethod: input.cuttingMethod, designLoadKnM2: input.designLoadKnM2, spanMm: input.spanMm, holesPerPart: q.metrics ? q.metrics.holesPerPart : null, bendCountPerPart: q.metrics ? q.metrics.bendCountPerPart : null, coatingType: input.coatingType }, metrics: q.metrics, nesting: q.nesting, price: q.price, manualReviewRequired: q.manualReasons.length > 0 }, null, 2);
+    }
+
+    function go(step) {
+      document.querySelectorAll(".stepnav button").forEach(b => b.classList.toggle("active", b.dataset.step === step));
+      document.querySelectorAll(".page").forEach(p => p.classList.toggle("active", p.id === `page-${step}`));
+      if (step === "2") renderGeometry();
+      if (step === "3" || step === "4") renderAnalysis();
+    }
+
+    function renderAdmin() {
+      $("admin-materials").innerHTML = config.materials.map((m, i) => `<label>${esc(m.name)}</label><input type="number" step="1" value="${m.pricePerM2}" data-admin-material="${i}">`).join("");
+      $("admin-processes").innerHTML = Object.entries(config.processRates).map(([key, rate]) => `<label>${esc(key)} rate</label><input type="number" step="0.1" value="${rate.ratePerM || rate.ratePerHole || rate.ratePerBend || rate.ratePerM2}" data-admin-process="${key}">`).join("");
+      $("admin-commercial").innerHTML = Object.entries(config.commercial).filter(([k,v]) => typeof v === "number").map(([key, value]) => `<label>${esc(key)}</label><input type="number" step="0.01" value="${value}" data-admin-commercial="${key}">`).join("");
+      document.querySelectorAll("[data-admin-material]").forEach(el => el.addEventListener("input", () => { config.materials[Number(el.dataset.adminMaterial)].pricePerM2 = Number(el.value); renderAnalysis(); }));
+      document.querySelectorAll("[data-admin-process]").forEach(el => el.addEventListener("input", () => {
+        const key = el.dataset.adminProcess;
+        const rate = config.processRates[key];
+        if ("ratePerM" in rate && key === "cutting") rate.ratePerM = Number(el.value);
+        if ("ratePerHole" in rate) rate.ratePerHole = Number(el.value);
+        if ("ratePerBend" in rate) rate.ratePerBend = Number(el.value);
+        if (key === "polishing") rate.ratePerM = Number(el.value);
+        if (key === "coating") rate.ratePerM2 = Number(el.value);
+        renderAnalysis();
+      }));
+      document.querySelectorAll("[data-admin-commercial]").forEach(el => el.addEventListener("input", () => { config.commercial[el.dataset.adminCommercial] = Number(el.value); renderAnalysis(); }));
+    }
+
+    function loadDemo() {
+      const values = { application:"roofing-canopy", materialId:"pc-multiwall", thicknessMm:"10", quantity:"40", template:"hole-cover", widthMm:"500", lengthMm:"800", holesPerPart:"4", holeDiameterMm:"8", holeEdgeDistanceMm:"25", bendCount:"0", bendRadiusMm:"600", cornerRadiusMm:"2", toleranceMm:"1", screwDiameterMm:"6", temperatureSwingC:"50", designLoadKnM2:"1.5", spanMm:"600", polishedLengthMm:"0", coatingType:"none", destination:"Hamburg, Germany", customerName:"Demo Industrial Customer GmbH" };
+      Object.entries(values).forEach(([id,v]) => { if ($(id)) $(id).value = v; });
+      $("outdoorExposure").checked = true;
+      renderRecommendation(true); renderGeometry(); renderAnalysis(); go("3");
+    }
+
+    document.querySelectorAll(".stepnav button").forEach(b => b.addEventListener("click", () => go(b.dataset.step)));
+    document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => go(b.dataset.go)));
+    fieldIds.forEach(id => {
+      const refresh = (event) => { renderRecommendation(id === "application"); renderGeometry(id === "bendCount" && event.type === "change"); };
+      $(id).addEventListener("input", refresh);
+      $(id).addEventListener("change", refresh);
+    });
+    document.querySelectorAll(".checks input").forEach(el => el.addEventListener("change", () => renderRecommendation(true)));
+    $("toggle-admin").addEventListener("click", () => { $("admin-panel").hidden = !$("admin-panel").hidden; });
+    $("load-demo").addEventListener("click", loadDemo);
+    $("save-inquiry").addEventListener("click", () => {
+      calculate();
+      const records = JSON.parse(localStorage.getItem("spx-demo-inquiries") || "[]");
+      records.push(JSON.parse($("inquiry-json").textContent));
+      localStorage.setItem("spx-demo-inquiries", JSON.stringify(records));
+      alert(`Demo inquiry saved locally. Total records in this browser: ${records.length}`);
+    });
+
+    populateMaterials();
+    renderAdmin();
+    renderRecommendation(true);
+    renderGeometry();
+    renderAnalysis();
+  </script>
+</body>
+</html>

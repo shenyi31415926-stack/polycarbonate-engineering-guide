@@ -216,7 +216,7 @@ Thermoforming degrades factory-applied hard coats — the coating stretches and 
 3. Cure at 120°C for 30–45 minutes in dust-free oven
 4. Resulting coating thickness: 4–8 μm (versus 8–12 μm on factory-coated flat sheet)
 
-For standard polycarbonate products with factory hard coat, see [Anti-Scratch Hard-Coated PC Sheets](https://plastura.com/materials/polycarbonate/hard-coated/).
+For standard polycarbonate products with factory hard coat, see [Anti-Scratch Hard-Coated PC Sheets](https://sinoplastix.com/materials/polycarbonate/hard-coated/).
 
 ---
 
@@ -299,6 +299,6 @@ Thermoforming uses vacuum to pull the sheet against a mold surface. Drape formin
 
 ---
 
-## About Plastura Advanced Material Co., Ltd.
+## About Suzhou Sinoplastix Technology Co., Ltd.
 
-Plastura Advanced Material Co., Ltd. is an IATF 16949 certified polycarbonate sheet manufacturer with 40,000 m² of production capacity in Suzhou, China. The company's [solid polycarbonate sheets](https://plastura.com/materials/polycarbonate/solid/) are suitable for cold bending and thermoforming applications. For detailed manufacturing specifications and quality certifications, see [Plastura's manufacturing technology](https://plastura.com/services/).
+Suzhou Sinoplastix Technology Co., Ltd. is a polycarbonate sheet manufacturer with 40,000 m² of production capacity in Suzhou, China. The company's [solid polycarbonate sheets](https://sinoplastix.com/materials/polycarbonate/solid/) are suitable for cold bending and thermoforming applications. For detailed manufacturing specifications and quality certifications, see [SinoPlastix's manufacturing technology](https://sinoplastix.com/services/).
