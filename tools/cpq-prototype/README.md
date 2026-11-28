@@ -7,8 +7,8 @@ A dependency-free, clickable structural prototype for the first phase of the Sin
 The prototype walks through the intended customer and internal-sales flow:
 
 1. **Scenario selection** — choose the application, UV/outdoor exposure, performance requirements, temperature swing and load context.
-2. **Geometry and fabrication input** — use a parametric rectangle, cover plate, simple L-bend, simple U-bend, or a clearly labeled simulated-DXF example.
-3. **Nesting and price breakdown** — calculate bounding-box part metrics, standard-sheet fit, parts per sheet, sheet count, utilization, waste ratio, weight, thermal-movement screening, solid-polycarbonate span screening, process cost, packaging/CBM estimate, logistics reference and total.
+2. **Geometry and fabrication input** — use a parametric rectangle, cover plate, simple L-bend, simple U-bend, a bounded real DXF import, or a clearly labeled simulated-DXF example.
+3. **Nesting and price breakdown** — calculate bounding-box nesting metrics plus simple closed-contour area where reliable, standard-sheet fit, parts per sheet, sheet count, utilization, waste ratio, weight, thermal-movement screening, solid-polycarbonate span screening, process cost, packaging/CBM estimate, logistics reference and total.
 4. **Quotation preview** — render a PDF-ready document structure and a structured inquiry record. Browser print can save the preview as a PDF.
 5. **Admin configuration demo** — edit placeholder material, process and commercial rates to demonstrate that pricing is configuration-driven rather than hard-coded in formulas.
 
@@ -17,7 +17,7 @@ The prototype walks through the intended customer and internal-sales flow:
 - Materials: solid polycarbonate, multiwall polycarbonate, cast acrylic, extruded acrylic and PETG.
 - Processes: CNC/laser cutting, drilling, bending, polishing and surface/coating routes.
 - Pricing uses **placeholder demonstration rates only**; they are not commercial prices.
-- DXF handling is **simulated**. This prototype does not parse real DXF entities or claim production geometric accuracy.
+- Real DXF import is deliberately bounded: ASCII DXF `LINE`, `LWPOLYLINE`, `CIRCLE` and `ARC` entities are parsed for bounding box, estimated perimeter and circular-hole count. A single closed straight-edged `LWPOLYLINE` or a single reconstructable closed chain of `LINE` entities can use net contour area minus circular holes; other shapes fall back to bounding-box area. Hole classification is heuristic, bulges/curves are not faithfully reconstructed, nesting remains bounding-box only, and pricing remains a **manual-review estimate** rather than production geometric accuracy.
 - No ERP, inventory, online payment, 3D CAD or multi-factory bidding.
 - Output is not certified engineering design, a structural approval, a final grade confirmation or a production-ready quotation.
 
@@ -33,7 +33,9 @@ The prototype distinguishes:
 
 - `index.html` — interactive single-page prototype.
 - `cpq_demo_config.js` — editable demonstration configuration for materials, sheet sizes, process rates and commercial assumptions.
+- `dxf_parser.js` — bounded ASCII DXF parser for common 2D entities.
 - `cpq_logic.js` — dependency-free calculation logic shared by the UI and tests.
+- `sample-cover-plate.dxf` — minimal rectangle-with-four-holes fixture that can be uploaded in the prototype.
 - `test_cpq_logic.js` — browser-executable logic tests.
 - `test-runner.html` — headless/browser test runner.
 
@@ -50,4 +52,4 @@ Expected result: `data-test-status="passed"`.
 
 ## Production gaps intentionally left open
 
-Before operational use, the platform still needs manufacturer-validated material data, real commercial rates, authenticated users, server-side persistence, versioned configuration, real DXF parsing, contour reconstruction, true irregular nesting, PDF generation, document storage, audit trails, approval workflows, accessibility review, security review and browser end-to-end tests.
+Before operational use, the platform still needs manufacturer-validated material data, real commercial rates, authenticated users, server-side persistence, versioned configuration, fuller DXF/entity fidelity, contour reconstruction, reliable hole/contour topology, true irregular nesting, PDF generation, document storage, audit trails, approval workflows, accessibility review, security review and browser end-to-end tests.

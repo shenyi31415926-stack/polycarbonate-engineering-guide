@@ -1,16 +1,20 @@
 (function (root, factory) {
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = factory(require("./cpq_logic.js"), require("./cpq_demo_config.js"));
+    module.exports = factory(require("./cpq_logic.js"), require("./cpq_demo_config.js"), require("./dxf_parser.js"));
   } else {
-    root.runCpqPrototypeTests = factory(root.CpqLogic, root.CpqDemoConfig);
+    root.runCpqPrototypeTests = factory(root.CpqLogic, root.CpqDemoConfig, root.CpqDxfParser);
   }
-})(typeof self !== "undefined" ? self : globalThis, function (logic, config) {
+})(typeof self !== "undefined" ? self : globalThis, function (logic, config, dxfParser) {
   function assert(condition, message) {
     if (!condition) throw new Error(message);
   }
 
   function assertEqual(actual, expected, message) {
     if (actual !== expected) throw new Error(`${message}: expected ${expected}, got ${actual}`);
+  }
+
+  function assertClose(actual, expected, tolerance, message) {
+    if (Math.abs(actual - expected) > tolerance) throw new Error(`${message}: expected ${expected} ±${tolerance}, got ${actual}`);
   }
 
   function baseInput(overrides = {}) {
@@ -131,6 +135,171 @@
 
     const zeroRadiusWithBend = logic.calculateQuote(baseInput({ materialId: "pc-solid", template: "l-bend", bendRadiusMm: "0" }), config);
     assert(zeroRadiusWithBend.dfmFindings.some((finding) => finding.id === "DFM-004" && finding.severity === "manual_review"), "zero bend radius should trigger review when bends exist");
+
+    const sampleDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "LWPOLYLINE", "90", "4", "70", "1",
+      "10", "0", "20", "0", "10", "500", "20", "0", "10", "500", "20", "800", "10", "0", "20", "800",
+      "0", "CIRCLE", "10", "50", "20", "50", "40", "4",
+      "0", "CIRCLE", "10", "450", "20", "50", "40", "4",
+      "0", "CIRCLE", "10", "450", "20", "750", "40", "4",
+      "0", "CIRCLE", "10", "50", "20", "750", "40", "4",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedDxf = dxfParser.parseDxf(sampleDxf);
+    assertEqual(parsedDxf.ok, true, "sample DXF should parse");
+    assertEqual(parsedDxf.widthMm, 500, "sample DXF bounding width");
+    assertEqual(parsedDxf.lengthMm, 800, "sample DXF bounding length");
+    assertEqual(parsedDxf.holesPerPart, 4, "sample DXF hole count");
+    assertEqual(parsedDxf.holeDiameterMm, 8, "sample DXF hole diameter");
+    assertClose(parsedDxf.cuttingPerimeterM, 2.7005, 0.0001, "sample DXF cutting perimeter");
+    assertEqual(parsedDxf.requiresManualGeometryReview, true, "parsed DXF should retain manual review flag");
+    assertEqual(parsedDxf.areaSource, "simple-closed-contour-minus-circular-holes", "closed sample contour should use net contour area");
+    assertEqual(parsedDxf.boundingBoxAreaM2, 0.4, "sample DXF bounding-box area");
+    assertClose(parsedDxf.partAreaM2, 0.3998, 0.00001, "sample DXF net contour area should subtract circular holes");
+
+    const lShapeDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "LWPOLYLINE", "90", "6", "70", "1",
+      "10", "0", "20", "0", "10", "400", "20", "0", "10", "400", "20", "200",
+      "10", "200", "20", "200", "10", "200", "20", "400", "10", "0", "20", "400",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedLShape = dxfParser.parseDxf(lShapeDxf);
+    assertEqual(parsedLShape.ok, true, "L-shaped closed polyline should parse");
+    assertEqual(parsedLShape.areaSource, "simple-closed-contour-minus-circular-holes", "L-shape should use contour area");
+    assertEqual(parsedLShape.boundingBoxAreaM2, 0.16, "L-shape bounding-box area");
+    assertEqual(parsedLShape.partAreaM2, 0.12, "L-shape contour area should be lower than bounding box");
+    assertClose(parsedLShape.cuttingPerimeterM, 1.6, 0.0001, "L-shape cutting perimeter");
+
+    const bulgedLShape = dxfParser.parseDxf(lShapeDxf.replace("70\n1\n10", "70\n1\n42\n0.5\n10"));
+    assertEqual(bulgedLShape.areaSource, "bounding-box", "bulged polyline must not use straight-chord contour area");
+    assertEqual(bulgedLShape.partAreaM2, 0.16, "bulged polyline should fall back to bounding-box area");
+
+    const lineEntity = (x1, y1, x2, y2) => ["0", "LINE", "10", String(x1), "20", String(y1), "11", String(x2), "21", String(y2)];
+    const lShapeSegments = [
+      [0, 0, 400, 0], [400, 0, 400, 200], [400, 200, 200, 200],
+      [200, 200, 200, 400], [200, 400, 0, 400], [0, 400, 0, 0]
+    ];
+    const lineLShapeDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      ...lShapeSegments.flatMap((segment) => lineEntity(...segment)),
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedLineLShape = dxfParser.parseDxf(lineLShapeDxf);
+    assertEqual(parsedLineLShape.ok, true, "LINE-chain L-shape should parse");
+    assertEqual(parsedLineLShape.areaSource, "simple-closed-contour-minus-circular-holes", "connected LINE loop should use contour area");
+    assertEqual(parsedLineLShape.partAreaM2, 0.12, "connected LINE loop contour area");
+
+    const openLineDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      ...lShapeSegments.slice(0, 5).flatMap((segment) => lineEntity(...segment)),
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedOpenLines = dxfParser.parseDxf(openLineDxf);
+    assertEqual(parsedOpenLines.areaSource, "bounding-box", "open LINE chain must fall back to bounding-box area");
+    assert(parsedOpenLines.warnings.some((warning) => warning.includes("could not be reconstructed")), "open LINE chain should warn about contour reconstruction");
+
+    const densePoints = Array.from({ length: 2100 }, (_, index) => {
+      const angle = index * Math.PI * 2 / 2100;
+      return [1000 * Math.cos(angle), 1000 * Math.sin(angle)];
+    });
+    const denseSegments = densePoints.map((point, index) => {
+      const next = densePoints[(index + 1) % densePoints.length];
+      return [point[0], point[1], next[0], next[1]];
+    }).reverse();
+    const denseLineDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      ...denseSegments.flatMap((segment) => lineEntity(...segment)),
+      "0", "CIRCLE", "10", "0", "20", "0", "40", "10",
+      "0", "CIRCLE", "10", "2500", "20", "0", "40", "10",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedDenseLines = dxfParser.parseDxf(denseLineDxf);
+    assertEqual(parsedDenseLines.ok, true, "dense reversed LINE loop should parse without hanging");
+    assertEqual(parsedDenseLines.areaSource, "bounding-box", "very dense contour should skip expensive net-area validation");
+    assertEqual(parsedDenseLines.holesPerPart, 1, "dense contour should still exclude exterior circles from hole count");
+    assert(parsedDenseLines.warnings.some((warning) => warning.includes("expensive browser-side topology validation")), "dense contour should explain topology-validation fallback");
+
+    const unsupportedCutoutDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      ...lineEntity(0, 0, 100, 0), ...lineEntity(100, 0, 100, 100),
+      ...lineEntity(100, 100, 0, 100), ...lineEntity(0, 100, 0, 0),
+      "0", "ELLIPSE", "10", "50", "20", "50", "11", "20", "21", "0", "40", "0.5",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedUnsupportedCutout = dxfParser.parseDxf(unsupportedCutoutDxf);
+    assertEqual(parsedUnsupportedCutout.areaSource, "bounding-box", "unsupported cutout geometry must disable net contour area");
+    assert(parsedUnsupportedCutout.warnings.some((warning) => warning.includes("may represent cutouts")), "unsupported cutout should warn that net area was not used");
+
+    const inchRectangleDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "1", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "LWPOLYLINE", "90", "4", "70", "1",
+      "10", "0", "20", "0", "10", "10", "20", "0", "10", "10", "20", "20", "10", "0", "20", "20",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedInches = dxfParser.parseDxf(inchRectangleDxf);
+    assertEqual(parsedInches.widthMm, 254, "inch DXF width should be converted to millimetres");
+    assertEqual(parsedInches.lengthMm, 508, "inch DXF length should be converted to millimetres");
+    assertClose(parsedInches.partAreaM2, 0.12903, 0.00001, "inch DXF contour area should be converted to square metres");
+    assertClose(parsedInches.cuttingPerimeterM, 1.524, 0.0001, "inch DXF perimeter should be converted to metres");
+
+    const polylineDxf = (points, extraEntities = []) => [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "LWPOLYLINE", "90", String(points.length), "70", "1",
+      ...points.flatMap(([x, y]) => ["10", String(x), "20", String(y)]),
+      ...extraEntities,
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const circleEntity = (x, y, radius) => ["0", "CIRCLE", "10", String(x), "20", String(y), "40", String(radius)];
+
+    const crossingCutout = dxfParser.parseDxf(polylineDxf([[0, 0], [100, 0], [100, 100], [0, 100]], circleEntity(5, 50, 10)));
+    assertEqual(crossingCutout.areaSource, "bounding-box", "circle crossing contour must not be subtracted as a complete hole");
+    assert(crossingCutout.warnings.some((warning) => warning.includes("touches or crosses")), "crossing circular cutout should warn");
+
+    const overlappingHoles = dxfParser.parseDxf(polylineDxf([[0, 0], [100, 0], [100, 100], [0, 100]], [...circleEntity(40, 50, 10), ...circleEntity(50, 50, 10)]));
+    assertEqual(overlappingHoles.areaSource, "bounding-box", "overlapping holes must not use simple subtraction");
+    assert(overlappingHoles.warnings.some((warning) => warning.includes("Overlapping circular holes")), "overlapping holes should warn");
+
+    const largeOffset = dxfParser.parseDxf(polylineDxf([[1e9, 1e9], [1e9 + 200, 1e9], [1e9 + 200, 1e9 + 200], [1e9, 1e9 + 200]]));
+    assertEqual(largeOffset.areaSource, "simple-closed-contour-minus-circular-holes", "large drawing offsets should still use contour area");
+    assertClose(largeOffset.partAreaM2, 0.04, 0.00001, "large-offset polygon area should remain position-independent");
+
+    const bowtie = dxfParser.parseDxf(polylineDxf([[0, 0], [100, 100], [100, 0], [0, 100]]));
+    assertEqual(bowtie.areaSource, "bounding-box", "self-intersecting contour must not use net area");
+    assert(bowtie.warnings.some((warning) => warning.includes("self-intersects")), "self-intersecting contour should warn");
+
+    const uploadedDxfQuote = logic.calculateQuote(baseInput({ template: "uploaded-dxf", widthMm: "", lengthMm: "", dxfAnalysis: parsedDxf }), config);
+    assertEqual(uploadedDxfQuote.metrics.widthMm, 500, "uploaded DXF quote width");
+    assertEqual(uploadedDxfQuote.metrics.holesPerPart, 4, "uploaded DXF quote hole count");
+    assertEqual(uploadedDxfQuote.metrics.geometryConfidence, "basic-dxf-bounding-box", "uploaded DXF confidence");
+    assert(uploadedDxfQuote.nesting.method.includes("irregular contour nesting not performed"), "DXF nesting must not claim true irregular nesting");
+    assertEqual(uploadedDxfQuote.price.status, "reference-range", "basic parsed DXF should produce reference-range pricing only");
+    assert(uploadedDxfQuote.manualReasons.some((reason) => reason.includes("bounding-box geometry only")), "parsed DXF manual reason should disclose bounding-box limitation");
+
+    const invalidDxf = dxfParser.parseDxf("not a dxf");
+    assertEqual(invalidDxf.ok, false, "invalid DXF should fail parsing");
+    const invalidDxfQuote = logic.calculateQuote(baseInput({ template: "uploaded-dxf", dxfAnalysis: invalidDxf }), config);
+    assertEqual(invalidDxfQuote.metrics, null, "invalid DXF must not produce geometry metrics");
+    assert(invalidDxfQuote.manualReasons.some((reason) => reason.includes("DXF parsing failed")), "invalid DXF should produce an explicit parsing manual reason");
+    assertEqual(invalidDxfQuote.price.status, "manual-required", "invalid DXF should be manual-required");
+
+    const extremeArcDxf = [
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "ARC", "10", "0", "20", "0", "40", "10", "50", "0", "51", "-1e30",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const extremeArc = dxfParser.parseDxf(extremeArcDxf);
+    assertEqual(extremeArc.ok, true, "extremely negative arc angle should normalize without hanging");
+    assert(extremeArc.cuttingPerimeterM > 0, "normalized arc should contribute a positive perimeter");
 
     return "CPQ prototype logic tests passed";
   };

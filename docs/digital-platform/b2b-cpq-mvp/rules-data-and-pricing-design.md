@@ -431,4 +431,4 @@ Numbers are intentionally zero in this example because rates must come from conf
 2. Implement clickable prototype with realistic sample data and fixed demonstration rates.
 3. Separate demonstration configuration from core calculation logic.
 4. Add browser-based validation tests for formula and DFM behaviour.
-5. Only after user confirmation, implement persistence, authentication, real DXF parsing and PDF generation.
+5. Only after user confirmation, implement persistence, authentication, fuller DXF fidelity/contour reconstruction and PDF generation.

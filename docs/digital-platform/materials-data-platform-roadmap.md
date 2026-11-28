@@ -23,7 +23,7 @@ The first product frame is a B2B CPQ and engineering-specification workflow for 
 - [Clickable CPQ structure prototype](../../tools/cpq-prototype/index.html)
 - [CPQ prototype documentation and limitations](../../tools/cpq-prototype/README.md)
 
-The initial structural framework now exists as a clickable prototype and data/rules framework. It validates the product shape, but it is not yet a production CPQ system: manufacturer-validated data, server persistence, real DXF parsing, irregular nesting, PDF generation, authentication, audit trails and end-to-end browser tests remain open.
+The initial structural framework now exists as a clickable prototype and data/rules framework, including bounded real-DXF parsing for common 2D entities. It validates the product shape, but it is not yet a production CPQ system: manufacturer-validated data, server persistence, fuller DXF fidelity, contour reconstruction, irregular nesting, PDF generation, authentication, audit trails and end-to-end browser tests remain open.
 
 ## 90-Day Engineering Plan
 

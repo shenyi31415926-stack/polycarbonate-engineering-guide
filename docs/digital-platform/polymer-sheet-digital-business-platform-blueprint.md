@@ -363,6 +363,6 @@ The platform vision should be large enough to matter, but the first proof must r
 - prove the customer workflow from selection to quotation preview;
 - prove that DFM and pricing logic are configurable;
 - prove that the output is useful to a real salesperson or customer;
-- then invest in real DXF parsing, persistence and production infrastructure.
+- then invest in fuller DXF fidelity, contour reconstruction, persistence and production infrastructure.
 
 That combination — large long-term platform, narrow verifiable first slice — is more credible than either a small calculator or an unrealistic promise to digitize the entire company at once.
