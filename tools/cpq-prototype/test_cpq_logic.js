@@ -204,6 +204,25 @@
     assertEqual(parsedOpenLines.areaSource, "bounding-box", "open LINE chain must fall back to bounding-box area");
     assert(parsedOpenLines.warnings.some((warning) => warning.includes("could not be reconstructed")), "open LINE chain should warn about contour reconstruction");
 
+    const densePoints = Array.from({ length: 2100 }, (_, index) => {
+      const angle = index * Math.PI * 2 / 2100;
+      return [1000 * Math.cos(angle), 1000 * Math.sin(angle)];
+    });
+    const denseSegments = densePoints.map((point, index) => {
+      const next = densePoints[(index + 1) % densePoints.length];
+      return [point[0], point[1], next[0], next[1]];
+    }).reverse();
+    const denseLineDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      ...denseSegments.flatMap((segment) => lineEntity(...segment)),
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedDenseLines = dxfParser.parseDxf(denseLineDxf);
+    assertEqual(parsedDenseLines.ok, true, "dense reversed LINE loop should parse without hanging");
+    assertEqual(parsedDenseLines.areaSource, "bounding-box", "very dense contour should skip expensive net-area validation");
+    assert(parsedDenseLines.warnings.some((warning) => warning.includes("expensive browser-side topology validation")), "dense contour should explain topology-validation fallback");
+
     const inchRectangleDxf = [
       "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "1", "0", "ENDSEC",
       "0", "SECTION", "2", "ENTITIES",

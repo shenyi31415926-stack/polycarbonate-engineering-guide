@@ -153,6 +153,8 @@
     return `${x.toFixed(5)},${y.toFixed(5)}`;
   }
 
+  const MAX_SIMPLE_CONTOUR_VERTICES = 2000;
+
   function distancePointToSegment(point, a, b) {
     const dx = b.x - a.x;
     const dy = b.y - a.y;
@@ -233,6 +235,15 @@
     }
     if (Array.from(degree.values()).some((count) => count !== 2)) return null;
 
+    const adjacency = new Map();
+    lines.forEach((line, index) => {
+      for (const point of [{ x: line.x1, y: line.y1 }, { x: line.x2, y: line.y2 }]) {
+        const key = endpointKey(point.x, point.y);
+        if (!adjacency.has(key)) adjacency.set(key, []);
+        adjacency.get(key).push(index);
+      }
+    });
+
     const unused = new Set(lines.map((_, index) => index));
     const first = lines[0];
     const start = { x: first.x1, y: first.y1 };
@@ -242,15 +253,8 @@
     while (unused.size) {
       const end = points[points.length - 1];
       const endKey = endpointKey(end.x, end.y);
-      let nextIndex = null;
-      for (const index of unused) {
-        const line = lines[index];
-        if (endpointKey(line.x1, line.y1) === endKey || endpointKey(line.x2, line.y2) === endKey) {
-          nextIndex = index;
-          break;
-        }
-      }
-      if (nextIndex === null) return null;
+      const nextIndex = (adjacency.get(endKey) || []).find((index) => unused.has(index));
+      if (nextIndex === undefined) return null;
       const line = lines[nextIndex];
       const nextPoint = endpointKey(line.x1, line.y1) === endKey
         ? { x: line.x2, y: line.y2 }
@@ -348,8 +352,10 @@
       if (!lineLoop) warnings.push("LINE entities could not be reconstructed into one simple closed contour; bounding-box area was retained.");
     }
     const contourCandidate = closedPolyline || lineLoop;
-    const simpleContour = contourCandidate && polygonIsSimple(contourCandidate.points) ? contourCandidate : null;
-    if (contourCandidate && !simpleContour) warnings.push("Closed contour self-intersects or contains duplicate/zero-length vertices; bounding-box area was retained.");
+    const contourTooDense = contourCandidate && contourCandidate.points.length > MAX_SIMPLE_CONTOUR_VERTICES;
+    const simpleContour = contourCandidate && !contourTooDense && polygonIsSimple(contourCandidate.points) ? contourCandidate : null;
+    if (contourTooDense) warnings.push(`Closed contour has more than ${MAX_SIMPLE_CONTOUR_VERTICES} vertices; bounding-box area was retained to avoid expensive browser-side topology validation.`);
+    else if (contourCandidate && !simpleContour) warnings.push("Closed contour self-intersects or contains duplicate/zero-length vertices; bounding-box area was retained.");
 
     let fullyInsideHoles = [];
     let circularHoleAreaUncertain = false;
