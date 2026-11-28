@@ -409,8 +409,9 @@
     function renderPrice(q) {
       if (!q.price) { $("price-table").innerHTML = "<p class='muted'>Price incomplete.</p>"; return; }
       const p = q.price;
+      const cost = (key) => q.costs ? q.costs[key] : null;
       const rows = [
-        ["Material", p.materialCost], ["Cutting", q.costs.cutting], ["Drilling", q.costs.drilling], ["Bending", q.costs.bending], ["Polishing", q.costs.polishing], ["Coating", q.costs.coating], ["Packaging", p.packagingCost], ["Sea freight reference", p.logisticsReferenceCost], ["Overhead", p.overhead], ["Margin", p.margin]
+        ["Material", p.materialCost], ["Cutting", cost("cutting")], ["Drilling", cost("drilling")], ["Bending", cost("bending")], ["Polishing", cost("polishing")], ["Coating", cost("coating")], ["Packaging", p.packagingCost], ["Sea freight reference", p.logisticsReferenceCost], ["Overhead", p.overhead], ["Margin", p.margin]
       ];
       $("price-table").innerHTML = `<table>${rows.map(([k,v]) => `<tr><td>${k}</td><td>${money(v)}</td></tr>`).join("")}<tr class="total-row"><td>Total</td><td>${money(p.total)}</td></tr>${p.status !== "automated-list-price" ? `<tr><td>Reference range</td><td>${money(p.referenceLow)} – ${money(p.referenceHigh)}</td></tr>` : ""}</table><p class="muted">Placeholder rates for structure validation only.</p>`;
     }
