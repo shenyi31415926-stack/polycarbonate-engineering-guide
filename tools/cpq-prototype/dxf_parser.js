@@ -359,12 +359,13 @@
 
     let fullyInsideHoles = [];
     let circularHoleAreaUncertain = false;
-    if (simpleContour && holes.length) {
-      const insideHoles = holes.filter((hole) => pointInPolygon(hole, simpleContour.points));
+    const contourForHoleClassification = simpleContour || contourCandidate;
+    if (contourForHoleClassification && holes.length) {
+      const insideHoles = holes.filter((hole) => pointInPolygon(hole, contourForHoleClassification.points));
       const outsideHoles = holes.filter((hole) => !insideHoles.includes(hole));
       holes = insideHoles;
-      fullyInsideHoles = insideHoles.filter((hole) => circleFullyInsidePolygon(hole, simpleContour.points));
-      circularHoleAreaUncertain = fullyInsideHoles.length !== insideHoles.length;
+      fullyInsideHoles = simpleContour ? insideHoles.filter((hole) => circleFullyInsidePolygon(hole, simpleContour.points)) : [];
+      circularHoleAreaUncertain = simpleContour ? fullyInsideHoles.length !== insideHoles.length : false;
       if (outsideHoles.length) warnings.push(`${outsideHoles.length} circular entit${outsideHoles.length === 1 ? "y was" : "ies were"} outside the closed contour and excluded from hole metrics.`);
       if (circularHoleAreaUncertain) warnings.push("At least one circular entity touches or crosses the contour boundary; net contour area was not used because the cutout area cannot be determined by circular-hole subtraction.");
     }

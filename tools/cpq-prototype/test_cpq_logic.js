@@ -216,11 +216,14 @@
       "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
       "0", "SECTION", "2", "ENTITIES",
       ...denseSegments.flatMap((segment) => lineEntity(...segment)),
+      "0", "CIRCLE", "10", "0", "20", "0", "40", "10",
+      "0", "CIRCLE", "10", "2500", "20", "0", "40", "10",
       "0", "ENDSEC", "0", "EOF"
     ].join("\n");
     const parsedDenseLines = dxfParser.parseDxf(denseLineDxf);
     assertEqual(parsedDenseLines.ok, true, "dense reversed LINE loop should parse without hanging");
     assertEqual(parsedDenseLines.areaSource, "bounding-box", "very dense contour should skip expensive net-area validation");
+    assertEqual(parsedDenseLines.holesPerPart, 1, "dense contour should still exclude exterior circles from hole count");
     assert(parsedDenseLines.warnings.some((warning) => warning.includes("expensive browser-side topology validation")), "dense contour should explain topology-validation fallback");
 
     const unsupportedCutoutDxf = [
