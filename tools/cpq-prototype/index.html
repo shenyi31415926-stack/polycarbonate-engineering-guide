@@ -506,6 +506,7 @@
         currentDxfFileName = file.name;
         if (currentDxfAnalysis.ok) {
           applyDxfInputs();
+          $("holeEdgeDistanceMm").value = "";
           $("dxf-status").textContent = `${file.name}: parsed bounding box ${currentDxfAnalysis.widthMm}×${currentDxfAnalysis.lengthMm} mm, ${currentDxfAnalysis.holesPerPart} hole(s), ${currentDxfAnalysis.supportedEntityCount}/${currentDxfAnalysis.entityCount} supported entities. Manual review remains required.`;
         } else {
           $("dxf-status").textContent = `${file.name}: ${currentDxfAnalysis.error}`;
