@@ -1,16 +1,20 @@
 (function (root, factory) {
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = factory(require("./cpq_logic.js"), require("./cpq_demo_config.js"));
+    module.exports = factory(require("./cpq_logic.js"), require("./cpq_demo_config.js"), require("./dxf_parser.js"));
   } else {
-    root.runCpqPrototypeTests = factory(root.CpqLogic, root.CpqDemoConfig);
+    root.runCpqPrototypeTests = factory(root.CpqLogic, root.CpqDemoConfig, root.CpqDxfParser);
   }
-})(typeof self !== "undefined" ? self : globalThis, function (logic, config) {
+})(typeof self !== "undefined" ? self : globalThis, function (logic, config, dxfParser) {
   function assert(condition, message) {
     if (!condition) throw new Error(message);
   }
 
   function assertEqual(actual, expected, message) {
     if (actual !== expected) throw new Error(`${message}: expected ${expected}, got ${actual}`);
+  }
+
+  function assertClose(actual, expected, tolerance, message) {
+    if (Math.abs(actual - expected) > tolerance) throw new Error(`${message}: expected ${expected} ±${tolerance}, got ${actual}`);
   }
 
   function baseInput(overrides = {}) {
@@ -131,6 +135,41 @@
 
     const zeroRadiusWithBend = logic.calculateQuote(baseInput({ materialId: "pc-solid", template: "l-bend", bendRadiusMm: "0" }), config);
     assert(zeroRadiusWithBend.dfmFindings.some((finding) => finding.id === "DFM-004" && finding.severity === "manual_review"), "zero bend radius should trigger review when bends exist");
+
+    const sampleDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "LWPOLYLINE", "90", "4", "70", "1",
+      "10", "0", "20", "0", "10", "500", "20", "0", "10", "500", "20", "800", "10", "0", "20", "800",
+      "0", "CIRCLE", "10", "50", "20", "50", "40", "4",
+      "0", "CIRCLE", "10", "450", "20", "50", "40", "4",
+      "0", "CIRCLE", "10", "450", "20", "750", "40", "4",
+      "0", "CIRCLE", "10", "50", "20", "750", "40", "4",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedDxf = dxfParser.parseDxf(sampleDxf);
+    assertEqual(parsedDxf.ok, true, "sample DXF should parse");
+    assertEqual(parsedDxf.widthMm, 500, "sample DXF bounding width");
+    assertEqual(parsedDxf.lengthMm, 800, "sample DXF bounding length");
+    assertEqual(parsedDxf.holesPerPart, 4, "sample DXF hole count");
+    assertEqual(parsedDxf.holeDiameterMm, 8, "sample DXF hole diameter");
+    assertClose(parsedDxf.cuttingPerimeterM, 2.7005, 0.0001, "sample DXF cutting perimeter");
+    assertEqual(parsedDxf.requiresManualGeometryReview, true, "parsed DXF should retain manual review flag");
+
+    const uploadedDxfQuote = logic.calculateQuote(baseInput({ template: "uploaded-dxf", widthMm: "", lengthMm: "", dxfAnalysis: parsedDxf }), config);
+    assertEqual(uploadedDxfQuote.metrics.widthMm, 500, "uploaded DXF quote width");
+    assertEqual(uploadedDxfQuote.metrics.holesPerPart, 4, "uploaded DXF quote hole count");
+    assertEqual(uploadedDxfQuote.metrics.geometryConfidence, "basic-dxf-bounding-box", "uploaded DXF confidence");
+    assert(uploadedDxfQuote.nesting.method.includes("irregular contour nesting not performed"), "DXF nesting must not claim true irregular nesting");
+    assertEqual(uploadedDxfQuote.price.status, "reference-range", "basic parsed DXF should produce reference-range pricing only");
+    assert(uploadedDxfQuote.manualReasons.some((reason) => reason.includes("bounding-box geometry only")), "parsed DXF manual reason should disclose bounding-box limitation");
+
+    const invalidDxf = dxfParser.parseDxf("not a dxf");
+    assertEqual(invalidDxf.ok, false, "invalid DXF should fail parsing");
+    const invalidDxfQuote = logic.calculateQuote(baseInput({ template: "uploaded-dxf", dxfAnalysis: invalidDxf }), config);
+    assertEqual(invalidDxfQuote.metrics, null, "invalid DXF must not produce geometry metrics");
+    assert(invalidDxfQuote.manualReasons.some((reason) => reason.includes("DXF parsing failed")), "invalid DXF should produce an explicit parsing manual reason");
+    assertEqual(invalidDxfQuote.price.status, "manual-required", "invalid DXF should be manual-required");
 
     return "CPQ prototype logic tests passed";
   };

@@ -172,7 +172,7 @@
 
         <section class="page" id="page-2">
           <h1 class="page-title">2D geometry and fabrication input</h1>
-          <p class="page-subtitle">Use a parametric template or simulated DXF example. Real DXF parsing is explicitly outside this structure prototype.</p>
+          <p class="page-subtitle">Use a parametric template, a bounded real DXF import, or the simulated DXF example. Parsed DXF pricing remains a conservative bounding-box estimate pending contour reconstruction.</p>
           <div class="grid two">
             <div class="panel">
               <h2>Geometry source</h2>
@@ -182,9 +182,15 @@
                 <option value="hole-cover" selected>Parametric template — cover plate with holes</option>
                 <option value="l-bend">Parametric template — simple L-bent guard</option>
                 <option value="u-bend">Parametric template — simple U-bent guard</option>
+                <option value="uploaded-dxf">Upload DXF — basic parsed 2D geometry</option>
                 <option value="simulated-dxf">Simulated DXF — parsed result demo</option>
               </select>
-              <div class="form-grid">
+              <div id="dxf-upload-row" hidden>
+                <label for="dxfFile">2D DXF file (LINE/LWPOLYLINE/CIRCLE/ARC)</label>
+                <input id="dxfFile" type="file" accept=".dxf,text/plain">
+                <div id="dxf-status" class="muted">No DXF file loaded.</div>
+              </div>
+              <div class="form-grid" style="margin-top:10px">
                 <div><label for="widthMm">Part width / flat blank width (mm)</label><input id="widthMm" type="number" min="0" value="500"></div>
                 <div><label for="lengthMm">Part length / flat blank length (mm)</label><input id="lengthMm" type="number" min="0" value="800"></div>
               </div>
@@ -267,12 +273,15 @@
   </div>
 
   <script src="cpq_demo_config.js"></script>
+  <script src="dxf_parser.js"></script>
   <script src="cpq_logic.js"></script>
   <script>
     const config = window.CpqDemoConfig;
     const logic = window.CpqLogic;
     let currentQuote = null;
     let lastTemplate = null;
+    let currentDxfAnalysis = null;
+    let currentDxfFileName = null;
 
     const fieldIds = ["application","temperatureSwingC","designLoadKnM2","spanMm","outdoorExposure","materialId","thicknessMm","quantity","template","widthMm","lengthMm","holesPerPart","holeDiameterMm","holeEdgeDistanceMm","bendCount","bendRadiusMm","cornerRadiusMm","toleranceMm","screwDiameterMm","cuttingMethod","polishedLengthMm","coatingType","destination","customerName"];
     const $ = (id) => document.getElementById(id);
@@ -285,6 +294,8 @@
         input[id] = el.type === "checkbox" ? el.checked : el.value;
       }
       input.requirements = Array.from(document.querySelectorAll(".checks input:checked")).map(el => el.value);
+      input.dxfAnalysis = currentDxfAnalysis;
+      input.dxfFileName = currentDxfFileName;
       return input;
     }
 
@@ -330,13 +341,16 @@
       }
       if (commitBendMinimum && template === "l-bend" && Number(bendInput.value) < 1) bendInput.value = "1";
       if (commitBendMinimum && template === "u-bend" && Number(bendInput.value) < 2) bendInput.value = "2";
+      const usingDxf = template === "uploaded-dxf";
+      $("dxf-upload-row").hidden = !usingDxf;
+      for (const id of ["widthMm", "lengthMm", "holesPerPart", "holeDiameterMm"]) $(id).disabled = usingDxf;
       const q = calculate();
       const m = q.metrics;
       $("geometry-summary").innerHTML = m ? `
         Area/part: <strong>${m.partAreaM2} m²</strong><br>
         Cutting perimeter/part: <strong>${m.cuttingPerimeterM} m</strong><br>
         Holes/part: <strong>${m.holesPerPart}</strong> · Bends/part: <strong>${m.bendCountPerPart}</strong><br>
-        Geometry confidence: <strong>${esc(m.geometryConfidence)}</strong><br>
+        Geometry confidence: <strong>${esc(m.geometryConfidence)}</strong>${m.dxfWarnings && m.dxfWarnings.length ? `<br>DXF warnings: <strong>${esc(m.dxfWarnings.join(" "))}</strong>` : ""}<br>
         Thermal movement screening: <strong>${q.thermalMovementMm ?? "pending"} mm</strong><br>
         Span/load screening: <strong>${q.spanScreening ? `${q.spanScreening.governingSpanM} m max (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence / review" : "not requested"}${q.input.spanMm ? ` · stated span ${q.input.spanMm / 1000} m` : ""}</strong>
       ` : "Geometry inputs incomplete.";
@@ -452,6 +466,41 @@
       renderRecommendation(true); renderGeometry(); renderAnalysis(); go("3");
     }
 
+    function handleDxfFile(file) {
+      if (!file) {
+        currentDxfAnalysis = null;
+        currentDxfFileName = null;
+        $("dxf-status").textContent = "No DXF file loaded.";
+        renderGeometry();
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        currentDxfAnalysis = window.CpqDxfParser.parseDxf(reader.result);
+        currentDxfFileName = file.name;
+        if (currentDxfAnalysis.ok) {
+          $("widthMm").value = currentDxfAnalysis.widthMm;
+          $("lengthMm").value = currentDxfAnalysis.lengthMm;
+          $("holesPerPart").value = currentDxfAnalysis.holesPerPart;
+          $("holeDiameterMm").value = currentDxfAnalysis.holeDiameterMm || "";
+          $("holeEdgeDistanceMm").value = "";
+          $("bendCount").value = "0";
+          $("dxf-status").textContent = `${file.name}: parsed bounding box ${currentDxfAnalysis.widthMm}×${currentDxfAnalysis.lengthMm} mm, ${currentDxfAnalysis.holesPerPart} hole(s), ${currentDxfAnalysis.supportedEntityCount}/${currentDxfAnalysis.entityCount} supported entities. Manual review remains required.`;
+        } else {
+          $("dxf-status").textContent = `${file.name}: ${currentDxfAnalysis.error}`;
+        }
+        renderGeometry();
+        renderAnalysis();
+      };
+      reader.onerror = () => {
+        currentDxfAnalysis = { ok: false, error: "The file could not be read in this browser." };
+        currentDxfFileName = file.name;
+        $("dxf-status").textContent = `${file.name}: file read failed.`;
+        renderGeometry();
+      };
+      reader.readAsText(file);
+    }
+
     document.querySelectorAll(".stepnav button").forEach(b => b.addEventListener("click", () => go(b.dataset.step)));
     document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => go(b.dataset.go)));
     fieldIds.forEach(id => {
@@ -460,6 +509,7 @@
       $(id).addEventListener("change", refresh);
     });
     document.querySelectorAll(".checks input").forEach(el => el.addEventListener("change", () => renderRecommendation(true)));
+    $("dxfFile").addEventListener("change", (event) => handleDxfFile(event.target.files[0]));
     $("toggle-admin").addEventListener("click", () => { $("admin-panel").hidden = !$("admin-panel").hidden; });
     $("load-demo").addEventListener("click", loadDemo);
     $("save-inquiry").addEventListener("click", () => {

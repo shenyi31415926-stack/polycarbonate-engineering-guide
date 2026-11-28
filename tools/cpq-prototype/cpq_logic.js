@@ -147,10 +147,30 @@
   }
 
   function defaultTemplateMetrics(input) {
+    if ((input.invalidFields || []).some((field) => field === "holes per part" || field === "bend count")) return null;
+
+    if (input.template === "uploaded-dxf") {
+      const analysis = input.dxfAnalysis;
+      if (!analysis || !analysis.ok) return null;
+      return {
+        widthMm: analysis.widthMm,
+        lengthMm: analysis.lengthMm,
+        partAreaM2: analysis.partAreaM2,
+        outerPerimeterM: analysis.outerPerimeterM,
+        cuttingPerimeterM: analysis.cuttingPerimeterM,
+        holesPerPart: analysis.holesPerPart || 0,
+        holeDiameterMm: analysis.holeDiameterMm || null,
+        bendCountPerPart: input.bendCount || 0,
+        geometryConfidence: analysis.geometryConfidence || "basic-dxf-bounding-box",
+        requiresManualGeometryReview: true,
+        dxfWarnings: analysis.warnings || [],
+        dxfUnits: analysis.units || null
+      };
+    }
+
     const width = input.widthMm;
     const length = input.lengthMm;
     if (!width || !length) return null;
-    if ((input.invalidFields || []).some((field) => field === "holes per part" || field === "bend count")) return null;
 
     let holes = input.holesPerPart;
     let bends = input.bendCount;
@@ -251,7 +271,11 @@
       stockAreaM2: round(best.stockAreaMm2 / 1_000_000, 4),
       utilization: round(utilization, 4),
       wasteRatio: round(1 - utilization, 4),
-      method: metrics.geometryConfidence === "simulated-dxf-estimate" ? "bounding-box estimate from simulated DXF" : "rectangle template nesting"
+      method: metrics.geometryConfidence === "simulated-dxf-estimate"
+        ? "bounding-box estimate from simulated DXF"
+        : metrics.geometryConfidence === "basic-dxf-bounding-box"
+          ? "bounding-box estimate from parsed DXF; irregular contour nesting not performed"
+          : "rectangle template nesting"
     };
   }
 
@@ -404,7 +428,13 @@
     if (!input.materialId) manualReasons.push("Material not explicitly selected");
     if (material && input.thicknessMm && material.thicknessesMm && !material.thicknessesMm.includes(input.thicknessMm)) manualReasons.push(`${input.thicknessMm}mm is not a configured thickness for ${material.name}`);
     if (!metrics) manualReasons.push("Geometry incomplete");
-    if (metrics && metrics.requiresManualGeometryReview) manualReasons.push("Simulated DXF requires real parser validation in production");
+    if (input.template === "uploaded-dxf" && (!input.dxfAnalysis || !input.dxfAnalysis.ok)) manualReasons.push(input.dxfAnalysis && input.dxfAnalysis.error ? `DXF parsing failed: ${input.dxfAnalysis.error}` : "No parsed DXF file is attached");
+    if (metrics && metrics.requiresManualGeometryReview) {
+      manualReasons.push(metrics.geometryConfidence === "basic-dxf-bounding-box"
+        ? "Parsed DXF is priced from bounding-box geometry only; contour reconstruction and irregular nesting require engineering review"
+        : "Simulated DXF requires real parser validation in production");
+      if (metrics.dxfWarnings && metrics.dxfWarnings.length) manualReasons.push(`DXF parser warnings: ${metrics.dxfWarnings.join(" ")}`);
+    }
     if (nest && !nest.fits) manualReasons.push(nest.manualReviewReason);
     for (const finding of findings) {
       if (finding.severity === "manual_review" || finding.severity === "blocking") manualReasons.push(`${finding.id}: ${finding.message}`);
@@ -432,6 +462,20 @@
         status: hasBlocking ? "manual-required" : hasManual ? "reference-range" : "automated-list-price",
         referenceLow: round(total * (1 - config.commercial.manualRangeDownPct)),
         referenceHigh: round(total * (1 + config.commercial.manualRangeUpPct))
+      };
+    } else if (manualReasons.length) {
+      price = {
+        materialCost: null,
+        processCost: null,
+        packagingCost: null,
+        logisticsReferenceCost: null,
+        directCost: null,
+        overhead: null,
+        margin: null,
+        total: null,
+        status: "manual-required",
+        referenceLow: null,
+        referenceHigh: null
       };
     }
 

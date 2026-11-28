@@ -290,7 +290,7 @@ Outputs:
 
 ## 9. Prototype implementation status
 
-The clickable structural prototype is available at [tools/cpq-prototype/index.html](../../../tools/cpq-prototype/index.html). It implements the four-step flow with parametric templates, a simulated-DXF demonstration mode, rectangle nesting, plastic-specific DFM findings, quotation breakdown, PDF-preview structure, local inquiry-record output and a placeholder admin-rate configuration panel. It intentionally uses demonstration rates and does not implement real DXF parsing, authentication, server persistence or production PDF generation.
+The clickable structural prototype is available at [tools/cpq-prototype/index.html](../../../tools/cpq-prototype/index.html). It implements the four-step flow with parametric templates, a bounded real-DXF import plus simulated-DXF comparison mode, rectangle nesting, plastic-specific DFM findings, quotation breakdown, PDF-preview structure, local inquiry-record output and a placeholder admin-rate configuration panel. It intentionally uses demonstration rates. DXF parsing currently supports common ASCII `LINE`, `LWPOLYLINE`, `CIRCLE` and `ARC` entities only, derives conservative bounding-box metrics, keeps manual review mandatory, and does not implement contour reconstruction, irregular nesting, authentication, server persistence or production PDF generation.
 
 ## 10. Key dependencies and risks
 
