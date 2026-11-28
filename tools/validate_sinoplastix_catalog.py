@@ -86,8 +86,14 @@ def validate_entry(entry, index):
     entry_id = entry["id"]
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", entry_id):
         errors.append(f"{key}: id must use lowercase kebab-case")
-    if entry["commercial_status"] == "publicly-offered" and not entry["sources"]:
-        errors.append(f"{entry_id}: publicly offered entries need at least one source")
+    if entry["commercial_status"] == "publicly-offered":
+        if not entry["sources"]:
+            errors.append(f"{entry_id}: publicly offered entries need at least one source")
+        default_source_key = entry.get("default_source_key")
+        if not default_source_key:
+            errors.append(f"{entry_id}: publicly offered entries need default_source_key for inherited fact provenance")
+        elif default_source_key not in entry["sources"]:
+            errors.append(f"{entry_id}: default_source_key '{default_source_key}' is not declared in sources")
 
     for source_key, url in entry["sources"].items():
         parsed = urlparse(url)

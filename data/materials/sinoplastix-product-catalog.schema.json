@@ -34,6 +34,7 @@
           "commercial_status": { "enum": ["publicly-offered", "not-evidenced-on-public-website", "discontinued", "internal-only"] },
           "evidence_level": { "type": "string" },
           "cpq_material_id": { "type": "string" },
+          "default_source_key": { "type": "string" },
           "cpq_material_ids": {
             "type": "array",
             "items": { "type": "string" },

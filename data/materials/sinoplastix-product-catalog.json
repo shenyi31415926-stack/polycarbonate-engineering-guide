@@ -21,6 +21,7 @@
       "sources": {
         "product-family": "https://sinoplastix.com/materials/polycarbonate/solid/"
       },
+      "default_source_key": "product-family",
       "dimensions": {
         "thickness_mm": {
           "min": 0.8,
@@ -111,6 +112,7 @@
       "sources": {
         "product-family": "https://sinoplastix.com/materials/polycarbonate/multiwall/"
       },
+      "default_source_key": "product-family",
       "appearance": {
         "colours": ["clear", "opal", "bronze", "custom colours"],
         "appearance_effects": ["daylight", "glare", "privacy"],
@@ -194,6 +196,7 @@
         "white-opal": "https://sinoplastix.com/materials/acrylic/white-opal/",
         "cast": "https://sinoplastix.com/materials/acrylic/cast/"
       },
+      "default_source_key": "family",
       "routes": [
         {
           "id": "cast",
@@ -233,6 +236,7 @@
       "variants": [
         {
           "id": "clear",
+          "source_key": "clear",
           "process_options": ["cast", "extruded"],
           "dimensions": {
             "thickness_mm": {
@@ -277,6 +281,7 @@
         },
         {
           "id": "frosted",
+          "source_key": "frosted",
           "process_options": ["cast", "extruded"],
           "finish_options": ["single-sided matte", "double-sided matte"],
           "dimensions": {
@@ -306,6 +311,7 @@
         },
         {
           "id": "coloured",
+          "source_key": "coloured",
           "colour_types": ["transparent tint", "translucent", "solid opaque", "fluorescent"],
           "matching_references": ["Pantone", "RAL", "physical sample"],
           "dimensions": {

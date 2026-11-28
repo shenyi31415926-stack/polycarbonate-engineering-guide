@@ -12,7 +12,7 @@ The current implementation is intentionally conservative: it records only facts 
 
 ## Design principles
 
-1. **Provenance before convenience.** Every public fact group carries a `source_key` that resolves to a source URL in the same entry.
+1. **Provenance before convenience.** Every public entry declares a `default_source_key` for inherited fact provenance; more specific fact groups can override it with their own `source_key`, resolving to a source URL in the same entry.
 2. **No invented completeness.** If the website does not state thickness, width, mechanical performance, price, stock status or compliance evidence, the field is omitted.
 3. **Reference data is not production approval.** `verification_status` explicitly marks the dataset as public-web reference data, not a manufacturer datasheet or project approval basis.
 4. **Separate product family, process route and variant.** PMMA is not flattened into false precision: cast/extruded route differences are stored separately from clear/frosted/coloured variant dimensions.
