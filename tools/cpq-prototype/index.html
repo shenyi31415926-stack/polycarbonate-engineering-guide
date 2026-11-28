@@ -324,13 +324,17 @@
     }
 
     function snapshotTemplateGeometry() {
-      return Object.fromEntries(["widthMm", "lengthMm", "holesPerPart", "holeDiameterMm"].map((id) => [id, $(id).value]));
+      return Object.fromEntries(["widthMm", "lengthMm", "holesPerPart", "holeDiameterMm", "holeEdgeDistanceMm"].map((id) => [id, $(id).value]));
     }
 
     function restoreTemplateGeometry() {
       if (!templateGeometryBackup) return;
       for (const [id, value] of Object.entries(templateGeometryBackup)) $(id).value = value;
       templateGeometryBackup = null;
+    }
+
+    function clearDxfInputs() {
+      for (const id of ["widthMm", "lengthMm", "holesPerPart", "holeDiameterMm"]) $(id).value = "";
     }
 
     function applyDxfInputs() {
@@ -358,7 +362,11 @@
         if (template === "l-bend") bendInput.value = "1";
         else if (template === "u-bend") bendInput.value = "2";
         else bendInput.value = "0";
-        if (template === "uploaded-dxf") applyDxfInputs();
+        if (template === "uploaded-dxf") {
+          if (currentDxfAnalysis && currentDxfAnalysis.ok) applyDxfInputs();
+          else clearDxfInputs();
+          $("holeEdgeDistanceMm").value = "";
+        }
         lastTemplate = template;
       }
       if (commitBendMinimum && template === "l-bend" && Number(bendInput.value) < 1) bendInput.value = "1";
@@ -404,7 +412,7 @@
     function renderNesting(q) {
       const n = q.nesting;
       if (!n || !n.fits) {
-        $("nesting-visual").innerHTML = `<p class="muted">No fit within configured standard sheets.</p>`;
+        $("nesting-visual").innerHTML = `<p class="muted">${q.metrics ? "No fit within configured standard sheets." : "Nesting unavailable until valid geometry is parsed or completed."}</p>`;
         $("nesting-table").innerHTML = "";
         return;
       }
@@ -513,6 +521,7 @@
           $("bendCount").value = "0";
           $("dxf-status").textContent = `${file.name}: parsed bounding box ${currentDxfAnalysis.widthMm}×${currentDxfAnalysis.lengthMm} mm, ${currentDxfAnalysis.holesPerPart} hole(s), ${currentDxfAnalysis.supportedEntityCount}/${currentDxfAnalysis.entityCount} supported entities. Manual review remains required.`;
         } else {
+          clearDxfInputs();
           $("dxf-status").textContent = `${file.name}: ${currentDxfAnalysis.error}`;
         }
         renderGeometry();
