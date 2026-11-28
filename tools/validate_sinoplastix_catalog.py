@@ -142,11 +142,15 @@ def main():
             import jsonschema  # type: ignore[import-not-found]
         except ImportError:
             jsonschema = None
-        if jsonschema is not None:
+        if jsonschema is None:
+            errors.append("schema validation requires the jsonschema Python package")
+        else:
             for error in jsonschema.validators.validator_for(schema)(schema).iter_errors(data):
                 errors.append(f"schema violation at {'/'.join(str(part) for part in error.absolute_path) or '<root>'}: {error.message}")
     if data.get("dataset") != "sinoplastix-public-product-catalog":
         errors.append("dataset: unexpected dataset name")
+    if data.get("verification_status") != "public-website-reference-data-not-a-production-datasheet":
+        errors.append("verification_status: catalog must remain marked as public reference data, not a production datasheet")
     try:
         date.fromisoformat(data.get("accessed_at", ""))
     except ValueError:
