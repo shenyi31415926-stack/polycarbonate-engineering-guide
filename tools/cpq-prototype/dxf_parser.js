@@ -144,6 +144,54 @@
     return inside;
   }
 
+  function endpointKey(x, y) {
+    return `${x.toFixed(5)},${y.toFixed(5)}`;
+  }
+
+  function chainLineLoop(lines) {
+    if (!lines.length || lines.some((line) => line.lengthMm <= 0)) return null;
+    const degree = new Map();
+    for (const line of lines) {
+      for (const point of [{ x: line.x1, y: line.y1 }, { x: line.x2, y: line.y2 }]) {
+        const key = endpointKey(point.x, point.y);
+        degree.set(key, (degree.get(key) || 0) + 1);
+      }
+    }
+    if (Array.from(degree.values()).some((count) => count !== 2)) return null;
+
+    const unused = new Set(lines.map((_, index) => index));
+    const first = lines[0];
+    const start = { x: first.x1, y: first.y1 };
+    const points = [start, { x: first.x2, y: first.y2 }];
+    unused.delete(0);
+
+    while (unused.size) {
+      const end = points[points.length - 1];
+      const endKey = endpointKey(end.x, end.y);
+      let nextIndex = null;
+      for (const index of unused) {
+        const line = lines[index];
+        if (endpointKey(line.x1, line.y1) === endKey || endpointKey(line.x2, line.y2) === endKey) {
+          nextIndex = index;
+          break;
+        }
+      }
+      if (nextIndex === null) return null;
+      const line = lines[nextIndex];
+      const nextPoint = endpointKey(line.x1, line.y1) === endKey
+        ? { x: line.x2, y: line.y2 }
+        : { x: line.x1, y: line.y1 };
+      points.push(nextPoint);
+      unused.delete(nextIndex);
+    }
+
+    const last = points[points.length - 1];
+    if (endpointKey(last.x, last.y) !== endpointKey(start.x, start.y)) return null;
+    points.pop();
+    if (points.length < 3) return null;
+    return { kind: "polyline", points, closed: true, lengthMm: lines.reduce((sum, line) => sum + line.lengthMm, 0), hole: false, hasBulge: false };
+  }
+
   function parseDxf(text) {
     const warnings = [];
     if (!text || !String(text).trim()) return { ok: false, error: "DXF file is empty.", warnings };
@@ -213,13 +261,19 @@
       if (contourCircles.length && contourItems.length > contourCircles.length) warnings.push("Large circular entities were treated as contour geometry; verify whether they are holes or cutouts.");
     }
 
-    const simpleContour = contourItems.length === 1
+    const closedPolyline = contourItems.length === 1
       && contourItems[0].kind === "polyline"
       && contourItems[0].closed
       && !contourItems[0].hasBulge
       && contourItems[0].points.length >= 3
       ? contourItems[0]
       : null;
+    let lineLoop = null;
+    if (!closedPolyline && contourItems.length >= 3 && contourItems.every((item) => item.kind === "line")) {
+      lineLoop = chainLineLoop(contourItems);
+      if (!lineLoop) warnings.push("LINE entities could not be reconstructed into one simple closed contour; bounding-box area was retained.");
+    }
+    const simpleContour = closedPolyline || lineLoop;
 
     if (simpleContour && holes.length) {
       const insideHoles = holes.filter((hole) => pointInPolygon(hole, simpleContour.points));

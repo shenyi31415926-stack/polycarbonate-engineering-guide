@@ -17,7 +17,7 @@ The prototype walks through the intended customer and internal-sales flow:
 - Materials: solid polycarbonate, multiwall polycarbonate, cast acrylic, extruded acrylic and PETG.
 - Processes: CNC/laser cutting, drilling, bending, polishing and surface/coating routes.
 - Pricing uses **placeholder demonstration rates only**; they are not commercial prices.
-- Real DXF import is deliberately bounded: ASCII DXF `LINE`, `LWPOLYLINE`, `CIRCLE` and `ARC` entities are parsed for bounding box, estimated perimeter and circular-hole count. A single closed straight-edged `LWPOLYLINE` can use net contour area minus circular holes; other shapes fall back to bounding-box area. Hole classification is heuristic, bulges/curves are not faithfully reconstructed, nesting remains bounding-box only, and pricing remains a **manual-review estimate** rather than production geometric accuracy.
+- Real DXF import is deliberately bounded: ASCII DXF `LINE`, `LWPOLYLINE`, `CIRCLE` and `ARC` entities are parsed for bounding box, estimated perimeter and circular-hole count. A single closed straight-edged `LWPOLYLINE` or a single reconstructable closed chain of `LINE` entities can use net contour area minus circular holes; other shapes fall back to bounding-box area. Hole classification is heuristic, bulges/curves are not faithfully reconstructed, nesting remains bounding-box only, and pricing remains a **manual-review estimate** rather than production geometric accuracy.
 - No ERP, inventory, online payment, 3D CAD or multi-factory bidding.
 - Output is not certified engineering design, a structural approval, a final grade confirmation or a production-ready quotation.
 

@@ -178,6 +178,45 @@
     assertEqual(bulgedLShape.areaSource, "bounding-box", "bulged polyline must not use straight-chord contour area");
     assertEqual(bulgedLShape.partAreaM2, 0.16, "bulged polyline should fall back to bounding-box area");
 
+    const lineEntity = (x1, y1, x2, y2) => ["0", "LINE", "10", String(x1), "20", String(y1), "11", String(x2), "21", String(y2)];
+    const lShapeSegments = [
+      [0, 0, 400, 0], [400, 0, 400, 200], [400, 200, 200, 200],
+      [200, 200, 200, 400], [200, 400, 0, 400], [0, 400, 0, 0]
+    ];
+    const lineLShapeDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      ...lShapeSegments.flatMap((segment) => lineEntity(...segment)),
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedLineLShape = dxfParser.parseDxf(lineLShapeDxf);
+    assertEqual(parsedLineLShape.ok, true, "LINE-chain L-shape should parse");
+    assertEqual(parsedLineLShape.areaSource, "simple-closed-contour-minus-circular-holes", "connected LINE loop should use contour area");
+    assertEqual(parsedLineLShape.partAreaM2, 0.12, "connected LINE loop contour area");
+
+    const openLineDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      ...lShapeSegments.slice(0, 5).flatMap((segment) => lineEntity(...segment)),
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedOpenLines = dxfParser.parseDxf(openLineDxf);
+    assertEqual(parsedOpenLines.areaSource, "bounding-box", "open LINE chain must fall back to bounding-box area");
+    assert(parsedOpenLines.warnings.some((warning) => warning.includes("could not be reconstructed")), "open LINE chain should warn about contour reconstruction");
+
+    const inchRectangleDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "1", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "LWPOLYLINE", "90", "4", "70", "1",
+      "10", "0", "20", "0", "10", "10", "20", "0", "10", "10", "20", "20", "10", "0", "20", "20",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedInches = dxfParser.parseDxf(inchRectangleDxf);
+    assertEqual(parsedInches.widthMm, 254, "inch DXF width should be converted to millimetres");
+    assertEqual(parsedInches.lengthMm, 508, "inch DXF length should be converted to millimetres");
+    assertClose(parsedInches.partAreaM2, 0.12903, 0.00001, "inch DXF contour area should be converted to square metres");
+    assertClose(parsedInches.cuttingPerimeterM, 1.524, 0.0001, "inch DXF perimeter should be converted to metres");
+
     const uploadedDxfQuote = logic.calculateQuote(baseInput({ template: "uploaded-dxf", widthMm: "", lengthMm: "", dxfAnalysis: parsedDxf }), config);
     assertEqual(uploadedDxfQuote.metrics.widthMm, 500, "uploaded DXF quote width");
     assertEqual(uploadedDxfQuote.metrics.holesPerPart, 4, "uploaded DXF quote hole count");
