@@ -5,13 +5,16 @@ SinoPlastix is developing a software and structured-data layer for polymer sheet
 This repository currently contains the first building blocks rather than a finished product:
 
 - `calculators/polycarbonate_load_calculator.py` — initial load-capacity calculation code
-- `data/materials/polycarbonate-sheets.json` — initial structured materials dataset
-- `tools/validate_materials_data.py` — dataset validation utility
+- `data/materials/polycarbonate-sheets.json` — initial geometrically determinate solid-polycarbonate dataset
+- `tools/validate_materials_data.py` — geometric dataset validation utility
+- `data/materials/sinoplastix-product-catalog.json` — source-linked public product-catalog reference data covering solid PC, multiwall PC, PMMA routes/variants and the unresolved PETG data gap
+- `tools/validate_sinoplastix_catalog.py` — catalog structure, provenance and Phase 1 coverage validator
+- [Product-catalog data model and integration boundary](materials-data-platform/sinoplastix-catalog-data-model.md)
 - `tools/rfq-specification-assistant/` — first internal prototype for structured RFQ intake, application routing, engineering screening checks and quotation-support summaries
 - `data/applications/application-selection-rules.json` — initial structured application-rule dataset used by the RFQ assistant
 - Engineering documentation covering selection, structural design, fabrication, roofing, and greenhouse applications
 
-The materials dataset is currently limited to geometrically determinate solid polycarbonate sheet properties. Values must be validated against current manufacturer datasheets before customer-facing or production use.
+The geometric dataset remains limited to geometrically determinate solid polycarbonate sheet properties. The public catalog dataset adds provenance-linked product-family facts but is not a manufacturer datasheet, stock list or pricing source. Values must be validated against current internal manufacturer documents before customer-facing or production use.
 
 ## Phase 1 product frame
 

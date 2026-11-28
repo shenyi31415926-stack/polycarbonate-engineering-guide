@@ -1,0 +1,387 @@
+{
+  "schema_version": "0.1.0",
+  "dataset": "sinoplastix-public-product-catalog",
+  "verification_status": "public-website-reference-data-not-a-production-datasheet",
+  "accessed_at": "2026-11-28",
+  "source_language": "en",
+  "data_policy": {
+    "unknown_fields": "omit rather than infer",
+    "values_are_stock_commitments": false,
+    "production_use_requires": "written quotation, grade-specific datasheet, sample approval and project-specific engineering review"
+  },
+  "entries": [
+    {
+      "id": "pc-solid",
+      "polymer": "PC",
+      "material_family": "polycarbonate",
+      "product_form": "solid-sheet",
+      "commercial_status": "publicly-offered",
+      "evidence_level": "product-family-public-webpage",
+      "cpq_material_id": "pc-solid",
+      "sources": {
+        "product-family": "https://sinoplastix.com/materials/polycarbonate/solid/"
+      },
+      "default_source_key": "product-family",
+      "dimensions": {
+        "thickness_mm": {
+          "min": 0.8,
+          "max": 20,
+          "qualifier": "typical flat-sheet quote range",
+          "source_key": "product-family"
+        },
+        "standard_widths_mm": [1220, 2050, 2100],
+        "length_policy": "cut length and custom width are reviewed for the production run",
+        "source_key": "product-family"
+      },
+      "appearance": {
+        "colours": ["clear", "bronze", "opal white", "custom colours"],
+        "finishes": ["smooth", "frosted", "matte", "textured"],
+        "sample_required_for": ["colour", "glare", "visible surface quality"],
+        "source_key": "product-family"
+      },
+      "supply_formats": ["flat sheets", "cut panels", "CNC-finished parts"],
+      "properties": {
+        "density": {
+          "value": 1.2,
+          "unit": "g/cm3",
+          "method": "ISO 1183-1",
+          "scope": "representative flat-sheet grade",
+          "source_key": "product-family"
+        },
+        "light_transmission_clear_3mm": {
+          "value": 89,
+          "unit": "percent",
+          "method": "ISO 13468-1",
+          "scope": "representative clear 3 mm flat-sheet grade",
+          "source_key": "product-family"
+        },
+        "tensile_modulus": {
+          "value": 2300,
+          "unit": "MPa",
+          "method": "ISO 527-1/-2",
+          "condition": "1 mm/min",
+          "scope": "representative flat-sheet grade",
+          "source_key": "product-family"
+        },
+        "flexural_modulus": {
+          "value": 2410,
+          "unit": "MPa",
+          "method": "ISO 178:2019",
+          "condition": "2 mm/min",
+          "scope": "representative flat-sheet grade",
+          "source_key": "product-family"
+        },
+        "notched_izod_impact_3_2mm": {
+          "value": 921,
+          "unit": "J/m",
+          "method": "ASTM D256-10",
+          "condition": "23°C, 50% RH",
+          "scope": "representative flat-sheet grade",
+          "source_key": "product-family"
+        },
+        "heat_deflection_temperature": {
+          "value": 129,
+          "unit": "°C",
+          "method": "ISO 75-2",
+          "condition": "1.8 MPa",
+          "scope": "representative flat-sheet grade",
+          "source_key": "product-family"
+        }
+      },
+      "quote_inputs_required": [
+        "thickness",
+        "colour and finish sample reference",
+        "UV-facing side where applicable",
+        "sheet size or finished-part drawing revision",
+        "holes, cutouts, edges, bends and inspection points",
+        "quantity and use conditions"
+      ],
+      "cautions": [
+        "Representative properties support early comparison only; selected grade, thickness, frame and project standard control acceptance.",
+        "Do not use these figures alone to approve a machine guard, roof panel or installed system."
+      ]
+    },
+    {
+      "id": "pc-multiwall",
+      "polymer": "PC",
+      "material_family": "polycarbonate",
+      "product_form": "multiwall-sheet",
+      "commercial_status": "publicly-offered",
+      "evidence_level": "product-family-public-webpage",
+      "cpq_material_id": "pc-multiwall",
+      "sources": {
+        "product-family": "https://sinoplastix.com/materials/polycarbonate/multiwall/"
+      },
+      "default_source_key": "product-family",
+      "appearance": {
+        "colours": ["clear", "opal", "bronze", "custom colours"],
+        "appearance_effects": ["daylight", "glare", "privacy"],
+        "sample_required_for": ["actual thickness", "structure", "shade"],
+        "source_key": "product-family"
+      },
+      "structures": [
+        {
+          "id": "twin-wall",
+          "wall_structure": "twin-wall",
+          "thickness_mm": {
+            "min": 4,
+            "max": 10,
+            "qualifier": "typical product-family starting range",
+            "source_key": "product-family"
+          },
+          "starting_applications": ["greenhouses", "small covers", "light daylighting panels"],
+          "engineering_checks": ["frame support", "drainage direction", "end closure"]
+        },
+        {
+          "id": "triple-or-four-wall",
+          "wall_structure": "triple-wall or four-wall",
+          "thickness_mm": {
+            "min": 10,
+            "max": 16,
+            "qualifier": "typical product-family starting range",
+            "source_key": "product-family"
+          },
+          "starting_applications": ["skylights", "canopies", "roofs balancing light with insulation"],
+          "engineering_checks": ["actual wall count", "section weight", "thermal target", "load table"]
+        },
+        {
+          "id": "x-structure-or-honeycomb",
+          "wall_structure": "X-structure or honeycomb",
+          "thickness_mm": {
+            "min": 16,
+            "max": 25,
+            "max_is_open_ended": true,
+            "qualifier": "typical product-family starting range",
+            "source_key": "product-family"
+          },
+          "starting_applications": ["projects considering a more reinforced hollow section"],
+          "engineering_checks": ["section geometry", "compatible joiners", "appearance", "project loads"]
+        }
+      ],
+      "uv_face": {
+        "specification_required": true,
+        "verification": "confirm protective-film marking for the UV-protected side",
+        "optional_face_treatments": ["anti-drip", "anti-fog"],
+        "source_key": "product-family"
+      },
+      "supply_package_inputs": ["cut lengths", "panel count", "H/U profiles or connectors", "closure tapes"],
+      "quote_inputs_required": [
+        "roof plan or panel schedule",
+        "support spacing",
+        "project location",
+        "custom panel length",
+        "colour",
+        "UV face",
+        "compatible closure or joining accessories"
+      ],
+      "cautions": [
+        "Thickness and wall-structure ranges are not span tables or stock commitments.",
+        "Section weight, stiffness, insulation and load capacity depend on the actual manufacturer-specific section geometry.",
+        "The project designer confirms the installed system."
+      ]
+    },
+    {
+      "id": "pmma-sheet",
+      "polymer": "PMMA",
+      "material_family": "acrylic",
+      "product_form": "solid-sheet",
+      "commercial_status": "publicly-offered",
+      "evidence_level": "product-family-public-webpage",
+      "cpq_material_ids": ["pmma-cast", "pmma-extruded"],
+      "sources": {
+        "family": "https://sinoplastix.com/materials/acrylic/",
+        "clear": "https://sinoplastix.com/materials/acrylic/clear/",
+        "frosted": "https://sinoplastix.com/materials/acrylic/frosted/",
+        "coloured": "https://sinoplastix.com/materials/acrylic/coloured/",
+        "white-opal": "https://sinoplastix.com/materials/acrylic/white-opal/",
+        "cast": "https://sinoplastix.com/materials/acrylic/cast/"
+      },
+      "default_source_key": "family",
+      "routes": [
+        {
+          "id": "cast",
+          "cpq_material_id": "pmma-cast",
+          "thickness_tolerance": {
+            "value": 10,
+            "unit": "percent",
+            "qualifier": "looser than extruded acrylic",
+            "source_key": "family"
+          },
+          "machining": "excellent — clean edges, polishes well",
+          "laser_cutting_edge": "frosted edge",
+          "thermoforming": "wider forming window",
+          "chemical_resistance": "better than extruded acrylic",
+          "relative_cost": "higher than extruded acrylic",
+          "preferred_when": ["CNC machining", "engraving", "flame polishing"],
+          "source_key": "family"
+        },
+        {
+          "id": "extruded",
+          "cpq_material_id": "pmma-extruded",
+          "thickness_tolerance": {
+            "value": 5,
+            "unit": "percent",
+            "qualifier": "tighter than cast acrylic",
+            "source_key": "family"
+          },
+          "machining": "fair — softens and gums at speed",
+          "laser_cutting_edge": "clear polished edge",
+          "thermoforming": "narrower forming window, but easier at low temperature",
+          "chemical_resistance": "lower than cast acrylic",
+          "relative_cost": "lower than cast acrylic",
+          "preferred_when": ["laser cutting", "thermoforming", "simple glazing"],
+          "source_key": "family"
+        }
+      ],
+      "variants": [
+        {
+          "id": "clear",
+          "source_key": "clear",
+          "process_options": ["cast", "extruded"],
+          "dimensions": {
+            "thickness_mm": {
+              "min": 1,
+              "max": 30,
+              "source_key": "clear"
+            },
+            "standard_widths_mm": [1220, 1830],
+            "width_policy": "other widths to order",
+            "source_key": "clear"
+          },
+          "properties": {
+            "light_transmission": {
+              "max": 92,
+              "unit": "percent",
+              "qualifier": "up to 92%",
+              "source_key": "clear"
+            },
+            "weight_relative_to_glass": {
+              "value": "approximately half that of glass for the same panel",
+              "source_key": "clear"
+            },
+            "uv_stability": {
+              "value": "inherent — no co-extruded layer required",
+              "source_key": "clear"
+            },
+            "surface_hardness": {
+              "value": "significantly harder than uncoated polycarbonate",
+              "source_key": "clear"
+            },
+            "impact_behaviour": {
+              "value": "cracks under heavy impact — specify polycarbonate if impact matters",
+              "source_key": "clear"
+            }
+          },
+          "typical_applications": [
+            "retail display cases and shelving",
+            "picture framing and protective glazing",
+            "signage faces and lettering",
+            "furniture, fixtures and shop fitting"
+          ]
+        },
+        {
+          "id": "frosted",
+          "source_key": "frosted",
+          "process_options": ["cast", "extruded"],
+          "finish_options": ["single-sided matte", "double-sided matte"],
+          "dimensions": {
+            "thickness_mm": {
+              "min": 2,
+              "max": 10,
+              "source_key": "frosted"
+            },
+            "standard_widths_mm": [1220, 1830],
+            "width_policy": "other widths to order",
+            "source_key": "frosted"
+          },
+          "properties": {
+            "light_transmission": {
+              "min": 70,
+              "max": 85,
+              "unit": "percent",
+              "qualifier": "typically depending on grade",
+              "source_key": "frosted"
+            },
+            "surface": {
+              "value": "anti-fingerprint; hides handling marks",
+              "source_key": "frosted"
+            }
+          },
+          "colours": ["clear-frost", "white-frost", "coloured frost"]
+        },
+        {
+          "id": "coloured",
+          "source_key": "coloured",
+          "colour_types": ["transparent tint", "translucent", "solid opaque", "fluorescent"],
+          "matching_references": ["Pantone", "RAL", "physical sample"],
+          "dimensions": {
+            "thickness_mm": {
+              "min": 2,
+              "max": 20,
+              "source_key": "coloured"
+            },
+            "standard_widths_mm": [1220, 1830],
+            "width_policy": "other widths to order",
+            "source_key": "coloured"
+          },
+          "properties": {
+            "uv_stability": {
+              "value": "inherent — suitable for exterior signage",
+              "source_key": "coloured"
+            }
+          },
+          "edge_glow_grades_available": true,
+          "lead_time_days": {
+            "stock_colours": {
+              "min": 7,
+              "max": 10
+            },
+            "custom_matching": {
+              "min": 15,
+              "max": 20
+            },
+            "source_key": "coloured"
+          }
+        },
+        {
+          "id": "white-opal",
+          "data_status": "application-evidence-guidance-only-no-public-numeric-specification",
+          "quote_inputs_required": [
+            "lamp spacing and cavity depth",
+            "transmission, haze and hiding-power priorities",
+            "production LED spectrum for lit-sample approval",
+            "outdoor or warm-service exposure"
+          ],
+          "source_key": "white-opal"
+        }
+      ],
+      "cautions": [
+        "Cast acrylic is a manufacturing route, not a promise that every sheet has the same tolerance or machining result.",
+        "Do not treat a brochure for a named acrylic brand as evidence for an unnamed substitute.",
+        "Outdoor clarity depends on the offered grade, exposure and maintenance; request grade-specific weathering data."
+      ]
+    },
+    {
+      "id": "petg-sheet",
+      "polymer": "PETG",
+      "material_family": "petg",
+      "product_form": "solid-sheet",
+      "commercial_status": "not-evidenced-on-public-website",
+      "evidence_level": "pending-internal-datasheet",
+      "cpq_material_id": "petg",
+      "sources": {},
+      "data_status": "placeholder-gap-record-only-no-numeric-specification-asserted",
+      "notes": [
+        "PETG is part of the Phase 1 CPQ material scope, but no public PETG material page was found on sinoplastix.com during catalog extraction.",
+        "No thickness, size, mechanical, optical, thermal or price data is asserted until an internal manufacturer datasheet or public product page is supplied."
+      ],
+      "required_internal_evidence": [
+        "offered grade and supplier datasheet",
+        "thickness and sheet-size range",
+        "density and mechanical properties",
+        "forming and fabrication limits",
+        "application restrictions and compliance evidence"
+      ]
+    }
+  ]
+}

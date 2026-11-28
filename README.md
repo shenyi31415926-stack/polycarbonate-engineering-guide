@@ -72,19 +72,17 @@ SinoPlastix is developing a software and structured-data layer for polymer sheet
 - [CPQ prototype documentation, validation and limitations](tools/cpq-prototype/README.md)
 - [RFQ Specification Assistant](tools/rfq-specification-assistant/index.html)
 - [RFQ assistant documentation and limitations](tools/rfq-specification-assistant/README.md)
-- [Structured polycarbonate dataset](data/materials/polycarbonate-sheets.json)
-- [Dataset validation utility](tools/validate_materials_data.py)
+- [Structured polycarbonate geometric dataset](data/materials/polycarbonate-sheets.json)
+- [Geometric dataset validation utility](tools/validate_materials_data.py)
+- [SinoPlastix public product-catalog reference data](data/materials/sinoplastix-product-catalog.json)
+- [Product-catalog data model and integration boundary](docs/digital-platform/materials-data-platform/sinoplastix-catalog-data-model.md)
+- [Product-catalog validation utility](tools/validate_sinoplastix_catalog.py)
 
-The current dataset is a geometric baseline for solid polycarbonate sheets. Values must be validated against manufacturer datasheets before production use.
+The geometric dataset is a baseline for solid polycarbonate sheets. The separate SinoPlastix catalog dataset records only facts explicitly published on `sinoplastix.com`, with source provenance and unresolved data gaps. Values must be validated against manufacturer datasheets before production use.
 
-## 🔗 Quick Reference
+## 🔗 Data-use note
 
-| Property | Solid Sheet | Twin-Wall | Triple-Wall |
-|----------|-------------|-----------|-------------|
-| Light Transmission | 90% | 82% | 74% |
-| U-Value (W/m²K) | 5.6 | 2.8 | 2.1 |
-| Impact Strength | 250 J/m | 200 J/m | 180 J/m |
-| Weight (kg/m²) | 1.5 | 1.0 | 1.2 |
+Generic single-value comparisons of light transmission, U-value, impact strength or weight are not shown here because they depend on thickness, wall structure, specimen condition, grade and test method. Use the linked structured datasets and manufacturer-specific evidence instead of treating marketing-table values as engineering inputs.
 
 ## 📜 License
 
