@@ -126,8 +126,14 @@ def validate_entry(entry, index):
 
     if entry_id == "pc-multiwall":
         structures = entry.get("structures", [])
-        if len(structures) < 3:
-            errors.append("pc-multiwall: expected at least three documented structure ranges")
+        structure_ids = {structure.get("id") for structure in structures if isinstance(structure, dict)}
+        required_structures = {"twin-wall", "triple-or-four-wall", "x-structure-or-honeycomb"}
+        if structure_ids != required_structures or len(structure_ids) != len(structures):
+            errors.append("pc-multiwall: structures must uniquely cover twin-wall, triple-or-four-wall and x-structure-or-honeycomb")
+        for structure in structures:
+            thickness = structure.get("thickness_mm", {}) if isinstance(structure, dict) else {}
+            if not thickness or not (is_number(thickness.get("min")) and thickness.get("min") > 0):
+                errors.append(f"pc-multiwall:{structure.get('id', '<unknown>')}: documented positive thickness range is required")
 
     return errors
 
