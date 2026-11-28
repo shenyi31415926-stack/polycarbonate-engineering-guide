@@ -125,6 +125,25 @@
     return { kind: "arc", x, y, radius, start, end, lengthMm: 2 * Math.PI * radius * (delta / 360), hole: false };
   }
 
+  function polygonAreaMm2(points, scale) {
+    let twiceArea = 0;
+    for (let i = 0; i < points.length; i += 1) {
+      const next = points[(i + 1) % points.length];
+      twiceArea += points[i].x * next.y - next.x * points[i].y;
+    }
+    return Math.abs(twiceArea) * scale * scale / 2;
+  }
+
+  function pointInPolygon(point, points) {
+    let inside = false;
+    for (let i = 0, j = points.length - 1; i < points.length; j = i, i += 1) {
+      const intersects = (points[i].y > point.y) !== (points[j].y > point.y)
+        && point.x < ((points[j].x - points[i].x) * (point.y - points[i].y)) / (points[j].y - points[i].y) + points[i].x;
+      if (intersects) inside = !inside;
+    }
+    return inside;
+  }
+
   function parseDxf(text) {
     const warnings = [];
     if (!text || !String(text).trim()) return { ok: false, error: "DXF file is empty.", warnings };
@@ -194,10 +213,40 @@
       if (contourCircles.length && contourItems.length > contourCircles.length) warnings.push("Large circular entities were treated as contour geometry; verify whether they are holes or cutouts.");
     }
 
+    const simpleContour = contourItems.length === 1
+      && contourItems[0].kind === "polyline"
+      && contourItems[0].closed
+      && !contourItems[0].hasBulge
+      && contourItems[0].points.length >= 3
+      ? contourItems[0]
+      : null;
+
+    if (simpleContour && holes.length) {
+      const insideHoles = holes.filter((hole) => pointInPolygon(hole, simpleContour.points));
+      const outsideHoles = holes.filter((hole) => !insideHoles.includes(hole));
+      holes = insideHoles;
+      if (outsideHoles.length) warnings.push(`${outsideHoles.length} circular entit${outsideHoles.length === 1 ? "y was" : "ies were"} outside the closed contour and excluded from hole metrics.`);
+    }
+
     const outerPerimeterMm = contourItems.reduce((sum, item) => sum + item.lengthMm, 0);
     const holePerimeterMm = holes.reduce((sum, item) => sum + item.lengthMm, 0);
     if (!outerPerimeterMm) warnings.push("No outer contour entities could be separated from hole geometry; verify the drawing manually.");
     if (circles.length && !holes.length && contourItems.length) warnings.push("Circular entities were not confidently classified as holes; verify drilling count manually.");
+
+    const boundingBoxAreaMm2 = widthMm * lengthMm;
+    let partAreaMm2 = boundingBoxAreaMm2;
+    let areaSource = "bounding-box";
+    if (simpleContour) {
+      const contourAreaMm2 = polygonAreaMm2(simpleContour.points, scale);
+      const holesAreaMm2 = holes.reduce((sum, hole) => sum + Math.PI * (hole.radius * scale) ** 2, 0);
+      const netAreaMm2 = contourAreaMm2 - holesAreaMm2;
+      if (contourAreaMm2 > 0 && netAreaMm2 > 0) {
+        partAreaMm2 = netAreaMm2;
+        areaSource = "simple-closed-contour-minus-circular-holes";
+      } else {
+        warnings.push("Closed-contour area could not be calculated reliably; bounding-box area was used instead.");
+      }
+    }
 
     const holeDiameters = holes.map((hole) => hole.diameter * scale).sort((a, b) => a - b);
     const result = {
@@ -207,7 +256,9 @@
       supportedEntityCount: geometry.length,
       widthMm: round(widthMm, 3),
       lengthMm: round(lengthMm, 3),
-      partAreaM2: round((widthMm * lengthMm) / 1_000_000, 5),
+      partAreaM2: round(partAreaMm2 / 1_000_000, 5),
+      boundingBoxAreaM2: round(boundingBoxAreaMm2 / 1_000_000, 5),
+      areaSource,
       outerPerimeterM: round(outerPerimeterMm / 1000, 4),
       cuttingPerimeterM: round((outerPerimeterMm + holePerimeterMm) / 1000, 4),
       holesPerPart: holes.length,

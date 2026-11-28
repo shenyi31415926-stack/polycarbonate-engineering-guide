@@ -380,7 +380,7 @@
         Area/part: <strong>${m.partAreaM2} m²</strong><br>
         Cutting perimeter/part: <strong>${m.cuttingPerimeterM} m</strong><br>
         Holes/part: <strong>${m.holesPerPart}</strong> · Bends/part: <strong>${m.bendCountPerPart}</strong><br>
-        Geometry confidence: <strong>${esc(m.geometryConfidence)}</strong>${m.dxfWarnings && m.dxfWarnings.length ? `<br>DXF warnings: <strong>${esc(m.dxfWarnings.join(" "))}</strong>` : ""}<br>
+        Geometry confidence: <strong>${esc(m.geometryConfidence)}</strong>${m.areaSource ? `<br>Area source: <strong>${esc(m.areaSource)}</strong>` : ""}${m.dxfWarnings && m.dxfWarnings.length ? `<br>DXF warnings: <strong>${esc(m.dxfWarnings.join(" "))}</strong>` : ""}<br>
         Thermal movement screening: <strong>${q.thermalMovementMm ?? "pending"} mm</strong><br>
         Span/load screening: <strong>${q.spanScreening ? `${q.spanScreening.governingSpanM} m max (${q.spanScreening.governingFactor}-governed)` : q.input.designLoadKnM2 ? "requires manufacturer-specific evidence / review" : "not requested"}${q.input.spanMm ? ` · stated span ${q.input.spanMm / 1000} m` : ""}</strong>
       ` : "Geometry inputs incomplete.";

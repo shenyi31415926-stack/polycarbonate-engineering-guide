@@ -155,6 +155,28 @@
     assertEqual(parsedDxf.holeDiameterMm, 8, "sample DXF hole diameter");
     assertClose(parsedDxf.cuttingPerimeterM, 2.7005, 0.0001, "sample DXF cutting perimeter");
     assertEqual(parsedDxf.requiresManualGeometryReview, true, "parsed DXF should retain manual review flag");
+    assertEqual(parsedDxf.areaSource, "simple-closed-contour-minus-circular-holes", "closed sample contour should use net contour area");
+    assertEqual(parsedDxf.boundingBoxAreaM2, 0.4, "sample DXF bounding-box area");
+    assertClose(parsedDxf.partAreaM2, 0.3998, 0.00001, "sample DXF net contour area should subtract circular holes");
+
+    const lShapeDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "LWPOLYLINE", "90", "6", "70", "1",
+      "10", "0", "20", "0", "10", "400", "20", "0", "10", "400", "20", "200",
+      "10", "200", "20", "200", "10", "200", "20", "400", "10", "0", "20", "400",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedLShape = dxfParser.parseDxf(lShapeDxf);
+    assertEqual(parsedLShape.ok, true, "L-shaped closed polyline should parse");
+    assertEqual(parsedLShape.areaSource, "simple-closed-contour-minus-circular-holes", "L-shape should use contour area");
+    assertEqual(parsedLShape.boundingBoxAreaM2, 0.16, "L-shape bounding-box area");
+    assertEqual(parsedLShape.partAreaM2, 0.12, "L-shape contour area should be lower than bounding box");
+    assertClose(parsedLShape.cuttingPerimeterM, 1.6, 0.0001, "L-shape cutting perimeter");
+
+    const bulgedLShape = dxfParser.parseDxf(lShapeDxf.replace("70\n1\n10", "70\n1\n42\n0.5\n10"));
+    assertEqual(bulgedLShape.areaSource, "bounding-box", "bulged polyline must not use straight-chord contour area");
+    assertEqual(bulgedLShape.partAreaM2, 0.16, "bulged polyline should fall back to bounding-box area");
 
     const uploadedDxfQuote = logic.calculateQuote(baseInput({ template: "uploaded-dxf", widthMm: "", lengthMm: "", dxfAnalysis: parsedDxf }), config);
     assertEqual(uploadedDxfQuote.metrics.widthMm, 500, "uploaded DXF quote width");

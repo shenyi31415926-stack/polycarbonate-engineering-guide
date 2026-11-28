@@ -156,6 +156,8 @@
         widthMm: analysis.widthMm,
         lengthMm: analysis.lengthMm,
         partAreaM2: analysis.partAreaM2,
+        boundingBoxAreaM2: analysis.boundingBoxAreaM2 || null,
+        areaSource: analysis.areaSource || "bounding-box",
         outerPerimeterM: analysis.outerPerimeterM,
         cuttingPerimeterM: analysis.cuttingPerimeterM,
         holesPerPart: analysis.holesPerPart || 0,
