@@ -119,7 +119,8 @@
     const end = numberGroup(entity, 51);
     if ([x, y, radius, start, end].some((value) => value === null) || radius <= 0) return null;
     let delta = end - start;
-    while (delta < 0) delta += 360;
+    if (!Number.isFinite(delta)) return null;
+    delta = ((delta % 360) + 360) % 360;
     if (delta === 0) delta = 360;
     return { kind: "arc", x, y, radius, start, end, lengthMm: 2 * Math.PI * radius * (delta / 360), hole: false };
   }

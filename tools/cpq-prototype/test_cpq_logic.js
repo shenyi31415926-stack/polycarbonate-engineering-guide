@@ -171,6 +171,15 @@
     assert(invalidDxfQuote.manualReasons.some((reason) => reason.includes("DXF parsing failed")), "invalid DXF should produce an explicit parsing manual reason");
     assertEqual(invalidDxfQuote.price.status, "manual-required", "invalid DXF should be manual-required");
 
+    const extremeArcDxf = [
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "ARC", "10", "0", "20", "0", "40", "10", "50", "0", "51", "-1e30",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const extremeArc = dxfParser.parseDxf(extremeArcDxf);
+    assertEqual(extremeArc.ok, true, "extremely negative arc angle should normalize without hanging");
+    assert(extremeArc.cuttingPerimeterM > 0, "normalized arc should contribute a positive perimeter");
+
     return "CPQ prototype logic tests passed";
   };
 });
