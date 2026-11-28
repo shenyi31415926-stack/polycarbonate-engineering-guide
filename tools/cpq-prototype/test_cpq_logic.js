@@ -223,6 +223,18 @@
     assertEqual(parsedDenseLines.areaSource, "bounding-box", "very dense contour should skip expensive net-area validation");
     assert(parsedDenseLines.warnings.some((warning) => warning.includes("expensive browser-side topology validation")), "dense contour should explain topology-validation fallback");
 
+    const unsupportedCutoutDxf = [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      ...lineEntity(0, 0, 100, 0), ...lineEntity(100, 0, 100, 100),
+      ...lineEntity(100, 100, 0, 100), ...lineEntity(0, 100, 0, 0),
+      "0", "ELLIPSE", "10", "50", "20", "50", "11", "20", "21", "0", "40", "0.5",
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const parsedUnsupportedCutout = dxfParser.parseDxf(unsupportedCutoutDxf);
+    assertEqual(parsedUnsupportedCutout.areaSource, "bounding-box", "unsupported cutout geometry must disable net contour area");
+    assert(parsedUnsupportedCutout.warnings.some((warning) => warning.includes("may represent cutouts")), "unsupported cutout should warn that net area was not used");
+
     const inchRectangleDxf = [
       "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "1", "0", "ENDSEC",
       "0", "SECTION", "2", "ENTITIES",

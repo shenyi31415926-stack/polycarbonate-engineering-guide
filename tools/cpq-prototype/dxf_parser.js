@@ -380,7 +380,8 @@
     const boundingBoxAreaMm2 = widthMm * lengthMm;
     let partAreaMm2 = boundingBoxAreaMm2;
     let areaSource = "bounding-box";
-    if (simpleContour && !circularHoleAreaUncertain && !overlappingAreaHoles) {
+    if (simpleContour && unsupported.size) warnings.push("Unsupported drawing entities may represent cutouts or contour features; net contour area was not used.");
+    if (simpleContour && !unsupported.size && !circularHoleAreaUncertain && !overlappingAreaHoles) {
       const contourAreaMm2 = polygonAreaMm2(simpleContour.points, scale);
       const holesAreaMm2 = fullyInsideHoles.reduce((sum, hole) => sum + Math.PI * (hole.radius * scale) ** 2, 0);
       const netAreaMm2 = contourAreaMm2 - holesAreaMm2;
