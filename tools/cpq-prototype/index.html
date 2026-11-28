@@ -446,8 +446,8 @@
     function renderQuotePreview(q) {
       const input = q.input;
       const p = q.price;
-      const widthMm = q.metrics ? q.metrics.widthMm : input.widthMm;
-      const lengthMm = q.metrics ? q.metrics.lengthMm : input.lengthMm;
+      const widthMm = q.metrics ? q.metrics.widthMm : input.template === "uploaded-dxf" ? null : input.widthMm;
+      const lengthMm = q.metrics ? q.metrics.lengthMm : input.template === "uploaded-dxf" ? null : input.lengthMm;
       $("quote-paper").innerHTML = `
         <div class="quote-head"><div><div class="quote-logo">SinoPlastix<small>ENGINEERING POLYMER SHEETS</small></div></div><div class="quote-meta"><strong>Quotation ${q.quoteNumber}</strong><br>Date: ${new Date().toISOString().slice(0,10)}<br>Validity: 14 days · Demo</div></div>
         <div class="quote-section"><h3>Customer</h3><p>${esc(input.customerName || "Pending customer")}<br>Destination: ${esc(input.destination || "pending")}</p></div>
