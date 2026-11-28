@@ -48,10 +48,16 @@ def validate_ranges(value, entry_id, errors, path=""):
                     errors.append(f"{entry_id}:{child_path}: min must be numeric")
                 if maximum is not None and not is_number(maximum):
                     errors.append(f"{entry_id}:{child_path}: max must be numeric")
+                if "min" in child and minimum is None:
+                    errors.append(f"{entry_id}:{child_path}: explicit null min is not allowed; omit the bound instead")
+                if "max" in child and maximum is None:
+                    errors.append(f"{entry_id}:{child_path}: explicit null max is not allowed; omit the bound instead")
                 if is_number(minimum) and is_number(maximum) and minimum > maximum:
                     errors.append(f"{entry_id}:{child_path}: min exceeds max")
                 if is_number(minimum) and minimum <= 0:
                     errors.append(f"{entry_id}:{child_path}: min must be positive")
+                if is_number(maximum) and maximum <= 0:
+                    errors.append(f"{entry_id}:{child_path}: max must be positive")
             validate_ranges(child, entry_id, errors, child_path)
     elif isinstance(value, list):
         for index, child in enumerate(value):
