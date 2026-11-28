@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/shenyi31415926-stack/polycarbonate-engineering-guide/data/materials/sinoplastix-product-catalog.schema.json",
+  "title": "SinoPlastix public product catalog reference data",
+  "type": "object",
+  "required": ["schema_version", "dataset", "verification_status", "accessed_at", "data_policy", "entries"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "dataset": { "const": "sinoplastix-public-product-catalog" },
+    "verification_status": { "type": "string" },
+    "accessed_at": { "type": "string", "format": "date" },
+    "source_language": { "type": "string" },
+    "data_policy": {
+      "type": "object",
+      "required": ["unknown_fields", "values_are_stock_commitments", "production_use_requires"],
+      "properties": {
+        "unknown_fields": { "type": "string" },
+        "values_are_stock_commitments": { "const": false },
+        "production_use_requires": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "polymer", "material_family", "product_form", "commercial_status", "evidence_level", "sources"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "polymer": { "type": "string" },
+          "material_family": { "type": "string" },
+          "product_form": { "type": "string" },
+          "commercial_status": { "enum": ["publicly-offered", "not-evidenced-on-public-website", "discontinued", "internal-only"] },
+          "evidence_level": { "type": "string" },
+          "cpq_material_id": { "type": "string" },
+          "cpq_material_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "uniqueItems": true
+          },
+          "sources": {
+            "type": "object",
+            "additionalProperties": { "type": "string", "format": "uri" }
+          },
+          "dimensions": { "type": "object" },
+          "appearance": { "type": "object" },
+          "properties": { "type": "object" },
+          "structures": { "type": "array" },
+          "routes": { "type": "array" },
+          "variants": { "type": "array" },
+          "quote_inputs_required": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "cautions": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "notes": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
