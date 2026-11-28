@@ -126,10 +126,15 @@
   }
 
   function polygonAreaMm2(points, scale) {
+    const origin = points[0];
     let twiceArea = 0;
     for (let i = 0; i < points.length; i += 1) {
       const next = points[(i + 1) % points.length];
-      twiceArea += points[i].x * next.y - next.x * points[i].y;
+      const x = points[i].x - origin.x;
+      const y = points[i].y - origin.y;
+      const nextX = next.x - origin.x;
+      const nextY = next.y - origin.y;
+      twiceArea += x * nextY - nextX * y;
     }
     return Math.abs(twiceArea) * scale * scale / 2;
   }
@@ -146,6 +151,75 @@
 
   function endpointKey(x, y) {
     return `${x.toFixed(5)},${y.toFixed(5)}`;
+  }
+
+  function distancePointToSegment(point, a, b) {
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    const lengthSquared = dx * dx + dy * dy;
+    if (!lengthSquared) return Math.hypot(point.x - a.x, point.y - a.y);
+    const t = Math.max(0, Math.min(1, ((point.x - a.x) * dx + (point.y - a.y) * dy) / lengthSquared));
+    return Math.hypot(point.x - (a.x + t * dx), point.y - (a.y + t * dy));
+  }
+
+  function circleFullyInsidePolygon(circle, points) {
+    if (!pointInPolygon(circle, points)) return false;
+    for (let i = 0; i < points.length; i += 1) {
+      const next = points[(i + 1) % points.length];
+      if (distancePointToSegment(circle, points[i], next) <= circle.radius) return false;
+    }
+    return true;
+  }
+
+  function orientation(a, b, c) {
+    const value = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+    const epsilon = 1e-10;
+    if (Math.abs(value) < epsilon) return 0;
+    return value > 0 ? 1 : -1;
+  }
+
+  function onSegment(a, b, point) {
+    const epsilon = 1e-10;
+    return point.x >= Math.min(a.x, b.x) - epsilon && point.x <= Math.max(a.x, b.x) + epsilon
+      && point.y >= Math.min(a.y, b.y) - epsilon && point.y <= Math.max(a.y, b.y) + epsilon;
+  }
+
+  function segmentsIntersect(a1, a2, b1, b2) {
+    const o1 = orientation(a1, a2, b1);
+    const o2 = orientation(a1, a2, b2);
+    const o3 = orientation(b1, b2, a1);
+    const o4 = orientation(b1, b2, a2);
+    if (o1 !== o2 && o3 !== o4) return true;
+    if (o1 === 0 && onSegment(a1, a2, b1)) return true;
+    if (o2 === 0 && onSegment(a1, a2, b2)) return true;
+    if (o3 === 0 && onSegment(b1, b2, a1)) return true;
+    if (o4 === 0 && onSegment(b1, b2, a2)) return true;
+    return false;
+  }
+
+  function polygonIsSimple(points) {
+    if (points.some((point, index) => endpointKey(point.x, point.y) === endpointKey(points[(index + 1) % points.length].x, points[(index + 1) % points.length].y))) return false;
+    for (let i = 0; i < points.length; i += 1) {
+      const a1 = points[i];
+      const a2 = points[(i + 1) % points.length];
+      for (let j = i + 1; j < points.length; j += 1) {
+        if (j === i + 1 || (i === 0 && j === points.length - 1)) continue;
+        const b1 = points[j];
+        const b2 = points[(j + 1) % points.length];
+        if (segmentsIntersect(a1, a2, b1, b2)) return false;
+      }
+    }
+    return true;
+  }
+
+  function circlesOverlap(circles) {
+    for (let i = 0; i < circles.length; i += 1) {
+      for (let j = i + 1; j < circles.length; j += 1) {
+        const distance = Math.hypot(circles[i].x - circles[j].x, circles[i].y - circles[j].y);
+        if (distance < circles[i].radius + circles[j].radius) return true;
+      }
+    }
+    return false;
   }
 
   function chainLineLoop(lines) {
@@ -273,14 +347,24 @@
       lineLoop = chainLineLoop(contourItems);
       if (!lineLoop) warnings.push("LINE entities could not be reconstructed into one simple closed contour; bounding-box area was retained.");
     }
-    const simpleContour = closedPolyline || lineLoop;
+    const contourCandidate = closedPolyline || lineLoop;
+    const simpleContour = contourCandidate && polygonIsSimple(contourCandidate.points) ? contourCandidate : null;
+    if (contourCandidate && !simpleContour) warnings.push("Closed contour self-intersects or contains duplicate/zero-length vertices; bounding-box area was retained.");
 
+    let fullyInsideHoles = [];
+    let circularHoleAreaUncertain = false;
     if (simpleContour && holes.length) {
       const insideHoles = holes.filter((hole) => pointInPolygon(hole, simpleContour.points));
       const outsideHoles = holes.filter((hole) => !insideHoles.includes(hole));
       holes = insideHoles;
+      fullyInsideHoles = insideHoles.filter((hole) => circleFullyInsidePolygon(hole, simpleContour.points));
+      circularHoleAreaUncertain = fullyInsideHoles.length !== insideHoles.length;
       if (outsideHoles.length) warnings.push(`${outsideHoles.length} circular entit${outsideHoles.length === 1 ? "y was" : "ies were"} outside the closed contour and excluded from hole metrics.`);
+      if (circularHoleAreaUncertain) warnings.push("At least one circular entity touches or crosses the contour boundary; net contour area was not used because the cutout area cannot be determined by circular-hole subtraction.");
     }
+
+    const overlappingAreaHoles = circlesOverlap(fullyInsideHoles);
+    if (overlappingAreaHoles) warnings.push("Overlapping circular holes detected; net contour area was not used because their union area cannot be represented by simple subtraction.");
 
     const outerPerimeterMm = contourItems.reduce((sum, item) => sum + item.lengthMm, 0);
     const holePerimeterMm = holes.reduce((sum, item) => sum + item.lengthMm, 0);
@@ -290,9 +374,9 @@
     const boundingBoxAreaMm2 = widthMm * lengthMm;
     let partAreaMm2 = boundingBoxAreaMm2;
     let areaSource = "bounding-box";
-    if (simpleContour) {
+    if (simpleContour && !circularHoleAreaUncertain && !overlappingAreaHoles) {
       const contourAreaMm2 = polygonAreaMm2(simpleContour.points, scale);
-      const holesAreaMm2 = holes.reduce((sum, hole) => sum + Math.PI * (hole.radius * scale) ** 2, 0);
+      const holesAreaMm2 = fullyInsideHoles.reduce((sum, hole) => sum + Math.PI * (hole.radius * scale) ** 2, 0);
       const netAreaMm2 = contourAreaMm2 - holesAreaMm2;
       if (contourAreaMm2 > 0 && netAreaMm2 > 0) {
         partAreaMm2 = netAreaMm2;

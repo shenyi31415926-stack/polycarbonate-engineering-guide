@@ -217,6 +217,32 @@
     assertClose(parsedInches.partAreaM2, 0.12903, 0.00001, "inch DXF contour area should be converted to square metres");
     assertClose(parsedInches.cuttingPerimeterM, 1.524, 0.0001, "inch DXF perimeter should be converted to metres");
 
+    const polylineDxf = (points, extraEntities = []) => [
+      "0", "SECTION", "2", "HEADER", "9", "$INSUNITS", "70", "4", "0", "ENDSEC",
+      "0", "SECTION", "2", "ENTITIES",
+      "0", "LWPOLYLINE", "90", String(points.length), "70", "1",
+      ...points.flatMap(([x, y]) => ["10", String(x), "20", String(y)]),
+      ...extraEntities,
+      "0", "ENDSEC", "0", "EOF"
+    ].join("\n");
+    const circleEntity = (x, y, radius) => ["0", "CIRCLE", "10", String(x), "20", String(y), "40", String(radius)];
+
+    const crossingCutout = dxfParser.parseDxf(polylineDxf([[0, 0], [100, 0], [100, 100], [0, 100]], circleEntity(5, 50, 10)));
+    assertEqual(crossingCutout.areaSource, "bounding-box", "circle crossing contour must not be subtracted as a complete hole");
+    assert(crossingCutout.warnings.some((warning) => warning.includes("touches or crosses")), "crossing circular cutout should warn");
+
+    const overlappingHoles = dxfParser.parseDxf(polylineDxf([[0, 0], [100, 0], [100, 100], [0, 100]], [...circleEntity(40, 50, 10), ...circleEntity(50, 50, 10)]));
+    assertEqual(overlappingHoles.areaSource, "bounding-box", "overlapping holes must not use simple subtraction");
+    assert(overlappingHoles.warnings.some((warning) => warning.includes("Overlapping circular holes")), "overlapping holes should warn");
+
+    const largeOffset = dxfParser.parseDxf(polylineDxf([[1e9, 1e9], [1e9 + 200, 1e9], [1e9 + 200, 1e9 + 200], [1e9, 1e9 + 200]]));
+    assertEqual(largeOffset.areaSource, "simple-closed-contour-minus-circular-holes", "large drawing offsets should still use contour area");
+    assertClose(largeOffset.partAreaM2, 0.04, 0.00001, "large-offset polygon area should remain position-independent");
+
+    const bowtie = dxfParser.parseDxf(polylineDxf([[0, 0], [100, 100], [100, 0], [0, 100]]));
+    assertEqual(bowtie.areaSource, "bounding-box", "self-intersecting contour must not use net area");
+    assert(bowtie.warnings.some((warning) => warning.includes("self-intersects")), "self-intersecting contour should warn");
+
     const uploadedDxfQuote = logic.calculateQuote(baseInput({ template: "uploaded-dxf", widthMm: "", lengthMm: "", dxfAnalysis: parsedDxf }), config);
     assertEqual(uploadedDxfQuote.metrics.widthMm, 500, "uploaded DXF quote width");
     assertEqual(uploadedDxfQuote.metrics.holesPerPart, 4, "uploaded DXF quote hole count");
